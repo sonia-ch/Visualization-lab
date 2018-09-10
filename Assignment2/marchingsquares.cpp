@@ -10,8 +10,6 @@
 
 #include <labmarchingsquares/marchingsquares.h>
 #include <inviwo/core/util/utilities.h>
-#include <algorithm>
-#include <math.h>       /* fmin */
 
 namespace inviwo
 {
@@ -156,8 +154,8 @@ void MarchingSquares::process()
     // It's input is the VolumeRAM from above, the dimensions of the volume
     // and the indeces i and j of the position to be accessed where
     // i is in [0, dims.x-1] and j is in [0, dims.y-1]
-    float valueat00 = getInputValue(vr, dims, 0, 0);
-    //LogProcessorInfo("Value at (0,0) is: " << valueat00);
+    // float valueat00 = getInputValue(vr, dims, 0, 0);
+    // LogProcessorInfo("Value at (0,0) is: " << valueat00);
     // You can assume that dims.z = 1 and do not need to consider others cases
 
     // TODO (Bonus) Gaussian filter
@@ -170,7 +168,7 @@ void MarchingSquares::process()
     // getting values works with an editable volume as well
     // getInputValue(vrSmoothed, dims, 0, 0);
 	
-	// --- Implement Gaussian filter ---
+	// --- Implement Gaussian filter --- //
 
 	auto myVolume = vr;
 	if (propApplyGaussian.get())
@@ -197,20 +195,16 @@ void MarchingSquares::process()
         //vec2 v2 = vec2(0.7, 0.7);
         //drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
 
-		for (float i = 0; i < dims.x; i++)
+		for (size_t i = 0; i < dims.x; i++)
 		{
 			float ix = 1.0 / (dims.x - 1) * i;
-			vec2 v1 = vec2(ix, 0);
-			vec2 v2 = vec2(ix, 1);
-			drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
+			drawLineSegment(vec2(ix, 0), vec2(ix, 1), propGridColor.get(), indexBufferGrid, vertices);
 		}
 
-		for (float j = 0; j < dims.y; j++)
+		for (size_t j = 0; j < dims.y; j++)
 		{
 			float iy = 1.0 / (dims.y - 1) * j;
-			vec2 v1 = vec2(0, iy);
-			vec2 v2 = vec2(1, iy);
-			drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
+			drawLineSegment(vec2(0, iy), vec2(1, iy), propGridColor.get(), indexBufferGrid, vertices);
 		}
 		
     }
@@ -222,8 +216,8 @@ void MarchingSquares::process()
         // TODO: Draw a single isoline at the specified isovalue (propIsoValue) 
         // and color it with the specified color (propIsoColor)
 
-		//auto isoBufferGrid = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None);
-		drawIsolineSingleValue(propIsoValue, propIsoColor.get(), myVolume, dims, mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None), vertices);
+		auto isoBufferGrid = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None);
+		drawIsolineSingleValue(propIsoValue, propIsoColor.get(), myVolume, dims, isoBufferGrid, vertices);
     }
     else
     {
@@ -235,9 +229,7 @@ void MarchingSquares::process()
 		for (size_t iso = 0; iso < propNumContours.get(); iso++)
 		{
 			const double isoVal = propIsoValue.getMinValue() + (iso + 1) * w;
-			//LogProcessorInfo("Iso value: " << isoVal);
-			vec4 color = propIsoTransferFunc.get().sample(isoVal);
-			//LogProcessorInfo("Color: " << color);
+			vec4 color = propIsoTransferFunc.get().sample(isoVal); // The transfer function is not working yet
 			drawIsolineSingleValue(isoVal, color, myVolume, dims, mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None), vertices);
 		}
         
@@ -292,7 +284,8 @@ void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, vec4
 	float f10 = getInputValue(vr, dims, ix + 1, iy);
 
 	vec2 coord[] = { vec2(ix,iy),vec2(ix,iy+1),vec2(ix+1,iy+1),vec2(ix+1,iy) };
-	vec2 dir[] = { vec2(0,1), vec2(1,0), vec2(0,-1), vec2(-1,0) };
+	vec2 dir[] = { vec2(0,1), vec2(1,0), vec2(0,-1), vec2(-1,0) }; // This is a bit messy but basically it shows in which direction we have 
+																	// to add the 'x' for each of the cases
 	float f[] = { f00,f01,f11,f10 };
 
 	std::vector<vec2> p;
@@ -343,7 +336,7 @@ void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, vec4
 		}
 		else // Asymptotic decider:
 		{
-			float fab = (f00 * f11 - f10 * f01) / (f11 + f00 - f01 - f10);
+			float fab = (f00 * f11 - f10 * f01) / (f11 + f00 - f01 - f10); // There was a faster solution by sorting the values...
 			if (((c >= fab) && (f00 >= c)) || ((c < fab) && (f00 < c)))
 			{
 				drawLineSegment(p[0], p[3], color, isoBufferGrid, vertices);
