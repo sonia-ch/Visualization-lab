@@ -143,9 +143,20 @@ void MarchingSquares::process()
     const VolumeRAM* vr = vol->getRepresentation< VolumeRAM >();
     const size3_t dims = vol->getDimensions();
 
+    // Define cellWidths on unit-square
+    float cellWidthX = (1.0/(dims.x-1));
+    float cellWidthY = (1.0/(dims.y-1));
+
     // Initialize mesh and vertices
     auto mesh = std::make_shared<BasicMesh>();
     std::vector<BasicMesh::Vertex> vertices;
+
+    // The function drawLineSegments creates two vertices at the specified positions,
+    // that are placed into the Vertex vector defining our mesh.
+    // An index buffer specifies which of those vertices should be grouped into to make up lines/trianges/quads.
+    // Here two vertices make up a line segment.
+    auto indexBufferGrid = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None);
+
 
     // Values within the input data are accessed by the function below
     // It's input is the VolumeRAM from above, the dimensions of the volume
@@ -170,33 +181,55 @@ void MarchingSquares::process()
     // Properties are accessed with propertyName.get() 
     if (propShowGrid.get())
     {
-        // TODO: Add grid lines of the given color 
-
-        // The function drawLineSegments creates two vertices at the specified positions, 
-        // that are placed into the Vertex vector defining our mesh. 
-        // An index buffer specifies which of those vertices should be grouped into to make up lines/trianges/quads.
-        // Here two vertices make up a line segment.
-        auto indexBufferGrid = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None);
-
-        // Draw a line segment from v1 to v2 with a color, the coordinates in the final 
-        // image range from 0 to 1 for both x and y
-        vec2 v1 = vec2(0.5, 0.5);
-        vec2 v2 = vec2(0.7, 0.7);
-        drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
+        // TODO: Add grid lines of the given color
+        // Task1 a) Draw a bounding box for the data
+        // Dimensions give us the amount of points in x/y
+        // They are saved as a matrix of values, and accessible (x,y) => height-value
+        for (float i=0; i < dims.x; i++){
+            float x = cellWidthX *i;
+            vec2 v1 = vec2(x, 0);
+            vec2 v2 = vec2(x, 1);
+            drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
+        }
+        for (float j=0; j < dims.y; j++){
+            float y = cellWidthY *j;
+            vec2 v1 = vec2(0, y);
+            vec2 v2 = vec2(1, y);
+            drawLineSegment(v1, v2, propGridColor.get(), indexBufferGrid, vertices);
+        }
     }
 
-    // Iso contours
+    // Vector containing the isolines
+    std::vector<float> isolines;
+
 
     if (propMultiple.get() == 0)
     {
+        LogProcessorInfo(" Draw Isoline for isovalue " );
+
         // TODO: Draw a single isoline at the specified isovalue (propIsoValue) 
         // and color it with the specified color (propIsoColor)
+        isolines.push_back(propIsoValue.get());
+
+        // call algorithm with only one isoline value
+        algorithm(isolines, dims, cellWidthX,cellWidthY, vr, indexBufferGrid, vertices);
     }
     else
     {
         // TODO: Draw the given number (propNumContours) of isolines between 
         // the minimum and maximum value
-        
+        int n = propNumContours.get();
+        float range = propIsoValue.getMaxValue() - propIsoValue.getMinValue();
+        // Divide by (n+1) such that for one line it would be in the middle. (Not on the borders)
+        float width = range/(n+1);
+        for (int i=0; i<n; i++){
+            isolines.push_back(minValue + width*(i+1));
+        }
+
+        // call algorithm with multiple isoline values
+        algorithm(isolines, dims, cellWidthX,cellWidthY, vr, indexBufferGrid, vertices);
+
+
         // TODO (Bonus): Use the transfer function property to assign a color
         // The transfer function normalizes the input data and sampling colors
         // from the transfer function assumes normalized input, that means
@@ -204,6 +237,15 @@ void MarchingSquares::process()
         // is the color for the minimum value in the data
         // vec4 color = propIsoTransferFunc.get().sample(1.0f);
         // is the color for the maximum value in the data
+
+        // The customized transfer function has
+        // a blue point (0,0) for low values
+        // and a red point (1,1) for high values
+        propIsoTransferFunc.get().clearPoints();
+        propIsoTransferFunc.get().addPoint(vec2(0.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
+        propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f));
+        propIsoTransferFunc.setCurrentStateAsDefault();
+
 
     }
 
@@ -215,6 +257,150 @@ void MarchingSquares::process()
 
     mesh->addVertices(vertices);
     meshOut.setData(mesh);
+}
+
+void MarchingSquares::algorithm(const std::vector<float>& isolines,
+                                const size3_t& dims,
+                                const float& cellWidthX,
+                                const float& cellWidthY,
+                                const VolumeRAM* vr,
+                                IndexBufferRAM* indexBufferGrid,
+                                std::vector<BasicMesh::Vertex>& vertices){
+    // Iso contours
+    // Basic Marching Squares algorithm:
+    // 1. Input: data array and isovalue
+    // 2. Find all grid cells which are intersected by the isoline
+    // 3. Find intersection points of grid boundaries and isoline by interpolation
+    // 4. Draw isoline
+
+    // For all isolines
+    for (int i=0; i < isolines.size(); i++) {
+        const float& c = isolines[i];
+
+        // Iterate until SMALLER size-1 to acces all grid-cells from left lower corner (fixpoint - [x,y])
+        for (int x=0; x < dims.x-1; x++){
+            for (int y=0; y < dims.y-1; y++){
+                double f00 = getInputValue(vr, dims, x, y);
+                double f10 = getInputValue(vr, dims, x+1, y);
+                double f01 = getInputValue(vr, dims, x, y+1);
+                double f11 = getInputValue(vr, dims, x+1, y+1);
+                std::vector<double> cell = {f00, f10, f01, f11};
+
+                // relative point coordinates for x,y-index
+                float coordX0 = x*cellWidthX;
+                float coordX1 = (x+1)*cellWidthX;
+                float coordY0 = y*cellWidthY;
+                float coordY1 = (y+1)*cellWidthY;
+
+
+                // Linear interpolation along cell edges
+                // 1.) Calculate intersection points
+                std::vector<vec2> intersectionPoints;
+                // bottom edge
+                if ((f00 < c and f10 > c) or (f00 > c and f10 < c)){
+                    float weightX = (c-f00)/(f10-f00);
+                    intersectionPoints.push_back(vec2(coordX0 + (weightX * cellWidthX), coordY0));
+                }
+                // left edge
+                if ((f00 < c and f01 > c) or (f00 > c and f01 < c)) {
+                    float weightY = (c-f00)/(f01-f00);
+                    intersectionPoints.push_back(vec2(coordX0, coordY0 + (weightY * cellWidthY)));
+                }
+                // top edge
+                if ((f11 < c and f01 > c) or (f11 > c and f01 < c)){
+                    float weightX = (c-f01)/(f11-f01);
+                    intersectionPoints.push_back(vec2(coordX0 + (weightX * cellWidthX), coordY1));
+                }
+                // right edge
+                if ((f11 < c and f10 > c) or (f11 > c and f10 < c)){
+                    float weightY = (c-f10)/(f11-f10);
+                    intersectionPoints.push_back(vec2(coordX1, coordY0 + (weightY * cellWidthY)));
+                }
+
+                // 2.) Draw the lines based on the intersection points (4 cases: no points, 2 points, 4 points -> neighbours or opponents)
+                LogProcessorInfo(intersectionPoints.size() << " # Intersection points for (" << x << "," << y << ") cell");
+                for (int i=0; i<intersectionPoints.size(); i++){
+                    LogProcessorInfo(intersectionPoints[i]);
+                }
+
+                // Case 1: 2 points
+                if (intersectionPoints.size() == 2){
+                    drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+                } else if (intersectionPoints.size() == 4){
+                    // Case 2 and 3 are ambigious
+                    if (propDeciderType.get() == 1){
+                        asymptoticDecider(intersectionPoints, indexBufferGrid, vertices);
+                    } else {
+                        midPointDecider(c, f00, f10, f01, f11, intersectionPoints, indexBufferGrid, vertices);
+                    }
+
+                }// Case 4: All points same sign => does not cross
+            }
+        }
+    }
+}
+
+void MarchingSquares::asymptoticDecider(std::vector<vec2> intersectionPoints,
+                                        IndexBufferRAM* indexBufferGrid,
+                                        std::vector<BasicMesh::Vertex>& vertices) {
+    // We use the simpler method by sorting the points on the x axis and then draw a line between 1-2 and 3-4
+    // Instead of calculating the asymptotes mathematically
+    std::sort(intersectionPoints.begin(), intersectionPoints.end(), [](vec2 point1,vec2 point2){ return (point1[0]<point2[0]);});
+    drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+    drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+
+}
+
+void MarchingSquares::midPointDecider(const float& c,
+                                      const double& f00,
+                                      const double& f10,
+                                      const double& f01,
+                                      const double& f11,
+                                      const std::vector<vec2>& intersectionPoints,
+                                      IndexBufferRAM* indexBufferGrid,
+                                      std::vector<BasicMesh::Vertex>& vertices) {
+
+    // Midpoint decider
+    float midpoint = (1.0/4.0) * (f00 + f10 + f01 + f11);
+    // Case 2: Connect negative
+    if (midpoint < c){
+        if (f00 < c){
+            // + |---------| -
+            //   |    -    |
+            // - |---------| +
+            // Connect left and top edge
+            drawLineSegment(intersectionPoints[1], intersectionPoints[2], propIsoColor.get(), indexBufferGrid, vertices);
+            // Connect bottom and right edge
+            drawLineSegment(intersectionPoints[0], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+        } else {
+            // - |---------| +
+            //   |    -    |
+            // + |---------| -
+            // Connect bottom and left edge
+            drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+            // Connect top and right edge
+            drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+        }
+        // Case 3: Connect positive
+    } else {
+        if (f00 < c){
+            // + |---------| -
+            //   |    +    |
+            // - |---------| +
+            // Connect bottom and left edge
+            drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+            // Connect top and right edge
+            drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+        } else {
+            // - |---------| +
+            //   |    +    |
+            // + |---------| -
+            // Connect left and top edge
+            drawLineSegment(intersectionPoints[1], intersectionPoints[2], propIsoColor.get(), indexBufferGrid, vertices);
+            // Connect bottom and right edge
+            drawLineSegment(intersectionPoints[0], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+        }
+    }
 }
 
 double MarchingSquares::getInputValue(const VolumeRAM* data, const size3_t dims, 

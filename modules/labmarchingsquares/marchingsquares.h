@@ -79,6 +79,30 @@ protected:
     // Draw a line segment from v1 to v2 with a color
     void drawLineSegment(const vec2& v1, const vec2& v2, const vec4& color,
         IndexBufferRAM* indexBuffer, std::vector<BasicMesh::Vertex>& vertices);
+
+    // MidPointDecider (Not exact)
+    void midPointDecider(const float& c,
+                         const double& f00,
+                         const double& f10,
+                         const double& f01,
+                         const double& f11,
+                         const std::vector<vec2>& intersectionPoints,
+                         IndexBufferRAM* indexBufferGrid,
+                         std::vector<BasicMesh::Vertex>& vertices);
+
+    // AsymptoticDecider (Exact)
+    void asymptoticDecider(std::vector<vec2> intersectionPoints,
+                           IndexBufferRAM* indexBufferGrid,
+                           std::vector<BasicMesh::Vertex>& vertices);
+
+    // Marching Squares algorithm (Calculating intersection points and drawing the isolines for c)
+    void algorithm(const std::vector<float>& isolines,
+                   const size3_t& dims,
+                   const float& cellWidthX,
+                   const float& cellWidthY,
+                   const VolumeRAM* vr,
+                   IndexBufferRAM* indexBufferGrid,
+                   std::vector<BasicMesh::Vertex>& vertices);
 	
 
 //Ports

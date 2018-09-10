@@ -1,0 +1,68 @@
+Determining if the CL_VERSION_2_2 exist failed with the following output:
+Change Dir: /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1e263/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1e263.dir/build.make CMakeFiles/cmTC_1e263.dir/build
+make[1]: Entering directory '/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1e263.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fopenmp  -fPIE   -o CMakeFiles/cmTC_1e263.dir/CheckSymbolExists.c.o   -c /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: ‘CL_VERSION_2_2’ undeclared (first use in this function)
+   return ((int*)(&CL_VERSION_2_2))[argc];
+                   ^
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles/cmTC_1e263.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_1e263.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_1e263.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_1e263/fast' failed
+make: *** [cmTC_1e263/fast] Error 2
+
+File /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </usr/include/CL/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_2
+  return ((int*)(&CL_VERSION_2_2))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the CL_VERSION_2_1 exist failed with the following output:
+Change Dir: /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_509bb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_509bb.dir/build.make CMakeFiles/cmTC_509bb.dir/build
+make[1]: Entering directory '/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_509bb.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fopenmp  -fPIE   -o CMakeFiles/cmTC_509bb.dir/CheckSymbolExists.c.o   -c /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: ‘CL_VERSION_2_1’ undeclared (first use in this function)
+   return ((int*)(&CL_VERSION_2_1))[argc];
+                   ^
+/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles/cmTC_509bb.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_509bb.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_509bb.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_509bb/fast' failed
+make: *** [cmTC_509bb/fast] Error 2
+
+File /home/kaikun/IDEs/Tools/inviwo/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </usr/include/CL/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_1
+  return ((int*)(&CL_VERSION_2_1))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

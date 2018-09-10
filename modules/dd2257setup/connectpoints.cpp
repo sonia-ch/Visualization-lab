@@ -59,10 +59,24 @@ void drawLineSegment(const vec2& v1, const vec2& v2, const vec4& color,
 
 void ConnectPoints::BoundingBox(const std::vector<vec3>& Points, IndexBufferRAM* OutIndices, Vec3BufferRAM* OutVertices)
 {
-    drawLineSegment({0, 0}, {0, 1}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({0, 1}, {1, 1}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({1, 1}, {1, 0}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({1, 0}, {0, 0}, {255, 0, 0, 1}, OutIndices, OutVertices);
+    // Get x/y min/max for bounding box
+    // uninitialized variables = would take value from memory
+    float xmin(FLT_MAX), ymin(FLT_MAX), xmax(-FLT_MAX), ymax(-FLT_MAX); // floating point grid system
+    for (size_t i = 0; i < Points.size() ; i++) {
+    //  & => reference , otherwise if copies
+        const vec3& myPoint = Points[i];
+
+        xmin = std::min(xmin, myPoint.x);
+        ymin = std::min(ymin, myPoint.y);
+        xmax = std::max(xmax, myPoint.x);
+        ymax = std::max(ymax, myPoint.y);
+    }
+
+
+    drawLineSegment({xmin, ymin}, {xmin, ymax}, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({xmin, ymax}, {xmax, ymax}, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({xmax, ymax}, {xmax, ymin}, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({xmax, ymin}, {xmin, ymin}, {255, 0, 0, 1}, OutIndices, OutVertices);
 }
 
 
