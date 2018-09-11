@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" line="313" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" line="319" mnemonic="7" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
@@ -76,7 +76,6 @@
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -113,13 +112,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="8424" />
+          <entry key="cpp" value="8773" />
           <entry key="h" value="290" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="8714" />
+          <entry key="ObjectiveC" value="9063" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -139,8 +138,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="237" column="5" selection-start-line="237" selection-start-column="5" selection-end-line="237" selection-end-column="5" />
+            <state relative-caret-position="725">
+              <caret line="283" column="25" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -154,6 +153,7 @@
       <find>propIsoColor</find>
       <find>isoCol</find>
       <find>vr</find>
+      <find>algorithm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -626,12 +626,12 @@
       <workItem from="1536148818163" duration="1066000" />
       <workItem from="1536568016799" duration="19219000" />
       <workItem from="1536680079790" duration="1984000" />
-      <workItem from="1536682484343" duration="8983000" />
+      <workItem from="1536682484343" duration="11063000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35083000" />
+    <option name="totallyTimeSpent" value="37163000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -698,8 +698,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="237" column="5" selection-start-line="237" selection-start-column="5" selection-end-line="237" selection-end-column="5" />
+        <state relative-caret-position="725">
+          <caret line="283" column="25" selection-start-line="283" selection-start-column="16" selection-end-line="283" selection-end-column="25" />
         </state>
       </provider>
     </entry>

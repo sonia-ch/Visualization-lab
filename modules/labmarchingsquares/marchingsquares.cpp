@@ -213,8 +213,8 @@ void MarchingSquares::process()
     for (int x=0; x < dims.x; x++) {
         for (int y = 0; y < dims.y; y++) {
 
-            double total = 0;
-            double totalFilter = 0;
+            double total = 0.0;
+            double totalFilter = 0.0;
 
             // apply filter , but consider dimension boundaries
             int startX = (x - radius < 0) ? 0 : x - radius;
@@ -228,21 +228,27 @@ void MarchingSquares::process()
                     // Calculate kernel-value by applying gaussian(x,y) centered at current cell
                     double filterVal = gaussian(i - x, j - y, sigma);
                     totalFilter += filterVal;
-                    total += getInputValue(vrSmoothed, dims, i, j) * filterVal;
+                    total += getInputValue(vr, dims, i, j) * filterVal;
                 }
             }
             // Divide by total number of cells we include to get average
-            vrSmoothed->setFromDouble(vec3(x, y, 0), total / totalFilter);
+            vrSmoothed->setFromDouble(vec3(x, y, 0), total / totalFilter*1.0);
 
+            LogProcessorInfo("Previous " << getInputValue(vr, dims, x, y) << " Smoothed " << getInputValue(vrSmoothed, dims, x, y) << " Applied "  << total / totalFilter << "  "
+                             << (endX-startX)*(endY-startY));
         }
     }
+
 // ---------------------------------------------------------------------------------------------------------------------
             const VolumeRAM* data = propApplyGaussian.get() ?  vrSmoothed : vr;
+            if (propApplyGaussian.get()) {
+                LogProcessorInfo("Apply GAUSSIAN")
+            }
 
      //       const VolumeRAM* data = propApplyGaussian.get() ?  gaussianSmoothing(vol, vr, dims, radius) : vr;
     // Grid
 
-    // Properties are accessed with propertyName.get() 
+    // Properties are accessed with propertyName.get()
     if (propShowGrid.get())
     {
         // TODO: Add grid lines of the given color
