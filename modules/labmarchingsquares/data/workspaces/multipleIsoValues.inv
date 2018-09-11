@@ -118,43 +118,25 @@
                 </Processors>
             </Module>
             <Module name="QtWidget" version="0" />
+            <Module name="assimp" version="0" />
             <Module name="OpenGLQt" version="0" />
+            <Module name="OpenCL" version="0" />
+            <Module name="BaseCL" version="1">
+                <Processors>
+                    <Processor content="org.inviwo.EntryExitPointsCL" />
+                    <Processor content="org.inviwo.GrayscaleCL" />
+                    <Processor content="org.inviwo.VolumeFirstHitCL" />
+                    <Processor content="org.inviwo.VolumeMaxCL" />
+                    <Processor content="org.inviwo.VolumeRaycasterCL" />
+                </Processors>
+            </Module>
             <Module name="CImg" version="0" />
-            <Module name="FontRendering" version="2">
+            <Module name="DD2257Setup" version="0">
                 <Processors>
-                    <Processor content="org.inviwo.TextOverlayGL" />
+                    <Processor content="org.inviwo.ConnectPoints" />
                 </Processors>
             </Module>
-            <Module name="PostProcessing" version="0">
-                <Processors>
-                    <Processor content="org.inviwo.SSAO" />
-                    <Processor content="org.inviwo.FXAA" />
-                    <Processor content="org.inviwo.Tonemapping" />
-                    <Processor content="org.inviwo.HdrBloom" />
-                    <Processor content="org.inviwo.ImageBrightnessContrast" />
-                    <Processor content="org.inviwo.ImageEdgeDarken" />
-                    <Processor content="org.inviwo.DepthDarkening" />
-                    <Processor content="org.inviwo.ImageHueSaturationLuminance" />
-                    <Processor content="org.inviwo.ImageSharpen" />
-                    <Processor content="org.inviwo.ImageOpacity" />
-                </Processors>
-            </Module>
-            <Module name="PVM" version="0" />
-            <Module name="DD2257Lab0" version="0">
-                <Processors>
-                    <Processor content="org.inviwo.DigitWalker" />
-                </Processors>
-            </Module>
-            <Module name="DD2257Lab1" version="0">
-                <Processors>
-                    <Processor content="org.inviwo.CSVSourceDD2257" />
-                    <Processor content="org.inviwo.ParallelCoordinatesDD2257" />
-                    <Processor content="org.inviwo.ScatterPlot" />
-                    <Processor content="org.inviwo.Generate2DData" />
-                    <Processor content="org.inviwo.Plot2DRendererDD2257" />
-                </Processors>
-            </Module>
-            <Module name="DD2257Lab2" version="0">
+            <Module name="LabMarchingSquares" version="0">
                 <Processors>
                     <Processor content="org.inviwo.MarchingSquares" />
                 </Processors>
@@ -174,17 +156,13 @@
                 <Properties>
                     <Property type="org.inviwo.FileProperty" identifier="filename">
                         <displayName content="Volume file" />
-                        <absolutePath content="C:/Inviwo/KTH_Teaching/dd2257lab2/data/scalarfields/IsabelTemperature.am" />
-                        <workspaceRelativePath content="../scalarfields/IsabelTemperature.am" />
-                        <ivwdataRelativePath content="../../KTH_Teaching/dd2257lab2/data/scalarfields/IsabelTemperature.am" />
+                        <absolutePath content="C:/Users/Wiebke/inviwo/modules/labmarchingsquares/data/scalarfields/IsabelTemperature.dat" />
+                        <workspaceRelativePath content="../scalarfields/IsabelTemperature.dat" />
+                        <ivwdataRelativePath content="../modules/labmarchingsquares/data/scalarfields/IsabelTemperature.dat" />
                         <nameFilter>
                             <filter>
                                 <extension content="*" />
                                 <description content="All Files" />
-                            </filter>
-                            <filter>
-                                <extension content="mpvm" />
-                                <description content="MPVM (Multiple PVMs) file format" />
                             </filter>
                             <filter>
                                 <extension content="ivf" />
@@ -193,10 +171,6 @@
                             <filter>
                                 <extension content="raw" />
                                 <description content="Raw binary file" />
-                            </filter>
-                            <filter>
-                                <extension content="pvm" />
-                                <description content="PVM file format" />
                             </filter>
                             <filter>
                                 <extension content="am" />
@@ -226,7 +200,7 @@
                                 <range x="-1.797693134862315708145274237317043567981e+308" y="1.797693134862315708145274237317043567981e+308" />
                                 <increment content="0" />
                                 <minSeparation content="0" />
-                                <value x="-43.703609466552734375" y="-25.9612407684326171875" />
+                                <value x="-43.7036000000000015575096767861396074295" y="-25.96120000000000160866875376086682081223" />
                             </Property>
                             <Property type="org.inviwo.DoubleMinMaxProperty" identifier="valueRange">
                                 <displayName content="Value range" />
@@ -237,7 +211,7 @@
                                 <range x="-1.797693134862315708145274237317043567981e+308" y="1.797693134862315708145274237317043567981e+308" />
                                 <increment content="0" />
                                 <minSeparation content="0" />
-                                <value x="-43.703609466552734375" y="-25.9612407684326171875" />
+                                <value x="-43.7036000000000015575096767861396074295" y="-25.96120000000000160866875376086682081223" />
                             </Property>
                             <Property type="org.inviwo.StringProperty" identifier="valueUnit">
                                 <displayName content="Value unit" />
@@ -288,7 +262,7 @@
                                 <minvalue x="-10" y="-10" z="-10" />
                                 <maxvalue x="10" y="10" z="10" />
                                 <increment x="0.0099999998" y="0.0099999998" z="0.0099999998" />
-                                <value x="0" y="0" z="0.020200014" />
+                                <value x="0" y="0" z="0.020199999" />
                             </Property>
                             <Property type="org.inviwo.FloatVec3Property" identifier="overrideOffset">
                                 <displayName content="Offset (override)" />
@@ -342,11 +316,11 @@
                     <PortGroup content="default" key="outputImage" />
                 </PortGroups>
                 <InPorts>
-                    <InPort type="org.inviwo.MeshFlatMultiInport" identifier="inputMesh" id="ref3" />
+                    <InPort type="org.inviwo.MeshFlatMultiInport" identifier="inputMesh" id="ref1" />
                     <InPort type="org.inviwo.ImageInport" identifier="imageInport" />
                 </InPorts>
                 <OutPorts>
-                    <OutPort type="org.inviwo.ImageOutport" identifier="outputImage" id="ref4" />
+                    <OutPort type="org.inviwo.ImageOutport" identifier="outputImage" id="ref2" />
                 </OutPorts>
                 <Properties>
                     <Property type="org.inviwo.BoolProperty" identifier="enableDepthTest" />
@@ -368,7 +342,7 @@
                     <PortGroup content="default" key="inport" />
                 </PortGroups>
                 <InPorts>
-                    <InPort type="org.inviwo.ImageInport" identifier="inport" id="ref7" />
+                    <InPort type="org.inviwo.ImageInport" identifier="inport" id="ref3" />
                 </InPorts>
                 <Properties>
                     <Property type="org.inviwo.CompositeProperty" identifier="inputSize">
@@ -390,7 +364,7 @@
                         <collapsed content="0" />
                     </Property>
                     <Property type="org.inviwo.IntVec2Property" identifier="position">
-                        <value x="-742" y="245" />
+                        <value x="1229" y="376" />
                     </Property>
                     <Property type="org.inviwo.OptionPropertyEnumInt" identifier="visibleLayer" />
                     <Property type="org.inviwo.IntProperty" identifier="colorLayer_">
@@ -433,7 +407,7 @@
                         <selection content="0" />
                     </MetaDataItem>
                     <MetaDataItem type="org.inviwo.ProcessorWidgetMetaData" key="org.inviwo.ProcessorWidgetMetaData">
-                        <position x="-742" y="245" />
+                        <position x="1229" y="376" />
                         <dimensions x="600" y="600" />
                         <visibility content="1" />
                     </MetaDataItem>
@@ -445,10 +419,10 @@
                     <PortGroup content="default" key="outport" />
                 </PortGroups>
                 <InPorts>
-                    <InPort type="org.inviwo.ImageInport" identifier="inport" id="ref5" />
+                    <InPort type="org.inviwo.ImageInport" identifier="inport" id="ref4" />
                 </InPorts>
                 <OutPorts>
-                    <OutPort type="org.inviwo.ImageOutport" identifier="outport" id="ref6" />
+                    <OutPort type="org.inviwo.ImageOutport" identifier="outport" id="ref5" />
                 </OutPorts>
                 <Properties>
                     <Property type="org.inviwo.OptionPropertyEnumInt" identifier="backgroundStyle">
@@ -482,10 +456,10 @@
                     <PortGroup content="default" key="volumeIn" />
                 </PortGroups>
                 <InPorts>
-                    <InPort type="org.inviwo.VolumeInport" identifier="volumeIn" id="ref1" />
+                    <InPort type="org.inviwo.VolumeInport" identifier="volumeIn" id="ref6" />
                 </InPorts>
                 <OutPorts>
-                    <OutPort type="org.inviwo.MeshOutport" identifier="meshOut" id="ref2" />
+                    <OutPort type="org.inviwo.MeshOutport" identifier="meshOut" id="ref7" />
                 </OutPorts>
                 <Properties>
                     <Property type="org.inviwo.BoolProperty" identifier="showGrid" />
@@ -523,8 +497,8 @@
                     </Property>
                     <Property type="org.inviwo.FloatProperty" identifier="isovalue">
                         <visible content="0" />
-                        <minvalue content="-43.703609" />
-                        <maxvalue content="-25.961241" />
+                        <minvalue content="-43.703602" />
+                        <maxvalue content="-25.961201" />
                         <value content="-25.961241" />
                     </Property>
                     <Property type="org.inviwo.FloatVec4Property" identifier="isoColor">
@@ -552,27 +526,27 @@
                     <MetaDataItem type="org.inviwo.ProcessorMetaData" key="org.inviwo.ProcessorMetaData">
                         <position x="-175" y="-325" />
                         <visibility content="1" />
-                        <selection content="1" />
+                        <selection content="0" />
                     </MetaDataItem>
                 </MetaDataMap>
             </Processor>
         </Processors>
         <Connections>
             <Connection>
-                <OutPort type="org.inviwo.ImageOutport" identifier="outputImage" reference="ref4" />
-                <InPort type="org.inviwo.ImageInport" identifier="inport" reference="ref5" />
+                <OutPort type="org.inviwo.ImageOutport" identifier="outputImage" reference="ref2" />
+                <InPort type="org.inviwo.ImageInport" identifier="inport" reference="ref4" />
             </Connection>
             <Connection>
-                <OutPort type="org.inviwo.ImageOutport" identifier="outport" reference="ref6" />
-                <InPort type="org.inviwo.ImageInport" identifier="inport" reference="ref7" />
+                <OutPort type="org.inviwo.ImageOutport" identifier="outport" reference="ref5" />
+                <InPort type="org.inviwo.ImageInport" identifier="inport" reference="ref3" />
             </Connection>
             <Connection>
                 <OutPort type="org.inviwo.VolumeOutport" identifier="data" reference="ref0" />
-                <InPort type="org.inviwo.VolumeInport" identifier="volumeIn" reference="ref1" />
+                <InPort type="org.inviwo.VolumeInport" identifier="volumeIn" reference="ref6" />
             </Connection>
             <Connection>
-                <OutPort type="org.inviwo.MeshOutport" identifier="meshOut" reference="ref2" />
-                <InPort type="org.inviwo.MeshFlatMultiInport" identifier="inputMesh" reference="ref3" />
+                <OutPort type="org.inviwo.MeshOutport" identifier="meshOut" reference="ref7" />
+                <InPort type="org.inviwo.MeshFlatMultiInport" identifier="inputMesh" reference="ref1" />
             </Connection>
         </Connections>
     </ProcessorNetwork>
