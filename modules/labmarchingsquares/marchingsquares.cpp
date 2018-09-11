@@ -46,6 +46,7 @@ MarchingSquares::MarchingSquares()
         InvalidationLevel::InvalidOutput, PropertySemantics::Color)
     , propNumContours("numContours", "Number of Contours", 1, 1, 50, 1)
     , propIsoTransferFunc("isoTransferFunc", "Colors", &inData)
+    , propApplyGaussian("filter","GaussianFilter")
 {
     // Register ports
     addPort(inData);
@@ -69,11 +70,25 @@ MarchingSquares::MarchingSquares()
     addProperty(propNumContours);
     addProperty(propIsoTransferFunc);
 
-    // The default transfer function has just two blue points
+    // Add Gaussian smoothing property
+    addProperty(propApplyGaussian);
+
+    // TODO (Bonus): Use the transfer function property to assign a color
+    // The transfer function normalizes the input data and sampling colors
+    // from the transfer function assumes normalized input, that means
+    // vec4 color = propIsoTransferFunc.get().sample(0.0f);
+    // is the color for the minimum value in the data
+    // vec4 color = propIsoTransferFunc.get().sample(1.0f);
+    // is the color for the maximum value in the data
+
+    // The customized transfer function has
+    // a blue point (0,0) for low values
+    // and a red point (1,1) for high values
     propIsoTransferFunc.get().clearPoints();
-    propIsoTransferFunc.get().addPoint(vec2(0.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
-    propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
+    propIsoTransferFunc.get().addPoint(vec2(0.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f)); // blue
+    propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f)); // red
     propIsoTransferFunc.setCurrentStateAsDefault();
+
 
     util::hide(propGridColor, propNumContours, propIsoTransferFunc);
 
@@ -100,17 +115,19 @@ MarchingSquares::MarchingSquares()
         }
         else
         {
-            util::hide(propIsoValue);
-            util::show(propIsoColor, propNumContours);
+//            util::hide(propIsoValue);
+//            util::show(propIsoColor, propNumContours);
             
             // TODO (Bonus): Comment out above if you are using the transfer function
             // and comment in below instead
-            // util::hide(propIsoValue, propIsoColor);
-            // util::show(propNumContours, propIsoTransferFunc);
+             util::hide(propIsoValue, propIsoColor);
+             util::show(propNumContours, propIsoTransferFunc);
         }
     });
 
 }
+
+
 
 void MarchingSquares::process()
 {
@@ -166,15 +183,9 @@ void MarchingSquares::process()
     LogProcessorInfo("Value at (0,0) is: " << valueat00);
     // You can assume that dims.z = 1 and do not need to consider others cases
 
-    // TODO (Bonus) Gaussian filter
-    // Our input is const, but you need to compute smoothed data and write it somewhere
-    // Create an editable volume like this:
-    // Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
-    // auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
-    // Values can be set with
-    // vrSmoothed->setFromDouble(vec3(i,j,0), value);
-    // getting values works with an editable volume as well
-    // getInputValue(vrSmoothed, dims, 0, 0);
+    // TODO: Gaussian call
+    const int radius = 3; // radius x radius of neighbours to calculate gaussian smoothing
+    const VolumeRAM* data = propApplyGaussian.get() ?  gaussianSmoothing(vol, vr, dims, radius) : vr;
 
     // Grid
 
@@ -205,14 +216,14 @@ void MarchingSquares::process()
 
     if (propMultiple.get() == 0)
     {
-        LogProcessorInfo(" Draw Isoline for isovalue " );
+        LogProcessorInfo(" Draw single Isoline for isovalue " );
 
         // TODO: Draw a single isoline at the specified isovalue (propIsoValue) 
         // and color it with the specified color (propIsoColor)
         isolines.push_back(propIsoValue.get());
 
         // call algorithm with only one isoline value
-        algorithm(isolines, dims, cellWidthX,cellWidthY, vr, indexBufferGrid, vertices);
+        algorithm(isolines, dims, cellWidthX,cellWidthY, data, indexBufferGrid, vertices);
     }
     else
     {
@@ -227,24 +238,7 @@ void MarchingSquares::process()
         }
 
         // call algorithm with multiple isoline values
-        algorithm(isolines, dims, cellWidthX,cellWidthY, vr, indexBufferGrid, vertices);
-
-
-        // TODO (Bonus): Use the transfer function property to assign a color
-        // The transfer function normalizes the input data and sampling colors
-        // from the transfer function assumes normalized input, that means
-        // vec4 color = propIsoTransferFunc.get().sample(0.0f);
-        // is the color for the minimum value in the data
-        // vec4 color = propIsoTransferFunc.get().sample(1.0f);
-        // is the color for the maximum value in the data
-
-        // The customized transfer function has
-        // a blue point (0,0) for low values
-        // and a red point (1,1) for high values
-        propIsoTransferFunc.get().clearPoints();
-        propIsoTransferFunc.get().addPoint(vec2(0.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
-        propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f));
-        propIsoTransferFunc.setCurrentStateAsDefault();
+        algorithm(isolines, dims, cellWidthX,cellWidthY, data, indexBufferGrid, vertices);
 
 
     }
@@ -257,6 +251,35 @@ void MarchingSquares::process()
 
     mesh->addVertices(vertices);
     meshOut.setData(mesh);
+}
+
+VolumeRAM* MarchingSquares::gaussianSmoothing(const std::shared_ptr<const Volume> vol,
+                                             const VolumeRAM* vr,
+                                             const size3_t& dims,
+                                             const int radius){
+    // TODO (Bonus) Gaussian filter
+    // Our input is const, but you need to compute smoothed data and write it somewhere
+    // Create an editable volume like this:
+    // Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+    // auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+    // Values can be set with
+    // vrSmoothed->setFromDouble(vec3(i,j,0), value);
+    // getting values works with an editable volume as well
+    // getInputValue(vrSmoothed, dims, 0, 0);
+
+    Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+    auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+
+    for (int i=0; i < dims.x; i++){
+        for (int j=0; j < dims.y; j++){
+//            Code..
+//            value =
+//            vrSmoothed->setFromDouble(vec3(i,j,0), value);
+//            getInputValue(vrSmoothed, dims, 0, 0);
+
+        }
+    }
+    return vrSmoothed;
 }
 
 void MarchingSquares::algorithm(const std::vector<float>& isolines,
@@ -276,6 +299,9 @@ void MarchingSquares::algorithm(const std::vector<float>& isolines,
     // For all isolines
     for (int i=0; i < isolines.size(); i++) {
         const float& c = isolines[i];
+
+        // Determine color, single = propIsoColor , multiple = transferFunction
+        const vec4& color = (propMultiple.get() == 0) ? propIsoColor.get() : propIsoTransferFunc.get().sample(c);
 
         // Iterate until SMALLER size-1 to acces all grid-cells from left lower corner (fixpoint - [x,y])
         for (int x=0; x < dims.x-1; x++){
@@ -325,13 +351,13 @@ void MarchingSquares::algorithm(const std::vector<float>& isolines,
 
                 // Case 1: 2 points
                 if (intersectionPoints.size() == 2){
-                    drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+                    drawLineSegment(intersectionPoints[0], intersectionPoints[1], color, indexBufferGrid, vertices);
                 } else if (intersectionPoints.size() == 4){
                     // Case 2 and 3 are ambigious
                     if (propDeciderType.get() == 1){
-                        asymptoticDecider(intersectionPoints, indexBufferGrid, vertices);
+                        asymptoticDecider(intersectionPoints, indexBufferGrid, vertices, color);
                     } else {
-                        midPointDecider(c, f00, f10, f01, f11, intersectionPoints, indexBufferGrid, vertices);
+                        midPointDecider(c, f00, f10, f01, f11, intersectionPoints, indexBufferGrid, vertices, color);
                     }
 
                 }// Case 4: All points same sign => does not cross
@@ -342,12 +368,13 @@ void MarchingSquares::algorithm(const std::vector<float>& isolines,
 
 void MarchingSquares::asymptoticDecider(std::vector<vec2> intersectionPoints,
                                         IndexBufferRAM* indexBufferGrid,
-                                        std::vector<BasicMesh::Vertex>& vertices) {
+                                        std::vector<BasicMesh::Vertex>& vertices,
+                                        const vec4& color) {
     // We use the simpler method by sorting the points on the x axis and then draw a line between 1-2 and 3-4
     // Instead of calculating the asymptotes mathematically
     std::sort(intersectionPoints.begin(), intersectionPoints.end(), [](vec2 point1,vec2 point2){ return (point1[0]<point2[0]);});
-    drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
-    drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+    drawLineSegment(intersectionPoints[0], intersectionPoints[1], color, indexBufferGrid, vertices);
+    drawLineSegment(intersectionPoints[2], intersectionPoints[3], color, indexBufferGrid, vertices);
 
 }
 
@@ -358,7 +385,8 @@ void MarchingSquares::midPointDecider(const float& c,
                                       const double& f11,
                                       const std::vector<vec2>& intersectionPoints,
                                       IndexBufferRAM* indexBufferGrid,
-                                      std::vector<BasicMesh::Vertex>& vertices) {
+                                      std::vector<BasicMesh::Vertex>& vertices,
+                                      const vec4& color) {
 
     // Midpoint decider
     float midpoint = (1.0/4.0) * (f00 + f10 + f01 + f11);
@@ -369,17 +397,17 @@ void MarchingSquares::midPointDecider(const float& c,
             //   |    -    |
             // - |---------| +
             // Connect left and top edge
-            drawLineSegment(intersectionPoints[1], intersectionPoints[2], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[1], intersectionPoints[2], color, indexBufferGrid, vertices);
             // Connect bottom and right edge
-            drawLineSegment(intersectionPoints[0], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[0], intersectionPoints[3], color, indexBufferGrid, vertices);
         } else {
             // - |---------| +
             //   |    -    |
             // + |---------| -
             // Connect bottom and left edge
-            drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[0], intersectionPoints[1], color, indexBufferGrid, vertices);
             // Connect top and right edge
-            drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[2], intersectionPoints[3], color, indexBufferGrid, vertices);
         }
         // Case 3: Connect positive
     } else {
@@ -388,17 +416,17 @@ void MarchingSquares::midPointDecider(const float& c,
             //   |    +    |
             // - |---------| +
             // Connect bottom and left edge
-            drawLineSegment(intersectionPoints[0], intersectionPoints[1], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[0], intersectionPoints[1], color, indexBufferGrid, vertices);
             // Connect top and right edge
-            drawLineSegment(intersectionPoints[2], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[2], intersectionPoints[3], color, indexBufferGrid, vertices);
         } else {
             // - |---------| +
             //   |    +    |
             // + |---------| -
             // Connect left and top edge
-            drawLineSegment(intersectionPoints[1], intersectionPoints[2], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[1], intersectionPoints[2], color, indexBufferGrid, vertices);
             // Connect bottom and right edge
-            drawLineSegment(intersectionPoints[0], intersectionPoints[3], propIsoColor.get(), indexBufferGrid, vertices);
+            drawLineSegment(intersectionPoints[0], intersectionPoints[3], color, indexBufferGrid, vertices);
         }
     }
 }

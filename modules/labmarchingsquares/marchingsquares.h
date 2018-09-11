@@ -88,12 +88,14 @@ protected:
                          const double& f11,
                          const std::vector<vec2>& intersectionPoints,
                          IndexBufferRAM* indexBufferGrid,
-                         std::vector<BasicMesh::Vertex>& vertices);
+                         std::vector<BasicMesh::Vertex>& vertices,
+                         const vec4& color);
 
     // AsymptoticDecider (Exact)
     void asymptoticDecider(std::vector<vec2> intersectionPoints,
                            IndexBufferRAM* indexBufferGrid,
-                           std::vector<BasicMesh::Vertex>& vertices);
+                           std::vector<BasicMesh::Vertex>& vertices,
+                           const vec4& color);
 
     // Marching Squares algorithm (Calculating intersection points and drawing the isolines for c)
     void algorithm(const std::vector<float>& isolines,
@@ -103,6 +105,12 @@ protected:
                    const VolumeRAM* vr,
                    IndexBufferRAM* indexBufferGrid,
                    std::vector<BasicMesh::Vertex>& vertices);
+
+    // Gaussian smoothing
+    VolumeRAM* gaussianSmoothing(const std::shared_ptr<const Volume> vol,
+                                const VolumeRAM* vr,
+                                const size3_t& dims,
+                                const int radius);
 	
 
 //Ports
@@ -126,6 +134,7 @@ public:
     // Properties for multiple iso contours 
     IntProperty propNumContours;
     TransferFunctionProperty propIsoTransferFunc;
+    BoolProperty propApplyGaussian;
 
 //Attributes
 private:

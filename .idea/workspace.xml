@@ -1,68 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" line="277" mnemonic="7" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="inviwo-projects" targetName="tclap" />
-      <config projectName="inviwo-projects" targetName="sigar" />
-      <config projectName="inviwo-projects" targetName="flags" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
-      <config projectName="inviwo-projects" targetName="GLEW" />
-      <config projectName="inviwo-projects" targetName="libpng" />
-      <config projectName="inviwo-projects" targetName="glfw" />
-      <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGLQt" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dd2257setup" />
-      <config projectName="inviwo-projects" targetName="tinydir" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
-      <config projectName="inviwo-projects" targetName="assimp" />
-      <config projectName="inviwo-projects" targetName="zlib1" />
-      <config projectName="inviwo-projects" targetName="openexr-iex" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
-      <config projectName="inviwo-projects" targetName="warn" />
-      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
-      <config projectName="inviwo-projects" targetName="glm" />
-      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
-      <config projectName="inviwo-projects" targetName="inviwo-core" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
-      <config projectName="inviwo-projects" targetName="openexr-half" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-GLFW" />
-      <config projectName="inviwo-projects" targetName="half" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-base" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
       <config projectName="inviwo-projects" targetName="DOXY-ALL" />
-      <config projectName="inviwo-projects" targetName="ticpp" />
-      <config projectName="inviwo-projects" targetName="inviwo" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
-      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
-      <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
       <config projectName="inviwo-projects" targetName="libjpeg" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
-      <config projectName="inviwo-projects" targetName="gtest" />
+      <config projectName="inviwo-projects" targetName="glm" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dd2257setup" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGLQt" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
-      <config projectName="inviwo-projects" targetName="openexr-imath" />
+      <config projectName="inviwo-projects" targetName="GLEW" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
       <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
-      <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
+      <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
+      <config projectName="inviwo-projects" targetName="ticpp" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
+      <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
+      <config projectName="inviwo-projects" targetName="tclap" />
       <config projectName="inviwo-projects" targetName="inviwo-module-basegl" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-base" />
+      <config projectName="inviwo-projects" targetName="tinydir" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-GLFW" />
+      <config projectName="inviwo-projects" targetName="zlib1" />
+      <config projectName="inviwo-projects" targetName="gtest" />
+      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
+      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
+      <config projectName="inviwo-projects" targetName="assimp" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
+      <config projectName="inviwo-projects" targetName="warn" />
+      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
+      <config projectName="inviwo-projects" targetName="openexr-iex" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
+      <config projectName="inviwo-projects" targetName="openexr-half" />
+      <config projectName="inviwo-projects" targetName="inviwo" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
+      <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
+      <config projectName="inviwo-projects" targetName="flags" />
+      <config projectName="inviwo-projects" targetName="sigar" />
+      <config projectName="inviwo-projects" targetName="half" />
+      <config projectName="inviwo-projects" targetName="libpng" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
+      <config projectName="inviwo-projects" targetName="inviwo-core" />
+      <config projectName="inviwo-projects" targetName="openexr-imath" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -72,8 +75,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/modules/dd2257setup/connectpoints.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/dd2257setup/connectpoints.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/dd2257setup/data/workspaces/ConnectPointsSimple.inv" beforeDir="false" afterPath="$PROJECT_DIR$/modules/dd2257setup/data/workspaces/ConnectPointsSimple.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" afterDir="false" />
     </list>
@@ -90,12 +92,13 @@
     <session id="-1020080568">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -111,13 +114,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="5988" />
-          <entry key="h" value="218" />
+          <entry key="cpp" value="7058" />
+          <entry key="h" value="273" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="6206" />
+          <entry key="ObjectiveC" value="7331" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -128,8 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+            <state relative-caret-position="496">
+              <caret line="109" column="61" selection-start-line="109" selection-start-column="61" selection-end-line="109" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -137,8 +140,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="244" column="55" lean-forward="true" selection-start-line="244" selection-start-column="55" selection-end-line="244" selection-end-column="55" />
+            <state relative-caret-position="257">
+              <caret line="187" column="75" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -149,6 +152,9 @@
     <findStrings>
       <find>VolumeRAM</find>
       <find>bounding</find>
+      <find>propIsoColor</find>
+      <find>isoCol</find>
+      <find>vr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,8 +164,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/modules/dd2257setup/connectpoints.cpp" />
-        <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" />
         <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" />
+        <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" />
       </list>
     </option>
   </component>
@@ -620,17 +626,19 @@
       <workItem from="1535632462837" duration="2526000" />
       <workItem from="1536148818163" duration="1066000" />
       <workItem from="1536568016799" duration="19219000" />
+      <workItem from="1536680079790" duration="1984000" />
+      <workItem from="1536682484343" duration="3796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22949000" />
+    <option name="totallyTimeSpent" value="29896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25815368" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2642344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -641,11 +649,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3294979" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3294979" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -675,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/inviwo/core/datastructures/volume/volumeram.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -689,10 +690,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="109" column="61" selection-start-line="109" selection-start-column="61" selection-end-line="109" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="244" column="55" lean-forward="true" selection-start-line="244" selection-start-column="55" selection-end-line="244" selection-end-column="55" />
+        <state relative-caret-position="257">
+          <caret line="187" column="75" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
         </state>
       </provider>
     </entry>
