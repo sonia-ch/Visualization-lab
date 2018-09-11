@@ -29,6 +29,9 @@ const ProcessorInfo MarchingSquares::getProcessorInfo() const
     return processorInfo_;
 }
 
+const double MarchingSquares::gaussian(int x, int y, float sigma){
+    return (1.0/(2.0*sigma*M_PI) * exp(- (pow(x,2) + pow(y,2))/(2*pow(sigma,2))));
+}
 
 MarchingSquares::MarchingSquares()
     :Processor()
@@ -72,6 +75,7 @@ MarchingSquares::MarchingSquares()
 
     // Add Gaussian smoothing property
     addProperty(propApplyGaussian);
+
 
     // TODO (Bonus): Use the transfer function property to assign a color
     // The transfer function normalizes the input data and sampling colors
@@ -185,8 +189,57 @@ void MarchingSquares::process()
 
     // TODO: Gaussian call
     const int radius = 3; // radius x radius of neighbours to calculate gaussian smoothing
-    const VolumeRAM* data = propApplyGaussian.get() ?  gaussianSmoothing(vol, vr, dims, radius) : vr;
 
+
+    // ---------------------------------------------------------------------------------------------------------------------
+
+    // TODO (Bonus) Gaussian filter
+    // Our input is const, but you need to compute smoothed data and write it somewhere
+    // Create an editable volume like this:
+    // Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+    // auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+    // Values can be set with
+    // vrSmoothed->setFromDouble(vec3(i,j,0), value);
+    // getting values works with an editable volume as well
+    // getInputValue(vrSmoothed, dims, 0, 0);
+
+    Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+    auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+
+    // Sigma not defined, could be parameterized
+    double sigma = 1.0;
+
+    // for every cell
+    for (int x=0; x < dims.x; x++) {
+        for (int y = 0; y < dims.y; y++) {
+
+            double total = 0;
+            double totalFilter = 0;
+
+            // apply filter , but consider dimension boundaries
+            int startX = (x - radius < 0) ? 0 : x - radius;
+            int endX = (x + radius > dims.x - 1) ? dims.x - 1 : x + radius;
+            int startY = (y - radius < 0) ? 0 : y - radius;
+            int endY = (y + radius > dims.y - 1) ? dims.y - 1 : y + radius;
+
+            // TODO: Not very nice, as we do not save values and recalculate for every cell.. (should do DYNAMIC PROGRAMMING)
+            for (int i = startX; i <= endX; i++) {
+                for (int j = startY; j <= endY; j++) {
+                    // Calculate kernel-value by applying gaussian(x,y) centered at current cell
+                    double filterVal = gaussian(i - x, j - y, sigma);
+                    totalFilter += filterVal;
+                    total += getInputValue(vrSmoothed, dims, i, j) * filterVal;
+                }
+            }
+            // Divide by total number of cells we include to get average
+            vrSmoothed->setFromDouble(vec3(x, y, 0), total / totalFilter);
+
+        }
+    }
+// ---------------------------------------------------------------------------------------------------------------------
+            const VolumeRAM* data = propApplyGaussian.get() ?  vrSmoothed : vr;
+
+     //       const VolumeRAM* data = propApplyGaussian.get() ?  gaussianSmoothing(vol, vr, dims, radius) : vr;
     // Grid
 
     // Properties are accessed with propertyName.get() 
@@ -253,6 +306,7 @@ void MarchingSquares::process()
     meshOut.setData(mesh);
 }
 
+
 VolumeRAM* MarchingSquares::gaussianSmoothing(const std::shared_ptr<const Volume> vol,
                                              const VolumeRAM* vr,
                                              const size3_t& dims,
@@ -270,12 +324,33 @@ VolumeRAM* MarchingSquares::gaussianSmoothing(const std::shared_ptr<const Volume
     Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
     auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
 
-    for (int i=0; i < dims.x; i++){
-        for (int j=0; j < dims.y; j++){
-//            Code..
-//            value =
-//            vrSmoothed->setFromDouble(vec3(i,j,0), value);
-//            getInputValue(vrSmoothed, dims, 0, 0);
+    // Sigma not defined, could be parameterized
+    double sigma = 1.0;
+
+    // for every cell
+    for (int x=0; x < dims.x; x++){
+        for (int y=0; y < dims.y; y++){
+
+            double total = 0;
+            double totalFilter = 0;
+
+            // apply filter , but consider dimension boundaries
+            int startX = (x-radius < 0) ? 0 : x-radius;
+            int endX = (x+radius > dims.x-1) ? dims.x-1 : x+radius;
+            int startY = (y-radius < 0) ? 0 : y-radius;
+            int endY = (y+radius > dims.y-1) ? dims.y-1 : y+radius;
+
+            // TODO: Not very nice, as we do not save values and recalculate for every cell.. (should do DYNAMIC PROGRAMMING)
+            for (int i=startX; i <= endX; i++){
+                for (int j=startY; j <= endY; j++){
+                    // Calculate kernel-value by applying gaussian(x,y) centered at current cell
+                    double filterVal = gaussian(i-x,j-y, sigma);
+                    totalFilter += filterVal;
+                    total += getInputValue(vrSmoothed, dims, i, j) *filterVal;
+                }
+            }
+            // Divide by total number of cells we include to get average
+            vrSmoothed->setFromDouble(vec3(x,y,0), total/totalFilter);
 
         }
     }
