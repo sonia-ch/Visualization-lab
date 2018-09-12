@@ -136,6 +136,7 @@ public:
     IntProperty propNumContours;
     TransferFunctionProperty propIsoTransferFunc;
     BoolProperty propApplyGaussian;
+    FloatProperty propSigma;
 
 //Attributes
 private:
