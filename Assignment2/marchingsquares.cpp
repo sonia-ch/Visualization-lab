@@ -46,7 +46,8 @@ MarchingSquares::MarchingSquares()
         InvalidationLevel::InvalidOutput, PropertySemantics::Color)
     , propNumContours("numContours", "Number of Contours", 1, 1, 50, 1)
     , propIsoTransferFunc("isoTransferFunc", "Colors", &inData)
-	, propApplyGaussian("filter","GaussianFilter")
+	, propApplyGaussian("filter", "Gaussian Filter")
+	, propSigma("sigma", "Sigma", 0.5f, 0.1f, 1.0f, 0.01f)
 {
     // Register ports
     addPort(inData);
@@ -71,14 +72,24 @@ MarchingSquares::MarchingSquares()
     addProperty(propIsoTransferFunc);
 
     // The default transfer function has just two blue points
-    propIsoTransferFunc.get().clearPoints();
+    /*propIsoTransferFunc.get().clearPoints();
     propIsoTransferFunc.get().addPoint(vec2(0.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
-    propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f));
-    propIsoTransferFunc.setCurrentStateAsDefault();
+    propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f));
+    propIsoTransferFunc.setCurrentStateAsDefault();*/
+
+	// The customized transfer function has blue for low values, green for middle-low, 
+	// yellow for middle-high and red for high.
+	propIsoTransferFunc.get().clearPoints();
+	propIsoTransferFunc.get().addPoint(vec2(0.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f)); // blue
+	propIsoTransferFunc.get().addPoint(vec2(0.3f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f)); // green
+	propIsoTransferFunc.get().addPoint(vec2(0.6f, 1.0f), vec4(1.0f, 1.0f, 0.0f, 1.0f)); // yellow
+	propIsoTransferFunc.get().addPoint(vec2(1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f)); // red
+	propIsoTransferFunc.setCurrentStateAsDefault();
 
 	addProperty(propApplyGaussian);
+	addProperty(propSigma);
 
-    util::hide(propGridColor, propNumContours, propIsoTransferFunc);
+    util::hide(propGridColor, propNumContours, propIsoTransferFunc, propSigma);
 
     // Show the grid color property only if grid is actually displayed
     propShowGrid.onChange([this]()
@@ -93,6 +104,19 @@ MarchingSquares::MarchingSquares()
         }
     });
 
+	// Show the sigma property only if Gaussian Filter is actually applied
+	propApplyGaussian.onChange([this]()
+	{
+		if (propApplyGaussian.get())
+		{
+			util::show(propSigma);
+		}
+		else
+		{
+			util::hide(propSigma);
+		}
+	});
+
     // Show options based on display of one or multiple iso contours
     propMultiple.onChange([this]()
     {
@@ -103,13 +127,13 @@ MarchingSquares::MarchingSquares()
         }
         else
         {
-            util::hide(propIsoValue);
-            util::show(propIsoColor, propNumContours);
+            // util::hide(propIsoValue);
+            // util::show(propIsoColor, propNumContours);
             
             // TODO (Bonus): Comment out above if you are using the transfer function
             // and comment in below instead
-            // util::hide(propIsoValue, propIsoColor);
-            // util::show(propNumContours, propIsoTransferFunc);
+            util::hide(propIsoValue, propIsoColor);
+            util::show(propNumContours, propIsoTransferFunc);
         }
     });
 
@@ -161,20 +185,24 @@ void MarchingSquares::process()
     // TODO (Bonus) Gaussian filter
     // Our input is const, but you need to compute smoothed data and write it somewhere
     // Create an editable volume like this:
-    Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
-    auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+    // Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+    // auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
     // Values can be set with
     // vrSmoothed->setFromDouble(vec3(i,j,0), value);
     // getting values works with an editable volume as well
     // getInputValue(vrSmoothed, dims, 0, 0);
-	
-	// --- Implement Gaussian filter --- //
 
-	auto myVolume = vr;
-	if (propApplyGaussian.get())
-	{
-		//myVolume = vrSmoothed;
-	}
+	
+	// GAUSSIAN FILTER
+
+	Volume volSmoothed(vol->getDimensions(), vol->getDataFormat());
+	auto vrSmoothed = volSmoothed.getEditableRepresentation<VolumeRAM>();
+	
+	const int radius = 3; // radius x radius of neighbours to calculate gaussian smoothing
+	float sigma = propSigma.get(); // Default value => 0.5f
+
+	const VolumeRAM* myVolume = propApplyGaussian.get() ?  gaussianSmoothing(vr, vrSmoothed, dims, sigma, radius) : vr;
+
 
     // Grid
 
@@ -229,7 +257,10 @@ void MarchingSquares::process()
 		for (size_t iso = 0; iso < propNumContours.get(); iso++)
 		{
 			const double isoVal = propIsoValue.getMinValue() + (iso + 1) * w;
-			vec4 color = propIsoTransferFunc.get().sample(isoVal); // The transfer function is not working yet
+			double isoValNormalized = (isoVal - propIsoValue.getMinValue()) / (propIsoValue.getMaxValue() - propIsoValue.getMinValue());
+
+			const vec4& color = propIsoTransferFunc.get().sample(isoValNormalized);
+
 			drawIsolineSingleValue(isoVal, color, myVolume, dims, mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None), vertices);
 		}
         
@@ -253,7 +284,41 @@ void MarchingSquares::process()
     meshOut.setData(mesh);
 }
 
-void MarchingSquares::drawIsolineSingleValue(const double c, vec4 color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
+VolumeRAM* MarchingSquares::gaussianSmoothing(const VolumeRAM* vr, VolumeRAM* vrSmoothed, const size3_t dims, float sigma, const int radius)
+{
+	// for every cell
+	for (int x = 0; x < dims.x; x++) {
+		for (int y = 0; y < dims.y; y++) {
+
+			double total = 0.0;
+			double totalFilter = 0.0;
+
+			// apply filter , but consider dimension boundaries
+			int startX = (x - radius < 0) ? 0 : x - radius;
+			int endX = (x + radius > dims.x - 1) ? dims.x - 1 : x + radius;
+			int startY = (y - radius < 0) ? 0 : y - radius;
+			int endY = (y + radius > dims.y - 1) ? dims.y - 1 : y + radius;
+
+			// TODO: Not very nice, as we do not save values and recalculate for every cell.. (should do DYNAMIC PROGRAMMING)
+			for (int i = startX; i <= endX; i++) {
+				for (int j = startY; j <= endY; j++) {
+					// Calculate kernel-value by applying gaussian(x,y) centered at current cell
+					double filterVal = gaussian(i - x, j - y, sigma);
+					totalFilter += filterVal;
+					total += getInputValue(vr, dims, i, j) * filterVal;
+				}
+			}
+			// Divide by total number of cells we include to get average
+			vrSmoothed->setFromDouble(vec3(x, y, 0), total / totalFilter * 1.0);
+
+			//LogProcessorInfo("Previous " << getInputValue(vr, dims, x, y) << " Smoothed " << getInputValue(vrSmoothed, dims, x, y) << " Applied " << total / totalFilter << "  "
+			//	<< (endX - startX)*(endY - startY));
+		}
+	}
+	return vrSmoothed;
+}
+
+void MarchingSquares::drawIsolineSingleValue(const double c, const vec4& color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
 	std::vector<BasicMesh::Vertex>& vertices)
 {
 	for (float ix = 0; ix < (dims.x - 1); ix++)
@@ -275,7 +340,7 @@ void MarchingSquares::drawIsolineSingleValue(const double c, vec4 color, const V
 	}
 }
 
-void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, vec4 color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
+void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, const vec4& color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
 	std::vector<BasicMesh::Vertex>& vertices)
 {
 	float f00 = getInputValue(vr, dims, ix, iy);
@@ -315,7 +380,7 @@ void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, vec4
 	int count = p.size();
 	if (count == 2)
 	{
-		drawLineSegment(p[0], p[1], propIsoColor.get(), isoBufferGrid, vertices);
+		drawLineSegment(p[0], p[1], color, isoBufferGrid, vertices);
 	}
 	else if (count == 4) //Ambiguity!
 	{
@@ -374,6 +439,10 @@ void MarchingSquares::drawLineSegment(const vec2& v1, const vec2& v2, const vec4
     // Add second vertex
     indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
     vertices.push_back({vec3(v2[0], v2[1], 0), vec3(0, 0, 1), vec3(v2[0], v2[1], 0), color});
+}
+
+const double MarchingSquares::gaussian(int x, int y, float sigma) {
+	return (1.0 / (2.0*sigma*M_PI) * exp(-(pow(x, 2) + pow(y, 2)) / (2 * pow(sigma, 2))));
 }
 
 } // namespace

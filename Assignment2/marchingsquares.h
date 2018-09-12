@@ -65,6 +65,7 @@ public:
 public:
     virtual const ProcessorInfo getProcessorInfo() const override;
     static const ProcessorInfo processorInfo_;
+	const double gaussian(int x, int y, float sigma);
 
 protected:
     ///Our main computation function
@@ -81,11 +82,14 @@ protected:
         IndexBufferRAM* indexBuffer, std::vector<BasicMesh::Vertex>& vertices);
 	
 	// Draw isolines in cell ix, iy
-	void MarchingSquares::drawSingleIsoline(float ix, float iy, const double c, vec4 color, const VolumeRAM* vr,
+	void drawSingleIsoline(float ix, float iy, const double c, const vec4& color, const VolumeRAM* vr,
 		const size3_t dims, IndexBufferRAM* isoBufferGrid, std::vector<BasicMesh::Vertex>& vertices);
 
-	void MarchingSquares::drawIsolineSingleValue(const double c, vec4 color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
+	void drawIsolineSingleValue(const double c, const vec4& color, const VolumeRAM* vr, const size3_t dims, IndexBufferRAM* isoBufferGrid,
 		std::vector<BasicMesh::Vertex>& vertices);
+
+	VolumeRAM* gaussianSmoothing(const VolumeRAM* vr, VolumeRAM* vrSmoothed, const size3_t dims, float sigma, const int radius);
+
 
 //Ports
 public:
@@ -109,6 +113,7 @@ public:
     IntProperty propNumContours;
     TransferFunctionProperty propIsoTransferFunc;
 	BoolProperty propApplyGaussian;
+	FloatProperty propSigma;
 
 //Attributes
 private:
