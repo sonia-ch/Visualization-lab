@@ -60,15 +60,33 @@ vec2 Integrator::sampleFromField(const VolumeRAM* vr, size3_t dims, const vec2& 
 
 // TODO: Implement a single integration step here
 
-//vec2 Integrator::Euler(const VolumeRAM* vr, size3_t dims, const vec2& position, ...)
-//{
-// Access the vector field with sampleFromField(vr, dims, ...)
-//}
+vec2 Integrator::Euler(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize)
+{
+    // x_{i+1} = x_i + s * v(x_i)
+    vec2 direction = sampleFromField(vr, dims, position);
+    vec2 updatedPosition = position + stepSize*direction;
 
-//vec2 Integrator::RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, ...)
-//{
-// 
-//}
+    return updatedPosition;
+}
+
+vec2 Integrator::RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize, bool normalized)
+{
+    // 4th order Runga Kutta:
+    vec2 v1 = sampleFromField(vr, dims, position);
+    vec2 v2 = sampleFromField(vr, dims, position + (stepSize/2.0f)*v1);
+    vec2 v3 = sampleFromField(vr, dims, position + (stepSize/2.0f)*v2);
+    vec2 v4 = sampleFromField(vr, dims, position + v3);
+
+    // x_{i+1} = x_i + s* ( v1/6 + v2/3 + v3/3 + v4/6 )
+    vec2 updatedPosition = position + stepSize * (v1/6.0f + v2/3.0f + v3/3.0f + v4/6.0f);
+
+    // c.) normalize vector to integrate over direction field
+    if (normalized) {
+        updatedPosition = updatedPosition / float(sqrt((updatedPosition.x*updatedPosition.x)+(updatedPosition.y*updatedPosition.y)));
+    }
+
+    return updatedPosition;
+}
 
 } // namespace
 

@@ -33,6 +33,11 @@ StreamlineIntegrator::StreamlineIntegrator()
     , propStartPoint("startPoint", "Start Point", vec2(0.5, 0.5), vec2(0), vec2(1024), vec2(0.5))
     , propSeedMode("seedMode", "Seeds")
     // TODO: Initialize additional properties
+    , propDirection("direction", "Direction")
+    , propStepSize("stepSize", "Step size", 1.0f, 0.0f, 10.0f, 0.1f)
+    , propNormalized("normalized", "Normalize to Direction Field")
+    , propMaxSteps("maxSteps", "Maximum # of Steps", 5, 0, 1000, 1)
+    , propArcLength("arcLength", "Stream line arc length", 0.0f, 0.0f, 1000.0f, 1.0f)
     // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
@@ -50,6 +55,13 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(mouseMoveStart);
 
     // TODO: Register additional properties
+    addProperty(propDirection);
+    propDirection.addOption("forward", "Forward", 1);
+    propDirection.addOption("backward", "Backward", -1);
+    addProperty(propStepSize);
+    addProperty(propMaxSteps);
+    addProperty(propNormalized);
+    addProperty(propArcLength);
     // addProperty(propertyName);
 
     // You can hide and show properties for a single seed and hide properties for multiple seeds (TODO)
@@ -102,7 +114,45 @@ void StreamlineIntegrator::process() {
         vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
                             vec3(0), vec3(0), vec4(0, 0, 0, 1)});
         indexBufferPoints->add(static_cast<std::uint32_t>(0));
+
         // TODO: Create one stream line from the given start point
+        // Runga Kutta 4th Order
+        vec2 prevPosition;
+        vec2 position = startPoint;
+        vec2 changeVec;
+        float velocity = 1.0f;
+
+        float arcLength = 0.0f;
+
+        // d.) stop after max steps
+        for (int i=0; i < propMaxSteps.get(); i++) {
+            // a.) direction, b.) stepsize & c.) normalized direction field
+            prevPosition = position;
+            position = Integrator::RK4(vr, dims, position, propDirection.get() * propStepSize.get(), propNormalized.get());
+            changeVec = position - prevPosition;
+            velocity = float(sqrt((changeVec.x*changeVec.x)+(changeVec.y*changeVec.y)));
+            arcLength += velocity;
+
+            // e.) after certain arc length
+            if (arcLength > propArcLength.get()) {
+                break;
+            }
+
+            // f.) stop at domain boundary
+            if (position.x < -dims.x or position.x > dims.x or
+                position.y < -dims.y or position.y > dims.y) {
+                break;
+            }
+
+            // g.) zero & h.) slow velocity
+            if (velocity == 0.0f or velocity < 0.5f){
+                break;
+            }
+
+            // Add vertex
+            indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+            vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(0, 0, 1, 1)});
+        }
     } else {
         // TODO: Seed multiple stream lines either randomly or using a uniform grid
         // (TODO: Bonus, sample randomly according to magnitude of the vector field)

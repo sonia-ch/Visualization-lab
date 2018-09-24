@@ -18,6 +18,7 @@
 #include <inviwo/core/properties/ordinalproperty.h>
 #include <inviwo/core/properties/eventproperty.h>
 
+
 namespace inviwo {
 
 /** \docpage{org.inviwo.EulerRK4Comparison, Euler RK4 Comparison}
@@ -81,8 +82,8 @@ public:
     EventProperty mouseMoveStart;
 
     // TODO: Declare additional properties
-    // IntProperty properyName;
-    // FloatProperty propertyName2;
+    IntProperty propMaxSteps;
+    FloatProperty propStepSize;
 
 // Attributes
 private:

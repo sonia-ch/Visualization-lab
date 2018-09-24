@@ -89,6 +89,11 @@ public:
     TemplateOptionProperty<int> propSeedMode;
 
     // TODO: Declare additional properties
+    TemplateOptionProperty<int> propDirection;
+    FloatProperty propStepSize;
+    BoolProperty propNormalized;
+    IntProperty propMaxSteps;
+    FloatProperty propArcLength;
     // Some types that you might need are given below
     // IntProperty properyName;
     // FloatProperty propertyName2;
