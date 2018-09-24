@@ -74,6 +74,10 @@ protected:
 
     // (TODO: You could define some helper functions here,
     // e.g. a function creating a single streamline from one seed point)
+	void singleStreamline(const VolumeRAM* vr, size3_t dims, const vec2& startPosition, float stepSize, int numSteps,
+		IndexBufferRAM* indexBuffer, IndexBufferRAM* indexBufferPoints, std::vector<BasicMesh::Vertex>& vertices);
+	vec2 singleStepIntegrator(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize, int direction);
+
 
 // Ports
 public:
@@ -95,6 +99,10 @@ public:
     // IntVec2Property propertyName3;
     // TemplateOptionProperty<int> propertyName4;
     // BoolProperty propertyName4;
+
+	TemplateOptionProperty<int> propDirection;
+	FloatProperty propStepSize;
+	IntProperty propNumSteps;
 
 // Attributes
 private:

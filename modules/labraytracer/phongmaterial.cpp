@@ -27,10 +27,10 @@ PhongMaterial::PhongMaterial(const vec3& color, const double reflectance, const 
 
 vec4 PhongMaterial::shade(const RayIntersection& intersection, const Light& light) const {
     // get normal and light direction
-    vec3 N = intersection.getNormal();
-    vec3 L = Util::normalize(light.getPosition() - intersection.getPosition());
+    //vec3 N = intersection.getNormal();
+    //vec3 L = Util::normalize(light.getPosition() - intersection.getPosition());
 
-    double cosNL = std::max(double(dot(N, L)), double(0));
+    //double cosNL = std::max(double(dot(N, L)), double(0));
 
     // Programming Task 2: Extend this method.
     // This method currently implements a Lambert's material with ideal
@@ -49,7 +49,32 @@ vec4 PhongMaterial::shade(const RayIntersection& intersection, const Light& ligh
     //    light, view, reflection and normal vector.
     //    
     //
-    return vec4(Util::scalarMult(cosNL, this->color()), 1.0);
+    
+	//return vec4(Util::scalarMult(cosNL, this->color()), 1.0);
+
+	// get normal and light direction
+	vec3 N = intersection.getNormal();
+	vec3 LnoN = light.getPosition() - intersection.getPosition();
+	vec3 L = Util::normalize(LnoN);
+	vec3 V = Util::normalize(intersection.getRay().getOrigin() - intersection.getPosition());
+
+	double faloff = dot(LnoN, LnoN); // Length of LnoN squared
+	vec3 ambientLightColor = Util::scalarMult(1 / faloff, light.getAmbientColor());
+	vec3 diffuseLightColor = Util::scalarMult(1 / faloff, light.getDiffuseColor());
+	vec3 specularLightColor = Util::scalarMult(1 / faloff, light.getSpecularColor());
+
+	// Dot product between Normal and Light dir. Used in diffuse color and to get reflection
+	double cosNL = std::max(double(dot(N, L)), double(0));
+	// Get the reflection vector
+	vec3 R = Util::normalize(Util::scalarMult(2 * cosNL, N) - L);
+
+	vec3 colorDiffuse = Util::scalarMult(cosNL, diffuseMaterialColor_ * diffuseLightColor);
+	vec3 colorSpecular = Util::scalarMult(pow(std::max(double(dot(R, V)), double(0)), shininess_), specularMatierialColor_ * specularLightColor);
+
+	vec3 finalColor = colorDiffuse + colorSpecular;
+
+	return vec4(finalColor, 1.0);
+
 
 }
 

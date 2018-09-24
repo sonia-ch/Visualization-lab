@@ -36,10 +36,12 @@ Chaikin::Chaikin()
     ,portInLines("InLines")
     ,portOutLines("OutLines")
     ,propMinNumDesiredPoints("MinNumDesiredPoints", "Num Points", 100, 1, 200, 1)
+	,propMinAngle("MinAngle","Min Angle",0, 0,5,0.05)
 {
     addPort(portInLines);
     addPort(portOutLines);
     addProperty(propMinNumDesiredPoints);
+	addProperty(propMinAngle);
 }
 
 /*  Applies Chaikin's Corner Cutting algorithm.
@@ -52,23 +54,60 @@ void Chaikin::CornerCutting(const std::vector<vec3>& ControlPolygon,
                             const size_t MinNumDesiredPoints,
                             std::vector<vec3>& Curve)
 {
-    //TODO: Extend and edit this code
-    Curve.clear();
+	std::vector<vec3> NewControlPolygon = ControlPolygon;
+	const size_t NumPointsPerPolygonLeg = 2;
 
-    const size_t NumPointsPerPolygonLeg = 1 + MinNumDesiredPoints / ControlPolygon.size();
-    Curve.reserve(NumPointsPerPolygonLeg * ControlPolygon.size());
-    for(size_t i(0);i<ControlPolygon.size();i++)
-    {
-        const vec3& LeftPoint = ControlPolygon[i];
-        const vec3& RightPoint = ControlPolygon[(i+1) % ControlPolygon.size()];
+	Curve.clear();
+	Curve.reserve(NumPointsPerPolygonLeg * NewControlPolygon.size());
 
-        //Linearly interpolate between left and right point in the t-interval [0,1)
-        for(size_t j(0);j<NumPointsPerPolygonLeg;j++)
-        {
-            const float t = float(j) / float(NumPointsPerPolygonLeg); //Gives values from 0 to almost 1
-            Curve.push_back((1-t) * LeftPoint + t * RightPoint);
-        }
-    }
+	for (size_t i(0); i<NewControlPolygon.size(); i++)
+	{
+		const vec3& LeftPoint = NewControlPolygon[i];
+		const vec3& RightPoint = NewControlPolygon[(i + 1) % NewControlPolygon.size()];
+
+		Curve.push_back(0.75f * LeftPoint + 0.25f * RightPoint);
+		Curve.push_back(0.25f * LeftPoint + 0.75f * RightPoint);
+	}
+	if (Curve.size() < MinNumDesiredPoints)
+	{
+		Chaikin::CornerCutting(Curve, MinNumDesiredPoints, Curve);
+	}
+}
+
+// This is for task 4_4
+void Chaikin::CurveSimplification(std::vector<vec3>& Curve, float MinAngle)
+{
+	std::vector<vec3> NewControlPolygon;
+	NewControlPolygon.push_back(Curve[0]);
+
+	int index = 0;
+	for (size_t i(0); i < Curve.size()-2; i++)
+	{
+		
+		const vec3& LeftPoint = Curve[index];
+		const vec3& MidPoint = Curve[i + 1];
+		const vec3& RightPoint = Curve[i + 2];
+
+		const vec3 vec1 = normalize(MidPoint - LeftPoint);
+		const vec3 vec2 = normalize(RightPoint - MidPoint);
+		
+		//I don't know how to do an inner product with this s**t of inviwo::vec3, so this is my alternative
+		vec3 help = vec1 * vec2; // This is a multiplication element by element
+		float in_prod = 0;
+		for (int k = 0; k < 3; k++)
+		{
+			in_prod += help[k]; //The sum of this vector is the inner product
+		}
+		//Angle between vector1 and vector2
+		float ang = acos(in_prod);
+		
+		if (ang > MinAngle*M_PI/180)
+		{
+			NewControlPolygon.push_back(Curve[i+1]);
+			index = i+1;
+		}
+	}
+	Curve = NewControlPolygon;
 }
 
 void Chaikin::process()
@@ -143,6 +182,7 @@ void Chaikin::process()
             //Cut the corners!
             std::vector<vec3> ChaikinVertices;
             CornerCutting(LineVertices, propMinNumDesiredPoints.get(), ChaikinVertices);
+			CurveSimplification(ChaikinVertices, propMinAngle.get());
             const size_t NumNewVertices = ChaikinVertices.size();
 
             //Write out

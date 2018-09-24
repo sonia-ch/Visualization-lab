@@ -44,7 +44,32 @@ bool Triangle::closestIntersection(const Ray& ray, double maxLambda,
     // Ray direction t_r : ray.getDirection()
     // Compute the intersection point using ray.pointOnRay(lambda) 
 
-    return false;
+	vec3 v0v1 = mVertices[1] - mVertices[0];
+	vec3 v0v2 = mVertices[2] - mVertices[0];
+	vec3 pvec = cross(ray.getDirection(), v0v2);
+	float det = dot(v0v1, pvec);
+	det = 1 / det;
+
+	vec3 tvec = ray.getOrigin() - mVertices[0];
+	double u = dot(tvec, pvec) * det;
+	if (u < 0 || u > 1) return false;
+
+	vec3 qvec = cross(tvec, v0v1);
+	double v = dot(ray.getDirection(), qvec) * det;
+	if (v < 0 || u + v > 1) return false;
+
+	double t = dot(v0v2, qvec) * det;
+	if (t < 0 || t + Util::epsilon > maxLambda) {
+		return false;
+	}
+
+	vec3 normal = cross(v0v1, v0v2);
+
+	const vec3 uvw(0, 0, 0);
+	intersection = RayIntersection(ray, shared_from_this(), t, normal, uvw);
+
+
+	return true;
 }
 
 bool Triangle::anyIntersection(const Ray& ray, double maxLambda) const {
