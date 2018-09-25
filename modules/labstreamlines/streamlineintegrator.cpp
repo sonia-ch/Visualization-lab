@@ -105,11 +105,12 @@ void StreamlineIntegrator::eventMoveStart(Event* event) {
     event->markAsUsed();
 }
 
-void StreamlineIntegrator::drawStreamLine(std::vector<BasicMesh::Vertex>& vertices,
+void StreamlineIntegrator::drawStreamLine(const VolumeRAM* vr,
+                                          std::vector<BasicMesh::Vertex>& vertices,
                                           const size3_t dims,
                                           IndexBufferRAM* indexBufferPoints,
                                           IndexBufferRAM* indexBufferRK,
-                                          vec2 startpoint) {
+                                          vec2 startPoint) {
     // Draw start point
     vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
                         vec3(0), vec3(0), vec4(0, 0, 0, 1)});
@@ -178,22 +179,32 @@ void StreamlineIntegrator::process() {
     auto mesh = std::make_shared<BasicMesh>();
     std::vector<BasicMesh::Vertex> vertices;
 
+    // range for dimensions
+    int rangeX = dims.x * 2;
+    int rangeY = dims.y * 2;
+
     if (propSeedMode.get() == 0) {
         auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
         auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
         vec2 startPoint = propStartPoint.get();
 
-        drawStreamLine(vertices, dims, indexBufferPoints, indexBufferRK, startpoint);
+        drawStreamLine(vr, vertices, dims, indexBufferPoints, indexBufferRK, startPoint);
 
     } else {
         // TODO: Seed multiple stream lines either randomly or using a uniform grid
         // (TODO: Bonus, sample randomly according to magnitude of the vector field)
-        n = propNumberLines.get();
+        int n = propNumberLines.get();
 
-        for (i=0; i<n; i++){
-            vec2 startPoint = vec2(std::rand(), std::rand());
+        for (int i=0; i<n; i++){
+
+            int randX = std::rand() % rangeX;
+            int randY = std::rand() % rangeY;
+            vec2 startPoint = vec2(randX, randY);
             LogProcessorInfo("Seed point for line " << (i+1) << " is " << startPoint);
-            drawStreamLine(vertices, dims, indexBufferPoints, indexBufferRK, startpoint);
+
+            auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+            auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+            drawStreamLine(vr, vertices, dims, indexBufferPoints, indexBufferRK, startPoint);
         }
 
     }

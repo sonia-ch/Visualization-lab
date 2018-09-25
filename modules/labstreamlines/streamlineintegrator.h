@@ -74,7 +74,7 @@ protected:
 
     // (TODO: You could define some helper functions here,
     // e.g. a function creating a single streamline from one seed point)
-    void drawStreamLine(std::vector<BasicMesh::Vertex>& vertices, const size3_t dims, IndexBufferRAM* indexBufferPoints, IndexBufferRAM* indexBufferRK, vec2 startpoint);
+    void drawStreamLine(const VolumeRAM* vr, std::vector<BasicMesh::Vertex>& vertices, const size3_t dims, IndexBufferRAM* indexBufferPoints, IndexBufferRAM* indexBufferRK, vec2 startPoint);
 
 // Ports
 public:
