@@ -74,6 +74,7 @@ protected:
 
     // (TODO: You could define some helper functions here,
     // e.g. a function creating a single streamline from one seed point)
+    void drawStreamLine(std::vector<BasicMesh::Vertex>& vertices, const size3_t dims, IndexBufferRAM* indexBufferPoints, IndexBufferRAM* indexBufferRK, vec2 startpoint);
 
 // Ports
 public:
@@ -95,6 +96,7 @@ public:
     IntProperty propMaxSteps;
     FloatProperty propArcLength;
     BoolProperty propDoArcLen;
+    IntProperty propNumberLines;
     // Some types that you might need are given below
     // IntProperty properyName;
     // FloatProperty propertyName2;

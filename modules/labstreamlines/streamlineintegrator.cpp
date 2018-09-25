@@ -39,6 +39,7 @@ StreamlineIntegrator::StreamlineIntegrator()
     , propMaxSteps("maxSteps", "Maximum # of Steps", 5, 0, 1000, 1)
     , propArcLength("arcLength", "Stream line arc length", 100.0f, 0.0f, 1000.0f, 1.0f)
     , propDoArcLen("doArcLen", "Use arc length", false)
+    , propNumberLines("numberLines", "# of stream lines", 1, 1, 100, 1)
     // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
@@ -63,7 +64,9 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(propMaxSteps);
     addProperty(propNormalized);
     addProperty(propArcLength);
+    addProperty(propNumberLines);
     // addProperty(propertyName);
+
 
     propDoArcLen.onChange([this]() {
         if (propDoArcLen.get() == true){
@@ -102,6 +105,63 @@ void StreamlineIntegrator::eventMoveStart(Event* event) {
     event->markAsUsed();
 }
 
+void StreamlineIntegrator::drawStreamLine(std::vector<BasicMesh::Vertex>& vertices,
+                                          const size3_t dims,
+                                          IndexBufferRAM* indexBufferPoints,
+                                          IndexBufferRAM* indexBufferRK,
+                                          vec2 startpoint) {
+    // Draw start point
+    vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
+                        vec3(0), vec3(0), vec4(0, 0, 0, 1)});
+
+    indexBufferPoints->add(static_cast<std::uint32_t>(0));
+    indexBufferRK->add(static_cast<std::uint32_t>(0));
+
+
+    // TODO: Create one stream line from the given start point
+    // Initialize variables
+    vec2 prevPosition;
+    vec2 position = startPoint;
+    vec2 changeVec;
+    float velocity = 1.0f;
+    float arcLength = 0.0f;
+
+    // Runga Kutta 4th Order
+    // d.) stop after max steps
+    for (int i=0; i < propMaxSteps.get(); i++) {
+        // a.) direction, b.) stepsize & c.) normalized direction field
+        prevPosition = position;
+        position = Integrator::RK4(vr, dims, position, propDirection.get() * propStepSize.get(), propNormalized.get());
+        changeVec = position - prevPosition;
+        velocity = float(sqrt((changeVec.x*changeVec.x)+(changeVec.y*changeVec.y)));
+        arcLength += velocity;
+
+        // e.) after certain arc length
+        if (propDoArcLen.get() and arcLength > propArcLength.get()) {
+            LogProcessorInfo("Maximal arc length " << arcLength);
+            break;
+        }
+
+        // f.) stop at domain boundary
+        if (abs(position.x) > dims.x or abs(position.y) > dims.y) {
+            LogProcessorInfo("Out of domain boundaries (" << position.x << "," << position.y << ")");
+            break;
+        }
+
+        // g.) zero & h.) slow velocity
+        if (velocity == 0.0f or velocity < 0.001f){
+            LogProcessorInfo("Velocity is to slow " << velocity);
+            break;
+        }
+
+        // Add vertex
+        indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+        indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()));
+        vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(0, 0, 1, 1)});
+    }
+
+}
+
 void StreamlineIntegrator::process() {
     // Get input
     if (!inData.hasData()) {
@@ -120,61 +180,22 @@ void StreamlineIntegrator::process() {
 
     if (propSeedMode.get() == 0) {
         auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
-
-        // Draw start point
-        vec2 startPoint = propStartPoint.get();
-        vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
-                            vec3(0), vec3(0), vec4(0, 0, 0, 1)});
-        indexBufferPoints->add(static_cast<std::uint32_t>(0));
-
-
-        // TODO: Create one stream line from the given start point
         auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
-        indexBufferRK->add(static_cast<std::uint32_t>(0));
+        vec2 startPoint = propStartPoint.get();
 
-        // Initialize variables
-        vec2 prevPosition;
-        vec2 position = startPoint;
-        vec2 changeVec;
-        float velocity = 1.0f;
-        float arcLength = 0.0f;
+        drawStreamLine(vertices, dims, indexBufferPoints, indexBufferRK, startpoint);
 
-        // Runga Kutta 4th Order
-        // d.) stop after max steps
-        for (int i=0; i < propMaxSteps.get(); i++) {
-            // a.) direction, b.) stepsize & c.) normalized direction field
-            prevPosition = position;
-            position = Integrator::RK4(vr, dims, position, propDirection.get() * propStepSize.get(), propNormalized.get());
-            changeVec = position - prevPosition;
-            velocity = float(sqrt((changeVec.x*changeVec.x)+(changeVec.y*changeVec.y)));
-            arcLength += velocity;
-
-            // e.) after certain arc length
-            if (propDoArcLen.get() and arcLength > propArcLength.get()) {
-                LogProcessorInfo("Maximal arc length " << arcLength);
-                break;
-            }
-
-            // f.) stop at domain boundary
-            if (abs(position.x) > dims.x or abs(position.y) > dims.y) {
-                LogProcessorInfo("Out of domain boundaries (" << position.x << "," << position.y << ")");
-                break;
-            }
-
-            // g.) zero & h.) slow velocity
-            if (velocity == 0.0f or velocity < 0.001f){
-                LogProcessorInfo("Velocity is to slow " << velocity);
-                break;
-            }
-
-            // Add vertex
-            indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
-            indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()));
-            vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(0, 0, 1, 1)});
-        }
     } else {
         // TODO: Seed multiple stream lines either randomly or using a uniform grid
         // (TODO: Bonus, sample randomly according to magnitude of the vector field)
+        n = propNumberLines.get();
+
+        for (i=0; i<n; i++){
+            vec2 startPoint = vec2(std::rand(), std::rand());
+            LogProcessorInfo("Seed point for line " << (i+1) << " is " << startPoint);
+            drawStreamLine(vertices, dims, indexBufferPoints, indexBufferRK, startpoint);
+        }
+
     }
 
     mesh->addVertices(vertices);

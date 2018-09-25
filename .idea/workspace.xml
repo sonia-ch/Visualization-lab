@@ -2,23 +2,22 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="openexr-imath" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
       <config projectName="inviwo-projects" targetName="glm" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dd2257setup" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGLQt" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labstreamlines" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
-      <config projectName="inviwo-projects" targetName="DOXY-ALL" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
+      <config projectName="inviwo-projects" targetName="GLEW" />
       <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
-      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
       <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabStreamlines" />
       <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
       <config projectName="inviwo-projects" targetName="inviwo-module-basegl" />
       <config projectName="inviwo-projects" targetName="ticpp" />
       <config projectName="inviwo-projects" targetName="tclap" />
@@ -26,45 +25,46 @@
       <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
       <config projectName="inviwo-projects" targetName="openexr-iex" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
-      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
       <config projectName="inviwo-projects" targetName="inviwo-module-base" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
+      <config projectName="inviwo-projects" targetName="gtest" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-GLFW" />
       <config projectName="inviwo-projects" targetName="zlib1" />
-      <config projectName="inviwo-projects" targetName="gtest" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
       <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
+      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
       <config projectName="inviwo-projects" targetName="assimp" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
-      <config projectName="inviwo-projects" targetName="warn" />
-      <config projectName="inviwo-projects" targetName="openexr-imath" />
-      <config projectName="inviwo-projects" targetName="sigar" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
+      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
+      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
       <config projectName="inviwo-projects" targetName="inviwo" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
       <config projectName="inviwo-projects" targetName="tinydir" />
-      <config projectName="inviwo-projects" targetName="openexr-half" />
+      <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
       <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
-      <config projectName="inviwo-projects" targetName="libpng" />
+      <config projectName="inviwo-projects" targetName="warn" />
       <config projectName="inviwo-projects" targetName="flags" />
       <config projectName="inviwo-projects" targetName="half" />
+      <config projectName="inviwo-projects" targetName="libpng" />
       <config projectName="inviwo-projects" targetName="libjpeg" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
       <config projectName="inviwo-projects" targetName="inviwo-core" />
-      <config projectName="inviwo-projects" targetName="GLEW" />
+      <config projectName="inviwo-projects" targetName="sigar" />
       <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
       <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
+      <config projectName="inviwo-projects" targetName="DOXY-ALL" />
+      <config projectName="inviwo-projects" targetName="openexr-half" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
-      <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -90,35 +90,36 @@
     <session id="-1020080568">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="10" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="12" />
-          <entry key="h" value="10" />
+          <entry key="cpp" value="15" />
+          <entry key="h" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="ObjectiveC" value="22" />
+          <entry key="ObjectiveC" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="8879" />
-          <entry key="h" value="402" />
+          <entry key="cpp" value="9353" />
+          <entry key="h" value="419" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="9281" />
+          <entry key="ObjectiveC" value="9772" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -126,21 +127,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="132" column="58" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="102" column="45" selection-start-line="102" selection-end-line="103" />
+            <state relative-caret-position="287">
+              <caret line="175" column="36" lean-forward="true" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -148,29 +140,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="74" column="48" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="65" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="65" />
-              <folding>
-                <element signature="e#337#391#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="332">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
             </state>
           </provider>
         </entry>
@@ -218,35 +189,26 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
-            </path>
-            <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="labmarchingsquares" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="labstreamlines" type="462c0819:PsiDirectoryNode" />
@@ -255,11 +217,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../inviwo-output" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -275,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.inviwo">
+  <component name="RunManager" selected="Application.inviwo-module-labstreamlines">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Default" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -677,17 +640,32 @@
       <workItem from="1535632462837" duration="2526000" />
       <workItem from="1536148818163" duration="1066000" />
       <workItem from="1536568016799" duration="19219000" />
-      <workItem from="1537881203516" duration="591000" />
+      <workItem from="1537881203516" duration="2562000" />
+      <workItem from="1537884016040" duration="156000" />
+      <workItem from="1537884176960" duration="49000" />
+      <workItem from="1537884230744" duration="2000" />
+      <workItem from="1537884264524" duration="25000" />
+      <workItem from="1537884351143" duration="117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36907000" />
+    <option name="totallyTimeSpent" value="39227000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2841349" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30071864" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -696,10 +674,10 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4997236" weight="0.32881" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3294979" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32845187" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
       <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
@@ -767,20 +745,6 @@
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="231" selection-start-line="231" selection-end-line="242" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="49" selection-start-line="22" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-345">
@@ -795,24 +759,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="132" column="58" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
+        <state relative-caret-position="326">
+          <caret line="232" column="53" lean-forward="true" selection-start-line="232" selection-start-column="38" selection-end-line="232" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="45" selection-start-line="102" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+        <state relative-caret-position="-525">
+          <caret line="22" column="49" selection-start-line="22" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -827,9 +784,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="41" column="65" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="65" />
-          <folding>
-            <element signature="e#337#391#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="102" column="45" selection-start-line="102" selection-end-line="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="175" column="36" lean-forward="true" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
         </state>
       </provider>
     </entry>
