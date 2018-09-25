@@ -94,6 +94,7 @@ public:
     BoolProperty propNormalized;
     IntProperty propMaxSteps;
     FloatProperty propArcLength;
+    BoolProperty propDoArcLen;
     // Some types that you might need are given below
     // IntProperty properyName;
     // FloatProperty propertyName2;

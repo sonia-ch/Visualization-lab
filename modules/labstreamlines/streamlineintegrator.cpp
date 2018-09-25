@@ -37,7 +37,8 @@ StreamlineIntegrator::StreamlineIntegrator()
     , propStepSize("stepSize", "Step size", 1.0f, 0.0f, 10.0f, 0.1f)
     , propNormalized("normalized", "Normalize to Direction Field")
     , propMaxSteps("maxSteps", "Maximum # of Steps", 5, 0, 1000, 1)
-    , propArcLength("arcLength", "Stream line arc length", 0.0f, 0.0f, 1000.0f, 1.0f)
+    , propArcLength("arcLength", "Stream line arc length", 100.0f, 0.0f, 1000.0f, 1.0f)
+    , propDoArcLen("doArcLen", "Use arc length", false)
     // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
@@ -63,6 +64,16 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(propNormalized);
     addProperty(propArcLength);
     // addProperty(propertyName);
+
+    propDoArcLen.onChange([this]() {
+        if (propDoArcLen.get() == true){
+            util::show(propArcLength);
+        } else {
+            util::show(propArcLength);
+        }
+    });
+
+
 
     // You can hide and show properties for a single seed and hide properties for multiple seeds (TODO)
     propSeedMode.onChange([this]() {
@@ -109,21 +120,26 @@ void StreamlineIntegrator::process() {
 
     if (propSeedMode.get() == 0) {
         auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+
         // Draw start point
         vec2 startPoint = propStartPoint.get();
         vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
                             vec3(0), vec3(0), vec4(0, 0, 0, 1)});
         indexBufferPoints->add(static_cast<std::uint32_t>(0));
 
+
         // TODO: Create one stream line from the given start point
-        // Runga Kutta 4th Order
+        auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+        indexBufferRK->add(static_cast<std::uint32_t>(0));
+
+        // Initialize variables
         vec2 prevPosition;
         vec2 position = startPoint;
         vec2 changeVec;
         float velocity = 1.0f;
-
         float arcLength = 0.0f;
 
+        // Runga Kutta 4th Order
         // d.) stop after max steps
         for (int i=0; i < propMaxSteps.get(); i++) {
             // a.) direction, b.) stepsize & c.) normalized direction field
@@ -134,23 +150,26 @@ void StreamlineIntegrator::process() {
             arcLength += velocity;
 
             // e.) after certain arc length
-            if (arcLength > propArcLength.get()) {
+            if (propDoArcLen.get() and arcLength > propArcLength.get()) {
+                LogProcessorInfo("Maximal arc length " << arcLength);
                 break;
             }
 
             // f.) stop at domain boundary
-            if (position.x < -dims.x or position.x > dims.x or
-                position.y < -dims.y or position.y > dims.y) {
+            if (abs(position.x) > dims.x or abs(position.y) > dims.y) {
+                LogProcessorInfo("Out of domain boundaries (" << position.x << "," << position.y << ")");
                 break;
             }
 
             // g.) zero & h.) slow velocity
-            if (velocity == 0.0f or velocity < 0.5f){
+            if (velocity == 0.0f or velocity < 0.001f){
+                LogProcessorInfo("Velocity is to slow " << velocity);
                 break;
             }
 
             // Add vertex
             indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+            indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()));
             vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(0, 0, 1, 1)});
         }
     } else {
