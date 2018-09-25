@@ -91,12 +91,15 @@ public:
 
     // TODO: Declare additional properties
     TemplateOptionProperty<int> propDirection;
+    TemplateOptionProperty<int> propMultipleType;
     FloatProperty propStepSize;
     BoolProperty propNormalized;
     IntProperty propMaxSteps;
     FloatProperty propArcLength;
     BoolProperty propDoArcLen;
     IntProperty propNumberLines;
+    IntProperty propGridLinesX;
+    IntProperty propGridLinesY;
     // Some types that you might need are given below
     // IntProperty properyName;
     // FloatProperty propertyName2;
