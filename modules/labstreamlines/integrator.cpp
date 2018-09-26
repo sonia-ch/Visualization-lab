@@ -77,13 +77,15 @@ vec2 Integrator::RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, fl
     vec2 v3 = sampleFromField(vr, dims, position + (stepSize/2.0f)*v2);
     vec2 v4 = sampleFromField(vr, dims, position + stepSize * v3);
 
-    // x_{i+1} = x_i + s* ( v1/6 + v2/3 + v3/3 + v4/6 )
-    vec2 updatedPosition = position + stepSize * (v1/6.0f + v2/3.0f + v3/3.0f + v4/6.0f);
+    vec2 direction = (v1/6.0f + v2/3.0f + v3/3.0f + v4/6.0f);
 
     // c.) normalize vector to integrate over direction field
     if (normalized) {
-        updatedPosition = updatedPosition / float(sqrt((updatedPosition.x*updatedPosition.x)+(updatedPosition.y*updatedPosition.y)));
+        direction = direction / float(sqrt((direction.x*direction.x)+(direction.y*direction.y)));
     }
+
+    // x_{i+1} = x_i + s* ( v1/6 + v2/3 + v3/3 + v4/6 )
+    vec2 updatedPosition = position + stepSize * direction;
 
     return updatedPosition;
 }

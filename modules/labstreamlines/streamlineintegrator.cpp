@@ -145,9 +145,6 @@ void StreamlineIntegrator::drawStreamLine(const VolumeRAM* vr,
     // Initialize variables
     vec2 prevPosition;
     vec2 position = startPoint;
-    if (propNormalized.get()){
-        position = position / float(sqrt((position.x*position.x)+(position.y*position.y)));
-    }
     vec2 changeVec;
     float velocity = 1.0f;
     float arcLength = 0.0f;
