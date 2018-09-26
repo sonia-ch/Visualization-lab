@@ -37,8 +37,15 @@ StreamlineIntegrator::StreamlineIntegrator()
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
 	, propDirection("direction", "Direction")
-	, propStepSize("stepSize", "Step Size", 0.1f, 0.1f, 4.0f, 0.1f)
+	, propStepSize("stepSize", "Step Size", 0.1f, 0.05f, 1.0f, 0.05f)
 	, propNumSteps("numStep", "Number of integration steps", 30, 1, 1000)
+	, propNumSeeds("numSeeds", "Number seeds", 10, 1, 100)
+	, propNormalized("normalized", "Use Direction Field")
+	, propMultipleType("multipleType", "Type of seeding")
+	, propGridLinesX("gridLinesX", "# of Grid Points X-Axis", 3, 1, 50, 1)
+	, propGridLinesY("gridLinesY", "# of Grid Points Y-Axis", 3, 1, 50, 1)
+	, propArcLength("arcLength", "Stream line arc length", 10.0f, 0.0f, 10.0f, 0.1f)
+	, propDoArcLen("doArcLen", "Use arc length", false)
 	, mouseMoveStart("mouseMoveStart", "Move Start", [this](Event* e) { eventMoveStart(e); },
                      MouseButton::Left, MouseState::Press | MouseState::Move) {
     // Register Ports
@@ -60,18 +67,50 @@ StreamlineIntegrator::StreamlineIntegrator()
 	addProperty(propStepSize);
 	addProperty(propNumSteps);
 
+	addProperty(propNumSeeds);
+	addProperty(propMultipleType);
+	propMultipleType.addOption("random", "Random Seeding", 0);
+	propMultipleType.addOption("uniform", "Uniform Grid", 1);
+	propMultipleType.addOption("distribution", "Based on Magnitude Distribution", 2);
+	addProperty(propGridLinesX);
+	addProperty(propGridLinesY);
+	addProperty(propArcLength);
+	addProperty(propDoArcLen);
+	addProperty(propNormalized);
+
+	util::hide(propArcLength, propGridLinesX, propGridLinesY, propNumSeeds, propMultipleType);
 
 
     // You can hide and show properties for a single seed and hide properties for multiple seeds (TODO)
     propSeedMode.onChange([this]() {
         if (propSeedMode.get() == 0) {
             util::show(propStartPoint, mouseMoveStart);
+			util::hide(propMultipleType, propGridLinesX, propGridLinesY, propNumSeeds);
             // util::hide(...)
         } else {
             util::hide(propStartPoint, mouseMoveStart);
+			util::show(propMultipleType, propGridLinesX, propGridLinesY, propNumSeeds);
             // util::show(...)
         }
     });
+
+	propDoArcLen.onChange([this]() {
+		if (propDoArcLen.get() == true) {
+			util::show(propArcLength);
+		}
+		else {
+			util::hide(propArcLength);
+		}
+	});
+
+	propMultipleType.onChange([this]() {
+		if (propMultipleType.get() == 1) {
+			util::show(propGridLinesX, propGridLinesY);
+		}
+		else {
+			util::hide(propGridLinesX, propGridLinesY);
+		}
+	});
 
 }
 
@@ -107,17 +146,54 @@ void StreamlineIntegrator::process() {
 
     if (propSeedMode.get() == 0) {
         auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+		auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+
         // Draw start point
         vec2 startPoint = propStartPoint.get();
         vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
                             vec3(0), vec3(0), vec4(0, 0, 0, 1)});
         indexBufferPoints->add(static_cast<std::uint32_t>(0));
+		indexBufferStreamline->add(static_cast<std::uint32_t>(0));
+
         // TODO: Create one stream line from the given start point
-		auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
 		singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
     } else {
         // TODO: Seed multiple stream lines either randomly or using a uniform grid
         // (TODO: Bonus, sample randomly according to magnitude of the vector field)
+
+		if (propMultipleType.get() == 0) //Random distribution
+		{
+			srand(1); //For keeping the same random seeds while changing parameters in the interface
+
+			for (int i = 0; i < propNumSeeds.get(); i++)
+			{
+				// Draw start point
+				vec2 startPoint = vec2((float)rand() / (RAND_MAX / dims.x), (float)rand() / (RAND_MAX / dims.y));
+				auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+				auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+
+				singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+			}
+		}
+		else if (propMultipleType.get() == 1) //Grid distribution
+		{
+			for (int x = 0; x < propGridLinesX.get(); x++) {
+				for (int y = 0; y < propGridLinesY.get(); y++) {
+					double coordX = x * ((dims.x - 1) / (1.0*propGridLinesX.get()));
+					double coordY = y * ((dims.y - 1) / (1.0*propGridLinesY.get()));
+					vec2 startPoint = vec2(coordX, coordY);
+
+					auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+					auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+			
+					singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+				}
+			}
+		}
+		else if (propMultipleType.get() == 2) //Magnitude-proporcional distribution
+		{
+
+		}
     }
 
     mesh->addVertices(vertices);
@@ -126,32 +202,52 @@ void StreamlineIntegrator::process() {
 void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, const vec2& startPosition, float stepSize, int numSteps, 
 	IndexBufferRAM* indexBuffer, IndexBufferRAM* indexBufferPoints, std::vector<BasicMesh::Vertex>& vertices)
 {
+	// Draw first point
+	indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+	indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
+	vertices.push_back({ vec3(startPosition.x / (dims.x - 1), startPosition.y / (dims.y - 1), 0),
+		vec3(0), vec3(0), vec4(0, 0, 0, 1) });
+
 	vec2 nextPointRK = startPosition;
+	vec2 prevPoint, pointDiff;
+	float velocity, arcLength = 0.0f;
 
 	for (int i = 0; i < numSteps; i++)
 	{
+		vec2 prevPoint = nextPointRK;
 		// RK integration
-		nextPointRK = singleStepIntegrator(vr, dims, nextPointRK, stepSize, propDirection.get());
+		nextPointRK = Integrator::RK4(vr, dims, nextPointRK, stepSize, propDirection.get(), propNormalized.get());
 
-		//indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+		pointDiff = nextPointRK - prevPoint;
+		velocity = float(sqrt((pointDiff.x*pointDiff.x) + (pointDiff.y*pointDiff.y)));
+		LogProcessorInfo(velocity);
+		arcLength += velocity;
+
+		// e.) after certain arc length
+		if (propDoArcLen.get() && arcLength > propArcLength.get()) {
+			LogProcessorInfo("Maximal arc length " << arcLength);
+			break;
+		}
+
+		// f.) stop at domain boundary
+		if (nextPointRK.x >(dims.x - 1) || nextPointRK.x < 0 || nextPointRK.y >(dims.y - 1) || nextPointRK.y < 0) {
+			LogProcessorInfo("Out of domain boundaries (" << nextPointRK.x << "," << nextPointRK.y << ")");
+			break;
+		}
+
+		// g.) zero & h.) slow velocity
+		if (velocity == 0.0f || velocity < 0.001f) {
+			LogProcessorInfo("Velocity is to slow " << velocity);
+			break;
+		}
+
+		// Draw next point
 		indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
 		indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
 		vertices.push_back({ vec3(nextPointRK.x / (dims.x - 1), nextPointRK.y / (dims.y - 1), 0),
 			vec3(0), vec3(0), vec4(0, 0, 1, 1) });
 	}
  }
-
-vec2 StreamlineIntegrator::singleStepIntegrator(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize, int direction)
-{
-	vec2 v1 = (float)direction * Integrator::sampleFromField(vr, dims, position);
-	vec2 v2 = (float) direction * Integrator::sampleFromField(vr, dims, position + stepSize / 2 * v1);
-	vec2 v3 = (float) direction * Integrator::sampleFromField(vr, dims, position + stepSize / 2 * v2);
-	vec2 v4 = (float) direction * Integrator::sampleFromField(vr, dims, position + stepSize * v3);
-
-	vec2 point = position + stepSize * (v1 / 6.0f + v2 / 3.0f + v3 / 3.0f + v4 / 6.0f);
-	return point;
-
-}
 
 
 }  // namespace inviwo

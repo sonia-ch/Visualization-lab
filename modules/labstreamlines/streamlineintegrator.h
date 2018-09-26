@@ -103,6 +103,13 @@ public:
 	TemplateOptionProperty<int> propDirection;
 	FloatProperty propStepSize;
 	IntProperty propNumSteps;
+	IntProperty propNumSeeds;
+	TemplateOptionProperty<int> propMultipleType;
+	IntProperty propGridLinesX;
+	IntProperty propGridLinesY;
+	FloatProperty propArcLength;
+	BoolProperty propDoArcLen;
+	BoolProperty propNormalized;
 
 // Attributes
 private:
