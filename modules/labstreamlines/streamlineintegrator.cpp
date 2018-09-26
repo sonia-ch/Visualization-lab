@@ -35,9 +35,9 @@ StreamlineIntegrator::StreamlineIntegrator()
     // TODO: Initialize additional properties
     , propDirection("direction", "Direction")
     , propMultipleType("multipleType", "Type of seeding")
-    , propStepSize("stepSize", "Step size", 1.0f, 0.0f, 10.0f, 0.1f)
+    , propStepSize("stepSize", "Step size", 0.1f, 0.0f, 10.0f, 0.1f)
     , propNormalized("normalized", "Normalize to Direction Field")
-    , propMaxSteps("maxSteps", "Maximum # of Steps", 5, 0, 1000, 1)
+    , propMaxSteps("maxSteps", "Maximum # of Steps", 20, 0, 1000, 1)
     , propArcLength("arcLength", "Stream line arc length", 100.0f, 0.0f, 1000.0f, 1.0f)
     , propDoArcLen("doArcLen", "Use arc length", false)
     , propNumberLines("numberLines", "# of stream lines", 1, 1, 100, 1)
@@ -69,12 +69,12 @@ StreamlineIntegrator::StreamlineIntegrator()
     propMultipleType.addOption("distribution", "Based on Magnitude Distribution", 2);
     addProperty(propGridLinesX);
     addProperty(propGridLinesY);
+    addProperty(propNumberLines);
 
     addProperty(propStepSize);
     addProperty(propMaxSteps);
     addProperty(propNormalized);
     addProperty(propArcLength);
-    addProperty(propNumberLines);
 
 
     // addProperty(propertyName);
@@ -89,10 +89,18 @@ StreamlineIntegrator::StreamlineIntegrator()
     });
 
     propMultipleType.onChange([this]() {
-        if (propMultipleType.get() == 1){
-            util::show(propGridLinesX, propGridLinesY);
-        } else {
+        if (propMultipleType.get() == 0){
+            // random seeding
+            util::show(propNumberLines);
             util::hide(propGridLinesX, propGridLinesY);
+        }
+        else if (propMultipleType.get() == 1){
+            // uniform grid seeding
+            util::show(propGridLinesX, propGridLinesY);
+            util::hide(propNumberLines);
+        } else {
+            // anything else hide completely
+            util::hide(propGridLinesX, propGridLinesY, propNumberLines);
         }
     });
 
@@ -137,8 +145,8 @@ void StreamlineIntegrator::drawStreamLine(const VolumeRAM* vr,
     vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
                         vec3(0), vec3(0), vec4(0, 0, 0, 1)});
 
-    indexBufferPoints->add(static_cast<std::uint32_t>(0));
-    indexBufferRK->add(static_cast<std::uint32_t>(0));
+    indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()-1));
+    indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()-1));
 
 
     // TODO: Create one stream line from the given start point
