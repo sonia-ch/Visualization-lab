@@ -199,6 +199,7 @@ void StreamlineIntegrator::process() {
 			int gridPoints = 10;
 			std::vector<float> values;
 			float sum = 0.0f;
+			srand(2); //For keeping the same random seeds while changing parameters in the interface
 
 			//Store values
 			for (int y = 0; y < gridPoints; y++) {
