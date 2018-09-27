@@ -107,6 +107,7 @@ public:
 	TemplateOptionProperty<int> propMultipleType;
 	IntProperty propGridLinesX;
 	IntProperty propGridLinesY;
+	IntProperty propGridLines;
 	FloatProperty propArcLength;
 	BoolProperty propDoArcLen;
 	BoolProperty propNormalized;

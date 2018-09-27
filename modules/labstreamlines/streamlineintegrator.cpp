@@ -38,12 +38,13 @@ StreamlineIntegrator::StreamlineIntegrator()
     // (optional)); propertyIdentifier cannot have spaces
 	, propDirection("direction", "Direction")
 	, propStepSize("stepSize", "Step Size", 0.1f, 0.05f, 1.0f, 0.05f)
-	, propNumSteps("numStep", "Number of integration steps", 30, 1, 1000)
+	, propNumSteps("numStep", "Steps", 30, 1, 1000)
 	, propNumSeeds("numSeeds", "Number seeds", 10, 1, 100)
 	, propNormalized("normalized", "Use Direction Field")
 	, propMultipleType("multipleType", "Type of seeding")
 	, propGridLinesX("gridLinesX", "# of Grid Points X-Axis", 3, 2, 50, 1)
 	, propGridLinesY("gridLinesY", "# of Grid Points Y-Axis", 3, 2, 50, 1)
+	, propGridLines("gridLines", "# of Grid dimensions", 10, 5, 50, 1)
 	, propArcLength("arcLength", "Stream line arc length", 10.0f, 0.0f, 10.0f, 0.1f)
 	, propDoArcLen("doArcLen", "Use arc length", false)
 	, mouseMoveStart("mouseMoveStart", "Move Start", [this](Event* e) { eventMoveStart(e); },
@@ -74,11 +75,12 @@ StreamlineIntegrator::StreamlineIntegrator()
 	propMultipleType.addOption("distribution", "Based on Magnitude Distribution", 2);
 	addProperty(propGridLinesX);
 	addProperty(propGridLinesY);
+	addProperty(propGridLines);
 	addProperty(propArcLength);
 	addProperty(propDoArcLen);
 	addProperty(propNormalized);
 
-	util::hide(propArcLength, propGridLinesX, propGridLinesY, propNumSeeds, propMultipleType);
+	util::hide(propArcLength, propGridLinesX, propGridLinesY, propGridLines, propNumSeeds, propMultipleType);
 
 
     // You can hide and show properties for a single seed and hide properties for multiple seeds (TODO)
@@ -107,8 +109,12 @@ StreamlineIntegrator::StreamlineIntegrator()
 		if (propMultipleType.get() == 1) {
 			util::show(propGridLinesX, propGridLinesY);
 		}
-		else {
+		else if (propMultipleType.get() == 2) {
 			util::hide(propGridLinesX, propGridLinesY);
+			util::show(propGridLines);
+		}
+		else {
+			util::hide(propGridLinesX, propGridLinesY, propGridLines);
 		}
 	});
 
@@ -196,7 +202,7 @@ void StreamlineIntegrator::process() {
 		}
 		else if (propMultipleType.get() == 2) //Magnitude-proporcional distribution
 		{
-			int gridPoints = 10;
+			int gridPoints = propGridLines.get();
 			std::vector<float> values;
 			float sum = 0.0f;
 			srand(2); //For keeping the same random seeds while changing parameters in the interface
@@ -218,7 +224,7 @@ void StreamlineIntegrator::process() {
 			{
 				//Generate random number
 				float randValue = ((float)rand() / RAND_MAX);
-
+				LogProcessorInfo("rand " << randValue);
 				float cum = 0.0f;
 				for (int i = 0; i < values.size(); i++)
 				{
@@ -228,8 +234,8 @@ void StreamlineIntegrator::process() {
 					if (randValue < cum)
 					{
 						//Draw in that position
-						double coordX = i % gridPoints * ((dims.x - 1) / (1.0*gridPoints));
-						double coordY = (int)i / gridPoints * ((dims.y - 1) / (1.0*gridPoints));
+						double coordX = i % gridPoints * ((dims.x - 1) / (1.0*gridPoints-1));
+						double coordY = (int)i / gridPoints * ((dims.y - 1) / (1.0*gridPoints-1));
 						vec2 startPoint = vec2(coordX, coordY);
 
 						auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
