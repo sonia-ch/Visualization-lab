@@ -135,6 +135,10 @@ void StreamlineIntegrator::process() {
     }
     auto vol = inData.getData();
 
+	// Extract the minimum and maximum value from the input data
+	const double minValue = vol->dataMap_.valueRange[0];
+	const double maxValue = vol->dataMap_.valueRange[1];
+
     // Retreive data in a form that we can access it
     auto vr = vol->getRepresentation<VolumeRAM>();
     dims = vol->getDimensions();
@@ -192,7 +196,56 @@ void StreamlineIntegrator::process() {
 		}
 		else if (propMultipleType.get() == 2) //Magnitude-proporcional distribution
 		{
+			int gridPoints = 10;
+			std::vector<float> values;
+			float sum = 0.0f;
 
+			//Store values
+			for (int y = 0; y < gridPoints; y++) {
+				for (int x = 0; x < gridPoints; x++) {
+					double coordX = x * ((dims.x - 1) / (1.0*gridPoints));
+					double coordY = y * ((dims.y - 1) / (1.0*gridPoints));
+					vec2 samplePoint = vec2(coordX, coordY);
+					vec2 vecValue = (Integrator::sampleFromField(vr, dims, samplePoint));
+					float value = (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y);
+					sum += value;
+					values.push_back(value);
+					//LogProcessorInfo("Values: " << (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y));
+
+				}
+			}
+			//LogProcessorInfo("min: " << minValue << " max: " << maxValue);
+
+			for (int n = 0; n < propNumSeeds.get(); n++)
+			{
+				//Generate random number
+				float randValue = ((float)rand() / RAND_MAX);
+				//LogProcessorInfo("Random value: " << randValue);
+
+				float cum = 0.0f;
+				for (int i = 0; i < values.size(); i++)
+				{
+					// Find position
+					cum += values[i]/sum;
+
+					if (randValue < cum)
+					{
+						//LogProcessorInfo("Cum: " << cum);
+						//Draw in that position
+						//vec2 startPoint = vec2(i%gridPoints, (int)i/gridPoints);
+						double coordX = i % gridPoints * ((dims.x - 1) / (1.0*gridPoints));
+						double coordY = (int)i / gridPoints * ((dims.y - 1) / (1.0*gridPoints));
+						vec2 startPoint = vec2(coordX, coordY);
+
+						auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+						auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+
+						singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+
+						break;
+					}
+				}
+			}
 		}
     }
 
@@ -220,7 +273,7 @@ void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, c
 
 		pointDiff = nextPointRK - prevPoint;
 		velocity = float(sqrt((pointDiff.x*pointDiff.x) + (pointDiff.y*pointDiff.y)));
-		LogProcessorInfo(velocity);
+		//LogProcessorInfo(velocity);
 		arcLength += velocity;
 
 		// e.) after certain arc length
