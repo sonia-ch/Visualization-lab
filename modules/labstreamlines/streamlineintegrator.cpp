@@ -209,6 +209,9 @@ void StreamlineIntegrator::process() {
     auto mesh = std::make_shared<BasicMesh>();
     std::vector<BasicMesh::Vertex> vertices;
 
+    float rangeX = dims.x-1;
+    float rangeY = dims.y-1;
+
     if (propSeedMode.get() == 0) {
         auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
         auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
@@ -225,8 +228,8 @@ void StreamlineIntegrator::process() {
         if (propMultipleType.get() == 0){
             for (int i=0; i<n; i++){
                 // dimensions give range -> [0:(dims-1)]
-                float randX = (float)rand() / (float)(RAND_MAX / (dims.x -1));
-                float randY = (float)rand() / (float)(RAND_MAX / (dims.y -1));
+                float randX = (float)rand() / (float)(RAND_MAX / rangeX);
+                float randY = (float)rand() / (float)(RAND_MAX / rangeY);
                 //float randX = fmod(rand(), dims.x);
                 //float randY = fmod(rand(), dims.y);
                 vec2 startPoint = vec2(randX, randY);
@@ -240,8 +243,8 @@ void StreamlineIntegrator::process() {
         } else if (propMultipleType.get() == 1){
             for (int x=0; x < propGridLinesX.get(); x++){
                 for (int y=0; y < propGridLinesY.get(); y++){
-                    double coordX = x * (dims.x/(1.0*propGridLinesX.get()));
-                    double coordY = y * (dims.y/(1.0*propGridLinesY.get()));
+                    double coordX = x * (rangeX/(1.0*propGridLinesX.get()-1));
+                    double coordY = y * (rangeY/(1.0*propGridLinesY.get()-1));
                     vec2 startPoint = vec2(coordX, coordY);
                     LogProcessorInfo("Seed point is " << startPoint);
 
