@@ -98,7 +98,10 @@ StreamlineIntegrator::StreamlineIntegrator()
             // uniform grid seeding
             util::show(propGridLinesX, propGridLinesY);
             util::hide(propNumberLines);
-        } else {
+        } else if (propMultipleType.get() == 2){
+            util::show(propNumberLines);
+            util::hide(propGridLinesX, propGridLinesY);
+        }else {
             // anything else hide completely
             util::hide(propGridLinesX, propGridLinesY, propNumberLines);
         }
