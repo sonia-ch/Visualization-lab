@@ -100,6 +100,7 @@ public:
     IntProperty propNumberLines;
     IntProperty propGridLinesX;
     IntProperty propGridLinesY;
+    IntProperty propNumberGridPoints;
     // Some types that you might need are given below
     // IntProperty properyName;
     // FloatProperty propertyName2;

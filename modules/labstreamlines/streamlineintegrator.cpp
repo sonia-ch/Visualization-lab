@@ -43,6 +43,7 @@ StreamlineIntegrator::StreamlineIntegrator()
     , propNumberLines("numberLines", "# of stream lines", 1, 1, 100, 1)
     , propGridLinesX("gridLinesX", "# of Grid Points X-Axis", 3, 1, 50, 1)
     , propGridLinesY("gridLinesY", "# of Grid Points Y-Axis", 3, 1, 50, 1)
+    , propNumberGridPoints("numberGridPoints", "# of Gridpoints for discrete probability field", 10, 2git , 100, 1)
         // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
@@ -58,6 +59,7 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(propSeedMode);
     addProperty(propStartPoint);
     addProperty(mouseMoveStart);
+    addProperty(propNumberGridPoints);
 
     // TODO: Register additional properties
     addProperty(propDirection);
@@ -92,18 +94,18 @@ StreamlineIntegrator::StreamlineIntegrator()
         if (propMultipleType.get() == 0){
             // random seeding
             util::show(propNumberLines);
-            util::hide(propGridLinesX, propGridLinesY);
+            util::hide(propGridLinesX, propGridLinesY, propNumberGridPoints);
         }
         else if (propMultipleType.get() == 1){
             // uniform grid seeding
             util::show(propGridLinesX, propGridLinesY);
-            util::hide(propNumberLines);
+            util::hide(propNumberLines, propNumberGridPoints);
         } else if (propMultipleType.get() == 2){
-            util::show(propNumberLines);
+            util::show(propNumberLines, propNumberGridPoints);
             util::hide(propGridLinesX, propGridLinesY);
         }else {
             // anything else hide completely
-            util::hide(propGridLinesX, propGridLinesY, propNumberLines);
+            util::hide(propGridLinesX, propGridLinesY, propNumberLines, propNumberGridPoints);
         }
     });
 
@@ -259,6 +261,53 @@ void StreamlineIntegrator::process() {
         // distribution seeding
         } else if (propMultipleType.get() == 2) {
 
+            // Making a discrete grid of probabilities to sample from.
+            int gridPoints = propNumberGridPoints.get();
+            std::vector<float> values;
+            float sum = 0.0f;
+            srand(2); //For keeping the same random seeds while changing parameters in the interface
+
+            //Store magnitude values for each grid point
+            for (int y = 0; y < gridPoints; y++) {
+                for (int x = 0; x < gridPoints; x++) {
+                    double coordX = x * (rangeX / (1.0*gridPoints-1));
+                    double coordY = y * (rangeY / (1.0*gridPoints-1));
+                    vec2 samplePoint = vec2(coordX, coordY);
+                    vec2 vecValue = (Integrator::sampleFromField(vr, dims, samplePoint));
+                    float value = (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y);
+                    sum += value;
+                    values.push_back(value);
+                }
+            }
+
+            // Generate starting point, randomly based on probability distribution (based on magnitudes)
+            for (int n = 0; n < propNumberLines.get(); n++)
+            {
+                //Generate random number
+                float randValue = ((float)rand() / RAND_MAX);
+
+                float probabilitySum = 0.0f;
+                for (int i = 0; i < values.size(); i++)
+                {
+                    // Find position
+                    probabilitySum += values[i]/sum;
+
+                    if (randValue <= probabilitySum)
+                    {
+                        //Draw in that position
+                        double coordX = (i % gridPoints) * (rangeX / (1.0*gridPoints-1));
+                        double coordY = ((int)i / gridPoints) * (rangeY / (1.0*gridPoints-1));
+                        vec2 startPoint = vec2(coordX, coordY);
+
+                        auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
+                        auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+
+                        drawStreamLine(vr, vertices, dims, indexBufferPoints, indexBufferRK, startPoint);
+
+                        break;
+                    }
+                }
+            }
         }
 
     }
