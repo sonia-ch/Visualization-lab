@@ -37,13 +37,13 @@ StreamlineIntegrator::StreamlineIntegrator()
     , propMultipleType("multipleType", "Type of seeding")
     , propStepSize("stepSize", "Step size", 0.1f, 0.0f, 10.0f, 0.1f)
     , propNormalized("normalized", "Normalize to Direction Field")
-    , propMaxSteps("maxSteps", "Maximum # of Steps", 20, 0, 1000, 1)
+    , propMaxSteps("maxSteps", "Maximum # of Steps", 30, 0, 1000, 1)
     , propArcLength("arcLength", "Stream line arc length", 100.0f, 0.0f, 1000.0f, 1.0f)
     , propDoArcLen("doArcLen", "Use arc length", false)
-    , propNumberLines("numberLines", "# of stream lines", 1, 1, 100, 1)
+    , propNumberLines("numberLines", "# of stream lines", 100, 1, 200, 1)
     , propGridLinesX("gridLinesX", "# of Grid Points X-Axis", 3, 1, 50, 1)
     , propGridLinesY("gridLinesY", "# of Grid Points Y-Axis", 3, 1, 50, 1)
-    , propNumberGridPoints("numberGridPoints", "# of Gridpoints for discrete probability field", 10, 2git , 100, 1)
+    , propNumberGridPoints("numberGridPoints", "# of Gridpoints for discrete probability field", 10, 2, 100, 1)
         // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment
     // (optional)); propertyIdentifier cannot have spaces
@@ -59,7 +59,6 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(propSeedMode);
     addProperty(propStartPoint);
     addProperty(mouseMoveStart);
-    addProperty(propNumberGridPoints);
 
     // TODO: Register additional properties
     addProperty(propDirection);
@@ -71,11 +70,13 @@ StreamlineIntegrator::StreamlineIntegrator()
     propMultipleType.addOption("distribution", "Based on Magnitude Distribution", 2);
     addProperty(propGridLinesX);
     addProperty(propGridLinesY);
+    addProperty(propNumberGridPoints);
     addProperty(propNumberLines);
 
     addProperty(propStepSize);
     addProperty(propMaxSteps);
     addProperty(propNormalized);
+    addProperty(propDoArcLen);
     addProperty(propArcLength);
 
 
@@ -285,6 +286,8 @@ void StreamlineIntegrator::process() {
             {
                 //Generate random number
                 float randValue = ((float)rand() / RAND_MAX);
+
+                LogProcessorInfo("Random number:" << randValue);
 
                 float probabilitySum = 0.0f;
                 for (int i = 0; i < values.size(); i++)
