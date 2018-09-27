@@ -80,7 +80,7 @@ vec2 Integrator::RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, fl
     vec2 direction = (v1/6.0f + v2/3.0f + v3/3.0f + v4/6.0f);
 
     // c.) normalize vector to integrate over direction field
-    if (normalized) {
+    if (normalized && (direction.x != 0 || direction.y != 0)) {
         direction = direction / float(sqrt((direction.x*direction.x)+(direction.y*direction.y)));
     }
 

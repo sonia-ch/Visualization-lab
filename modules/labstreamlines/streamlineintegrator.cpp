@@ -225,8 +225,10 @@ void StreamlineIntegrator::process() {
         if (propMultipleType.get() == 0){
             for (int i=0; i<n; i++){
                 // dimensions give range -> [0:(dims-1)]
-                size_t randX = std::rand() % dims.x;
-                size_t randY = std::rand() % dims.y;
+                float randX = (float)rand() / (float)(RAND_MAX / (dims.x -1));
+                float randY = (float)rand() / (float)(RAND_MAX / (dims.y -1));
+                //float randX = fmod(rand(), dims.x);
+                //float randY = fmod(rand(), dims.y);
                 vec2 startPoint = vec2(randX, randY);
                 LogProcessorInfo("Seed point for line " << (i+1) << " is " << startPoint);
 
