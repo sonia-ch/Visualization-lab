@@ -167,6 +167,7 @@ set(ivw_default_modules
     "OpenGL"
     "OpenGLQt"
     "QtWidgets"
+    "LabLIC"
     "LabMarchingSquares"
     "LabStreamlines"
     "DD2257Setup"
