@@ -217,7 +217,7 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
             int color = Interpolator::sampleFromGrayscaleImage(tr, position);
 
             // Add vertex
-            streamline.push_back([position.x, position.y, color]);
+            streamline.push_back({position.x, position.y, color});
         }
     }
     return startIndex;

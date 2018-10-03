@@ -79,9 +79,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -124,13 +122,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="15164" />
+          <entry key="cpp" value="15166" />
           <entry key="h" value="518" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="15682" />
+          <entry key="ObjectiveC" value="15684" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -163,8 +161,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="148" column="80" selection-start-line="148" selection-start-column="80" selection-end-line="148" selection-end-column="80" />
+            <state relative-caret-position="528">
+              <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -728,7 +726,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61467000" />
+    <option name="totallyTimeSpent" value="61579000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -929,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="148" column="80" selection-start-line="148" selection-start-column="80" selection-end-line="148" selection-end-column="80" />
+        <state relative-caret-position="528">
+          <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
         </state>
       </provider>
     </entry>
