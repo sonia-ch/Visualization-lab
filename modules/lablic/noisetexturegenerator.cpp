@@ -28,6 +28,8 @@ NoiseTextureGenerator::NoiseTextureGenerator()
     : Processor()
     , texOut_("texOut")
     , texSize_("texSize", "Texture Size", vec2(512, 512), vec2(1, 1), vec2(2048, 2048), vec2(1, 1))
+    , propBlackWhite("blackWhite", "Black White Texture", false)
+    , propRandomSeed("randomSeed", "Random Seed", 1, 1, 1000, 1)
 
     // TODO: Register additional properties
 
@@ -37,6 +39,8 @@ NoiseTextureGenerator::NoiseTextureGenerator()
 
     // Register properties
     addProperty(texSize_);
+    addProperty(propBlackWhite);
+    addProperty(propRandomSeed);
 
 
     // TODO: Register additional properties
@@ -59,11 +63,18 @@ void NoiseTextureGenerator::process() {
     // representation of the object we want to modify (here a layer)
     auto lr = outLayer->getEditableRepresentation<LayerRAM>();
 
+    srand(propRandomSeed.get()); //For keeping the same random seeds while changing parameters in the interface
+
     for (int j = 0; j < texSize_.get().y; j++) {
         for (int i = 0; i < texSize_.get().x; i++) {
 
             // TODO: Randomly sample values for the texture
-            int val = rand() % 256; // random greyscale (R = G = B, from black to white)
+            int val = 0;
+            if (propBlackWhite.get()){
+                val = (rand()%256) > 127 ? 255 : 0;
+            } else {
+                val = rand() % 256; // random greyscale (R = G = B, from black to white)
+            }
 
             // A value within the ouput image is set by specifying pixel position and color
             lr->setFromDVec4(size2_t(i, j), dvec4(val, val, val, 255));

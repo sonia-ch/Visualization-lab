@@ -83,6 +83,8 @@ public:
 
 // TODO: Declare properties
     IntProperty propKernelSize;
+    BoolProperty propFastLIC;
+    BoolProperty propBasicLIC;
 // IntProperty prop1;
 // BoolProperty prop2;
 

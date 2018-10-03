@@ -34,6 +34,8 @@ LICProcessor::LICProcessor()
 
 // TODO: Register additional properties
     , propKernelSize("kernelSize", "Kernel Size", 10, 2, 1000, 1)
+    , propBasicLIC("basicLIC", "Basic LIC", false)
+    , propFastLIC("fastLIC", "Fast LIC", false)
 {
     // Register ports
     addPort(volumeIn_);
@@ -44,6 +46,8 @@ LICProcessor::LICProcessor()
 
     // TODO: Register additional properties
     addProperty(propKernelSize);
+    addProperty(propBasicLIC);
+    addProperty(propFastLIC);
 }
 
 void LICProcessor::process() {
@@ -79,18 +83,21 @@ void LICProcessor::process() {
     std::vector<std::vector<double>> licTexture(texDims_.x, std::vector<double>(texDims_.y, 127.0));
 
     // FastLIC: boolean visited array
-    bool fastLIC = true;
-    std::vector<std::vector<bool>> visited(vectorFieldDims_.x, std::vector<bool>(vectorFieldDims_.y, false));
+    std::vector<std::vector<bool>> visited(texDims_.x, std::vector<bool>(texDims_.y, false));
 
     // param
     int kernelLength = propKernelSize.get(); // in each direction (backward and forward excluding the starting point)
     double mean = 0;
     double std = 1;
 
+    LogProcessorInfo("VectorField dims " << vectorFieldDims_.x << " , " << vectorFieldDims_.y);
+    LogProcessorInfo("texDims dims " << texDims_.x << " , " << texDims_.y);
+
+
     for (auto j = 0; j < texDims_.y; j++) {
         for (auto i = 0; i < texDims_.x; i++) {
             // FastLIC
-            if (fastLIC) {
+            if (propFastLIC.get()) {
                 // FastLIC: If not visited yet
                 if (!visited[i][j]) {
 
@@ -133,19 +140,21 @@ void LICProcessor::process() {
                     }
                 }
             // Basic LIC
-            } else {
+            } else if (propBasicLIC.get()){
                 // 1.) Calculate Stream Line & sample Greyscale values
                 std::vector<vec3> streamline; // (x,y,color)
-                int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
-                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
+                int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i, j));
+                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i, j, colorStart));
 
                 // 2.) Calculate average based on kernel (at field position only)
-                int posBack = (startIndex-kernelLength >= 0) ? (startIndex-kernelLength >= 0) : 0;
-                int posForward = (startIndex+kernelLength < streamline.size()) ? (startIndex+kernelLength < streamline.size()) : streamline.size()-1;
+                int posBack = (startIndex - kernelLength >= 0) ? (startIndex - kernelLength >= 0) : 0;
+                int posForward = (startIndex + kernelLength < streamline.size()) ? (startIndex + kernelLength <
+                                                                                    streamline.size()) :
+                                 streamline.size() - 1;
 
                 // 3.) Kernel average (Box)
                 int sum = 0;
-                for (auto k=0; k<(posForward-posBack); k++){
+                for (auto k = 0; k < (posForward - posBack); k++) {
                     sum += streamline[k][2];
                 }
                 //int sum = std::accumulate(streamline[posBack][2], streamline[posForward][2], 0);
@@ -154,6 +163,10 @@ void LICProcessor::process() {
 
                 // 4.) Assign value to field position in output image
                 lr->setFromDVec4(size2_t(i, j), dvec4(color, color, color, 255));
+            }
+            else {
+                int val = int(licTexture[i][j]);
+                lr->setFromDVec4(size2_t(i,j), dvec4(val,val,val, 255));
             }
         }
     }
