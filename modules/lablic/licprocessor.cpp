@@ -33,7 +33,7 @@ LICProcessor::LICProcessor()
     , licOut_("licOut")
 
 // TODO: Register additional properties
-
+    , propKernelSize("kernelSize", "Kernel Size", 10, 2, 1000, 1)
 {
     // Register ports
     addPort(volumeIn_);
@@ -43,7 +43,7 @@ LICProcessor::LICProcessor()
     // Register properties
 
     // TODO: Register additional properties
-
+    addProperty(propKernelSize);
 }
 
 void LICProcessor::process() {
@@ -79,12 +79,13 @@ void LICProcessor::process() {
     std::vector<std::vector<double>> licTexture(texDims_.x, std::vector<double>(texDims_.y, 127.0));
 
     // FastLIC: boolean visited array
-    bool fastLIC = false;
+    bool fastLIC = true;
     std::vector<std::vector<bool>> visited(vectorFieldDims_.x, std::vector<bool>(vectorFieldDims_.y, false));
 
     // param
-    int kernelLength = 5; // in each direction (backward and forward excluding the starting point)
-
+    int kernelLength = propKernelSize.get(); // in each direction (backward and forward excluding the starting point)
+    double mean = 0;
+    double std = 1;
 
     for (auto j = 0; j < texDims_.y; j++) {
         for (auto i = 0; i < texDims_.x; i++) {
@@ -99,11 +100,6 @@ void LICProcessor::process() {
                     calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
 
                     // FastLIC: Repeat along stream line
-                    // Initialize sum (sliding window)
-                    int sum = 0;
-                    for (auto k=0; k<kernelLength;k++) {
-                        sum = streamline[k][2];
-                    }
                     for (auto pos=0; pos < streamline.size(); pos++) {
 
                         // 3.) Calculate average based on kernel
@@ -112,15 +108,22 @@ void LICProcessor::process() {
                         int posForward = 0;
                         if (pos-kernelLength >= 0){
                             int posBack = (pos-kernelLength);
-                            sum -= streamline[posBack][2];
                         }
                         if (pos+kernelLength < streamline.size()) {
                             int posForward = (pos+kernelLength);
-                            sum += streamline[posForward][2];
                         }
 
-                        // Update sum: window sliding over the streamline
-                        int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
+                        // Distribution Kernel
+                        std::vector<double>elements(streamline[posBack][2], streamline[posForward][2]);
+                        double sum = 0;
+                        double totalProb = 0;
+                        for (auto k=-posBack; k<=posForward; k++){
+                            double pdf_gaussian = (1/(std * sqrt(2*M_PI))) * exp(-0.5*pow((k-mean)/std, 2.0));
+                            totalProb += pdf_gaussian;
+                            sum += streamline[posBack+k][2] * pdf_gaussian;
+                        }
+                        int color = (sum/totalProb);
+
 
                         // 4.) Assign value to field position in output image
                         lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(color, color, color, 255));
@@ -141,9 +144,13 @@ void LICProcessor::process() {
                 int posForward = (startIndex+kernelLength < streamline.size()) ? (startIndex+kernelLength < streamline.size()) : streamline.size()-1;
 
                 // 3.) Kernel average (Box)
-                int sum = std::accumulate(posBack, posForward, 0);
-                // Update sum: window sliding over the streamline
+                int sum = 0;
+                for (auto k=0; k<(posForward-posBack); k++){
+                    sum += streamline[k][2];
+                }
+                //int sum = std::accumulate(streamline[posBack][2], streamline[posForward][2], 0);
                 int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
+
 
                 // 4.) Assign value to field position in output image
                 lr->setFromDVec4(size2_t(i, j), dvec4(color, color, color, 255));
@@ -181,7 +188,7 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
     for (int direction=-1; direction<=1; direction=direction+2) {
         if (direction == 1) {
             // Switch reverse order
-            sort(streamline.rbegin(), streamline.rend());
+            std::reverse(streamline.begin(), streamline.end());
             // Add start point
             streamline.push_back(startPoint);
             startIndex = streamline.size()-1;

@@ -80,6 +80,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -122,13 +123,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="15166" />
-          <entry key="h" value="518" />
+          <entry key="cpp" value="16372" />
+          <entry key="h" value="526" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="15684" />
+          <entry key="ObjectiveC" value="16898" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -140,7 +141,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1308">
+            <state relative-caret-position="2910">
               <caret line="215" column="25" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="25" />
               <folding>
                 <element signature="e#321#369#0" expanded="true" />
@@ -161,8 +162,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+            <state relative-caret-position="213">
+              <caret line="191" selection-start-line="191" selection-end-line="191" />
             </state>
           </provider>
         </entry>
@@ -170,8 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+            <state relative-caret-position="348">
+              <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -265,13 +266,6 @@
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="lablic" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="labstreamlines" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -297,7 +291,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.inviwo-module-labstreamlines">
+  <component name="RunManager" selected="Application.Build All">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Default" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -726,7 +720,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61579000" />
+    <option name="totallyTimeSpent" value="68442000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -741,7 +735,7 @@
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28689885" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28689885" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -756,7 +750,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
-      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -901,16 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1308">
-          <caret line="215" column="25" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="25" />
-          <folding>
-            <element signature="e#321#369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285">
@@ -918,17 +902,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2910">
+          <caret line="215" column="25" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="25" />
+          <folding>
+            <element signature="e#321#369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+        <state relative-caret-position="348">
+          <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="221" column="5" lean-forward="true" selection-start-line="221" selection-start-column="5" selection-end-line="221" selection-end-column="5" />
+        <state relative-caret-position="213">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
         </state>
       </provider>
     </entry>

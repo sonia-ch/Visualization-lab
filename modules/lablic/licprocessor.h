@@ -82,6 +82,7 @@ public:
 public:
 
 // TODO: Declare properties
+    IntProperty propKernelSize;
 // IntProperty prop1;
 // BoolProperty prop2;
 
