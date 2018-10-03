@@ -104,7 +104,7 @@ void LICProcessor::process() {
                     // 1.) Calculate Stream Line & sample Greyscale values
                     std::vector<vec3> streamline; // (x,y,color)
                     int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
-                    calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
+                    calculateStreamline(vol.get(), tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
 
                     // FastLIC: Repeat along stream line
                     for (auto pos=0; pos < streamline.size(); pos++) {
@@ -144,7 +144,7 @@ void LICProcessor::process() {
                 // 1.) Calculate Stream Line & sample Greyscale values
                 std::vector<vec3> streamline; // (x,y,color)
                 int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i, j));
-                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i, j, colorStart));
+                int startIndex = calculateStreamline(vol.get(), tr, vectorFieldDims_, streamline, vec3(i, j, colorStart));
 
                 // 2.) Calculate average based on kernel (at field position only)
                 int posBack = (startIndex - kernelLength >= 0) ? (startIndex - kernelLength >= 0) : 0;
@@ -174,7 +174,7 @@ void LICProcessor::process() {
     licOut_.setData(outImage);
 }
 
-int LICProcessor::calculateStreamline(const VolumeRAM* vr,
+int LICProcessor::calculateStreamline(const Volume* vr,
                                        const ImageRAM* tr,
                                        const size3_t dims,
                                        std::vector<vec3>& streamline,

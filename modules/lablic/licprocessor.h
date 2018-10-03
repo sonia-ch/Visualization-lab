@@ -58,7 +58,7 @@ public:
 protected:
     // Our main computation function
     virtual void process() override;
-    int calculateStreamline(const VolumeRAM* vr,
+    int calculateStreamline(const Volume* vr,
                              const ImageRAM* tr,
                              const size3_t dims,
                              std::vector<vec3>& streamline,
