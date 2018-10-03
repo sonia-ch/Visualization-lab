@@ -18,6 +18,8 @@
 #include <inviwo/core/datastructures/image/imageram.h>
 #include <inviwo/core/properties/boolproperty.h>
 #include <inviwo/core/properties/ordinalproperty.h>
+#include <inviwo/core/datastructures/volume/volumeram.h>
+
 
 namespace inviwo {
 
@@ -56,6 +58,11 @@ public:
 protected:
     // Our main computation function
     virtual void process() override;
+    int calculateStreamline(const VolumeRAM* vr,
+                             const ImageRAM* tr,
+                             const size3_t dims,
+                             std::vector<vec3>& streamline,
+                             vec3 startPoint);
 
     // (TODO: Helper functions can be defined here and then implemented in the .cpp)
     // e.g. something like a function for standardLIC, fastLIC, autoContrast, ...

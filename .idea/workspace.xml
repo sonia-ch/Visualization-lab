@@ -5,8 +5,8 @@
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
       <config projectName="inviwo-projects" targetName="DOXY-ALL" />
       <config projectName="inviwo-projects" targetName="inviwo-core" />
@@ -14,44 +14,42 @@
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
       <config projectName="inviwo-projects" targetName="inviwo-module-base" />
       <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
       <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
       <config projectName="inviwo-projects" targetName="libpng" />
-      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
+      <config projectName="inviwo-projects" targetName="openexr-imath" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
       <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
       <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
       <config projectName="inviwo-projects" targetName="tinydir" />
       <config projectName="inviwo-projects" targetName="warn" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGLQt" />
       <config projectName="inviwo-projects" targetName="glm" />
-      <config projectName="inviwo-projects" targetName="ticpp" />
       <config projectName="inviwo-projects" targetName="tclap" />
       <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
-      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
+      <config projectName="inviwo-projects" targetName="glfw" />
       <config projectName="inviwo-projects" targetName="inviwo" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
       <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
       <config projectName="inviwo-projects" targetName="assimp" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
-      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
       <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabLIC" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labstreamlines" />
-      <config projectName="inviwo-projects" targetName="half" />
       <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
-      <config projectName="inviwo-projects" targetName="openexr-iex" />
+      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
       <config projectName="inviwo-projects" targetName="GLEW" />
+      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
       <config projectName="inviwo-projects" targetName="zlib1" />
+      <config projectName="inviwo-projects" targetName="openexr-iex" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabStreamlines" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
       <config projectName="inviwo-projects" targetName="inviwo-module-lablic" />
@@ -61,15 +59,17 @@
       <config projectName="inviwo-projects" targetName="libjpeg" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
       <config projectName="inviwo-projects" targetName="gtest" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
-      <config projectName="inviwo-projects" targetName="openexr-imath" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
       <config projectName="inviwo-projects" targetName="inviwo-module-basegl" />
-      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="ticpp" />
       <config projectName="inviwo-projects" targetName="flags" />
       <config projectName="inviwo-projects" targetName="sigar" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabLIC" />
+      <config projectName="inviwo-projects" targetName="half" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
+      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -80,10 +80,8 @@
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/integrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/integrator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/integrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/integrator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -114,25 +112,25 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cpp" value="23" />
-          <entry key="h" value="15" />
+          <entry key="h" value="20" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="ObjectiveC" value="38" />
+          <entry key="ObjectiveC" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="12400" />
-          <entry key="h" value="480" />
+          <entry key="cpp" value="15164" />
+          <entry key="h" value="518" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="12880" />
+          <entry key="ObjectiveC" value="15682" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -144,8 +142,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4725">
-              <caret line="315" column="5" selection-start-line="315" selection-start-column="5" selection-end-line="315" selection-end-column="5" />
+            <state relative-caret-position="1308">
+              <caret line="215" column="25" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="25" />
               <folding>
                 <element signature="e#321#369#0" expanded="true" />
               </folding>
@@ -156,7 +154,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1590">
+            <state relative-caret-position="963">
               <caret line="106" selection-start-line="106" selection-end-line="106" />
             </state>
           </provider>
@@ -165,8 +163,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="91" column="67" lean-forward="true" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+            <state relative-caret-position="468">
+              <caret line="148" column="80" selection-start-line="148" selection-start-column="80" selection-end-line="148" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -179,7 +186,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
+            <state relative-caret-position="333">
               <caret line="65" column="88" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="88" />
             </state>
           </provider>
@@ -213,6 +220,7 @@
         <option value="$PROJECT_DIR$/modules/lablic/integrator.cpp" />
         <option value="$PROJECT_DIR$/modules/lablic/integrator.h" />
         <option value="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp" />
+        <option value="$PROJECT_DIR$/modules/lablic/licprocessor.h" />
         <option value="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" />
       </list>
     </option>
@@ -720,7 +728,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55310000" />
+    <option name="totallyTimeSpent" value="61467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -735,7 +743,7 @@
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28689885" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28689885" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -750,7 +758,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -857,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="618">
@@ -885,37 +886,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/interpolator.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="65" column="88" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="963">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4725">
-          <caret line="315" column="5" selection-start-line="315" selection-start-column="5" selection-end-line="315" selection-end-column="5" />
+        <state relative-caret-position="1308">
+          <caret line="215" column="25" selection-start-line="215" selection-start-column="16" selection-end-line="215" selection-end-column="25" />
           <folding>
             <element signature="e#321#369#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1590">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        <state relative-caret-position="-285">
+          <caret line="23" column="52" selection-start-line="23" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/interpolator.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="88" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="88" />
+        <state relative-caret-position="375">
+          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="91" column="67" lean-forward="true" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+        <state relative-caret-position="468">
+          <caret line="148" column="80" selection-start-line="148" selection-start-column="80" selection-end-line="148" selection-end-column="80" />
         </state>
       </provider>
     </entry>

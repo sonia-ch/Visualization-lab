@@ -79,33 +79,148 @@ void LICProcessor::process() {
     std::vector<std::vector<double>> licTexture(texDims_.x, std::vector<double>(texDims_.y, 127.0));
 
     // FastLIC: boolean visited array
+    bool fastLIC = false;
     std::vector<std::vector<bool>> visited(vectorFieldDims_.x, std::vector<bool>(vectorFieldDims_.y, false));
+
+    // param
+    int kernelLength = 5; // in each direction (backward and forward excluding the starting point)
+
 
     for (auto j = 0; j < texDims_.y; j++) {
         for (auto i = 0; i < texDims_.x; i++) {
-            // FastLIC: If not visited yet
+            // FastLIC
+            if (fastLIC) {
+                // FastLIC: If not visited yet
+                if (!visited[i][j]) {
 
-                // 1.) Calculate Stream Line
+                    // 1.) Calculate Stream Line & sample Greyscale values
+                    std::vector<vec3> streamline; // (x,y,color)
+                    int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
+                    calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
 
-                // FastLIC: Repeat along stream line
+                    // FastLIC: Repeat along stream line
+                    // Initialize sum (sliding window)
+                    int sum = 0;
+                    for (auto k=0; k<kernelLength;k++) {
+                        sum = streamline[k][2];
+                    }
+                    for (auto pos=0; pos < streamline.size(); pos++) {
 
-                    // 2.) Sample Greyscale values from stream line
+                        // 3.) Calculate average based on kernel
+                        // Borders reduce kernel size & update sum (sliding window)
+                        int posBack = 0;
+                        int posForward = 0;
+                        if (pos-kernelLength >= 0){
+                            int posBack = (pos-kernelLength);
+                            sum -= streamline[posBack][2];
+                        }
+                        if (pos+kernelLength < streamline.size()) {
+                            int posForward = (pos+kernelLength);
+                            sum += streamline[posForward][2];
+                        }
 
-                    // 3.) Calculate average based on kernel
+                        // Update sum: window sliding over the streamline
+                        int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
 
-                    // 4.) Assign value to field position in output image
+                        // 4.) Assign value to field position in output image
+                        lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(color, color, color, 255));
 
-                    // FastLIC: Set field position as visited
+                        // FastLIC: Set field position as visited
+                        visited[streamline[pos][0]][streamline[pos][1]] = true;
+                    }
+                }
+            // Basic LIC
+            } else {
+                // 1.) Calculate Stream Line & sample Greyscale values
+                std::vector<vec3> streamline; // (x,y,color)
+                int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
+                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
 
+                // 2.) Calculate average based on kernel (at field position only)
+                int posBack = (startIndex-kernelLength >= 0) ? (startIndex-kernelLength >= 0) : 0;
+                int posForward = (startIndex+kernelLength < streamline.size()) ? (startIndex+kernelLength < streamline.size()) : streamline.size()-1;
 
+                // 3.) Kernel average (Box)
+                int sum = std::accumulate(posBack, posForward, 0);
+                // Update sum: window sliding over the streamline
+                int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
 
-            int val = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
-            //int val = int(licTexture[i][j]);
-            lr->setFromDVec4(size2_t(i, j), dvec4(val, val, val, 255));
+                // 4.) Assign value to field position in output image
+                lr->setFromDVec4(size2_t(i, j), dvec4(color, color, color, 255));
+            }
         }
     }
 
     licOut_.setData(outImage);
+}
+
+int LICProcessor::calculateStreamline(const VolumeRAM* vr,
+                                       const ImageRAM* tr,
+                                       const size3_t dims,
+                                       std::vector<vec3>& streamline,
+                                       vec3 startPoint) {
+    // Initialize variables
+    vec2 prevPosition;
+    vec2 position = startPoint;
+    vec2 changeVec;
+    float velocity = 1.0f;
+    float arcLength = 0.0f;
+
+    // parameters
+    int direction = 0;
+    bool normalized = false;
+    int maxSteps = 1000;
+    float stepSize = 1;
+    bool doArcLen = true;
+    float arcLenParam = 3000;
+
+    // save startpoint index
+    int startIndex = 0;
+
+    // Runga Kutta 4th Order (forward and backward
+    for (int direction=-1; direction<=1; direction=direction+2) {
+        if (direction == 1) {
+            // Switch reverse order
+            sort(streamline.rbegin(), streamline.rend());
+            // Add start point
+            streamline.push_back(startPoint);
+            startIndex = streamline.size()-1;
+        }
+        for (int i=0; i < maxSteps; i++) {
+            // a.) direction, b.) stepsize & c.) normalized direction field
+            prevPosition = position;
+            position = Integrator::RK4(vr, dims, position, direction * stepSize, normalized);
+            changeVec = position - prevPosition;
+            velocity = float(sqrt((changeVec.x*changeVec.x)+(changeVec.y*changeVec.y)));
+            arcLength += velocity;
+
+            // e.) after certain arc length
+            if (doArcLen && arcLength > arcLenParam) {
+                LogProcessorInfo("Maximal arc length " << arcLength);
+                break;
+            }
+
+            // f.) stop at domain boundary
+            if (position.x > (dims.x-1) || position.x < 0 || position.y > (dims.y-1) || position.y < 0) {
+                LogProcessorInfo("Out of domain boundaries (" << position.x << "," << position.y << ")");
+                break;
+            }
+
+            // g.) zero & h.) slow velocity
+            if (velocity == 0.0f || velocity < 0.001f){
+                LogProcessorInfo("Velocity is to slow " << velocity);
+                break;
+            }
+
+
+            // Get color
+            int color = Interpolator::sampleFromGrayscaleImage(tr, position);
+
+            // Add vertex
+            streamline.push_back([position.x, position.y, color]);
+        }
+    }
+    return startIndex;
 }
 
 
