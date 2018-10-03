@@ -85,6 +85,8 @@ public:
     IntProperty propKernelSize;
     BoolProperty propFastLIC;
     BoolProperty propBasicLIC;
+    FloatProperty propMean;
+    FloatProperty propStd;
 // IntProperty prop1;
 // BoolProperty prop2;
 

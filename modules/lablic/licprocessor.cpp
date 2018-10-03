@@ -36,6 +36,8 @@ LICProcessor::LICProcessor()
     , propKernelSize("kernelSize", "Kernel Size", 10, 2, 1000, 1)
     , propBasicLIC("basicLIC", "Basic LIC", false)
     , propFastLIC("fastLIC", "Fast LIC", false)
+    , propMean("mean", "Mean", 0.5, -10, 10, 1)
+    , propStd("std", "Standard derivation", 0.1, 0, 1, 0.1)
 {
     // Register ports
     addPort(volumeIn_);
@@ -48,6 +50,8 @@ LICProcessor::LICProcessor()
     addProperty(propKernelSize);
     addProperty(propBasicLIC);
     addProperty(propFastLIC);
+    addProperty(propMean);
+    addProperty(propStd);
 }
 
 void LICProcessor::process() {
@@ -87,8 +91,10 @@ void LICProcessor::process() {
 
     // param
     int kernelLength = propKernelSize.get(); // in each direction (backward and forward excluding the starting point)
-    double mean = 0;
-    double std = 1;
+
+    // TODO: Could calculate the mean and std from slides
+    double mean = propMean.get(); // good default values (slides)
+    double std = propStd.get();
 
     LogProcessorInfo("VectorField dims " << vectorFieldDims_.x << " , " << vectorFieldDims_.y);
     LogProcessorInfo("texDims dims " << texDims_.x << " , " << texDims_.y);
