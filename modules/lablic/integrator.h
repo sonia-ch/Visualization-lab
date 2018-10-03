@@ -13,6 +13,7 @@
 #include <lablic/lablicmoduledefine.h>
 #include <inviwo/core/common/inviwo.h>
 #include <inviwo/core/datastructures/geometry/basicmesh.h>
+#include <inviwo/core/datastructures/volume/volumeram.h>
 #include <functional>
 
 namespace inviwo {
@@ -34,6 +35,9 @@ public:
     // (change the parameter VolumeRAM* to Volume*, i.e., vr to vol.get()).
     // You may want to consider adding a helper function that computes an entire streamline
     // if you have not done so for the last assignment already.
+
+    static vec2 Euler(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize);
+    static vec2 RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize, bool normalized);
 
 };
 

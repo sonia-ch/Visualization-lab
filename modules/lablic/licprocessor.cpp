@@ -78,14 +78,36 @@ void LICProcessor::process() {
     // This code instead sets all pixels to the same gray value
     std::vector<std::vector<double>> licTexture(texDims_.x, std::vector<double>(texDims_.y, 127.0));
 
+    // FastLIC: boolean visited array
+    std::vector<std::vector<bool>> visited(vectorFieldDims_.x, std::vector<bool>(vectorFieldDims_.y, false));
+
     for (auto j = 0; j < texDims_.y; j++) {
         for (auto i = 0; i < texDims_.x; i++) {
-            int val = int(licTexture[i][j]);
+            // FastLIC: If not visited yet
+
+                // 1.) Calculate Stream Line
+
+                // FastLIC: Repeat along stream line
+
+                    // 2.) Sample Greyscale values from stream line
+
+                    // 3.) Calculate average based on kernel
+
+                    // 4.) Assign value to field position in output image
+
+                    // FastLIC: Set field position as visited
+
+
+
+            int val = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
+            //int val = int(licTexture[i][j]);
             lr->setFromDVec4(size2_t(i, j), dvec4(val, val, val, 255));
         }
     }
 
     licOut_.setData(outImage);
 }
+
+
 
 }  // namespace inviwo

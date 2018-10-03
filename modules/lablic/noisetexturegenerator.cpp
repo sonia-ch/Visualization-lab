@@ -62,9 +62,8 @@ void NoiseTextureGenerator::process() {
     for (int j = 0; j < texSize_.get().y; j++) {
         for (int i = 0; i < texSize_.get().x; i++) {
 
-            int val = 0;
-
             // TODO: Randomly sample values for the texture
+            int val = rand() % 256; // random greyscale (R = G = B, from black to white)
 
             // A value within the ouput image is set by specifying pixel position and color
             lr->setFromDVec4(size2_t(i, j), dvec4(val, val, val, 255));
