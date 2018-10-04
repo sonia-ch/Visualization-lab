@@ -61,8 +61,8 @@ protected:
     int calculateStreamline(const VolumeRAM* vr,
                              const ImageRAM* tr,
                              const size3_t dims,
-                             std::vector<vec3>& streamline,
-                             vec3 startPoint);
+                             std::vector<vec2>& streamline,
+                             vec2 startPoint);
 
     // (TODO: Helper functions can be defined here and then implemented in the .cpp)
     // e.g. something like a function for standardLIC, fastLIC, autoContrast, ...
@@ -85,6 +85,7 @@ public:
     IntProperty propKernelSize;
     BoolProperty propFastLIC;
     BoolProperty propBasicLIC;
+    BoolProperty propComputeMean;
 // IntProperty prop1;
 // BoolProperty prop2;
 
