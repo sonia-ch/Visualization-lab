@@ -58,11 +58,13 @@ public:
 protected:
     // Our main computation function
     virtual void process() override;
-    int calculateStreamline(const VolumeRAM* vr,
+    int calculateStreamline(const Volume* vr,
                              const ImageRAM* tr,
-                             const size3_t dims,
+                             const size3_t vDims,
+                             const size2_t tDims,
                              std::vector<vec2>& streamline,
                              vec2 startPoint);
+    vec2 squareCoordsConvert(vec2 coord_in, vec2 min_in, vec2 max_in, vec2 min_out, vec2 max_out);
 
     // (TODO: Helper functions can be defined here and then implemented in the .cpp)
     // e.g. something like a function for standardLIC, fastLIC, autoContrast, ...

@@ -104,8 +104,11 @@ void LICProcessor::process() {
 
                     // 1.) Calculate Stream Line & sample Greyscale values
                     std::vector<vec2> streamline; // (x,y)
-                    int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
-                    calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
+                    // scale textureDims -> vector field
+                    vec2 startPoint = squareCoordsConvert(
+                            vec2(i, j), vec2(0, 0), vec2(texDims_.x - 1, texDims_.y - 1),
+                            vec2(0, 0), vec2(vectorFieldDims_.x - 1, vectorFieldDims_.y - 1));
+                    calculateStreamline(vol.get(), tr, vectorFieldDims_, texDims_, streamline, startPoint);
 
                     // FastLIC: Repeat along stream line
                     for (auto pos=0; pos < streamline.size(); pos++) {
@@ -113,12 +116,12 @@ void LICProcessor::process() {
                         // 3.) Calculate average based on kernel
                         // Borders reduce kernel size & update sum (sliding window)
                         int posBack = 0;
-                        int posForward = 0;
+                        int posForward = streamline.size()-1;
                         if (pos-kernelLength >= 0){
-                            int posBack = (pos-kernelLength);
+                            posBack = (pos-kernelLength);
                         }
                         if (pos+kernelLength < streamline.size()) {
-                            int posForward = (pos+kernelLength);
+                            posForward = (pos+kernelLength);
                         }
 
                         // Distribution Kernel
@@ -127,23 +130,37 @@ void LICProcessor::process() {
                         for (auto k=-posBack; k<=posForward; k++){
                             double pdf_gaussian = (1/(std * sqrt(2*M_PI))) * exp(-0.5*pow((k-mean)/std, 2.0));
                             totalProb += pdf_gaussian;
-                            sum += Interpolator::sampleFromGrayscaleImage(tr, streamline[posBack+k]) * pdf_gaussian;
+                            // scale vectorDims -> texture field
+                            vec2 coord = squareCoordsConvert(
+                                    streamline[posBack+k], vec2(0, 0), vec2(vectorFieldDims_.x - 1, vectorFieldDims_.y - 1),
+                                    vec2(0, 0), vec2(texDims_.x - 1, texDims_.y - 1));
+                            sum += Interpolator::sampleFromGrayscaleImage(tr, coord) * pdf_gaussian;
                         }
                         int color = (sum/totalProb);
 
 
                         // 4.) Assign value to field position in output image
-                        lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(color, color, color, 255));
+                        // scale vectorDims -> texture field
+                        vec2 coord = squareCoordsConvert(
+                                streamline[pos], vec2(0, 0), vec2(vectorFieldDims_.x - 1, vectorFieldDims_.y - 1),
+                                vec2(0, 0), vec2(texDims_.x - 1, texDims_.y - 1));
+                        lr->setFromDVec4(size2_t(coord[0], coord[1]), dvec4(color, color, color, 255));
 
                         // FastLIC: Set field position as visited
-                        visited[streamline[pos][0]][streamline[pos][1]] = true;
+                        visited[coord[0]][coord[1]] = true;
                     }
                 }
             // Basic LIC
             } else if (propBasicLIC.get()){
                 // 1.) Calculate Stream Line & sample Greyscale values
                 std::vector<vec2> streamline; // (x,y)
-                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec2(i, j));
+
+                // scale textureDims -> vector field
+                vec2 startPoint = squareCoordsConvert(
+                        vec2(i, j), vec2(0, 0), vec2(texDims_.x - 1, texDims_.y - 1),
+                        vec2(0, 0), vec2(vectorFieldDims_.x - 1, vectorFieldDims_.y - 1));
+
+                int startIndex = calculateStreamline(vol.get(), tr, vectorFieldDims_, texDims_, streamline, startPoint);
 
                 // 2.) Calculate average based on kernel (at field position only)
                 int posBack = (startIndex - kernelLength >= 0) ? (startIndex - kernelLength >= 0) : 0;
@@ -154,7 +171,11 @@ void LICProcessor::process() {
                 // 3.) Kernel average (Box)
                 int sum = 0;
                 for (auto k = 0; k < (posForward - posBack); k++) {
-                    sum += Interpolator::sampleFromGrayscaleImage(tr, streamline[k]);
+                    // scale vectorDims -> texture field
+                    vec2 coord = squareCoordsConvert(
+                            streamline[k], vec2(0, 0), vec2(vectorFieldDims_.x - 1, vectorFieldDims_.y - 1),
+                            vec2(0, 0), vec2(texDims_.x - 1, texDims_.y - 1));
+                    sum += Interpolator::sampleFromGrayscaleImage(tr, coord);
                 }
                 int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
 
@@ -172,9 +193,10 @@ void LICProcessor::process() {
     licOut_.setData(outImage);
 }
 
-int LICProcessor::calculateStreamline(const VolumeRAM* vr,
+int LICProcessor::calculateStreamline(const Volume* vr,
                                        const ImageRAM* tr,
-                                       const size3_t dims,
+                                       const size3_t vectorFieldDims_,
+                                       const size2_t texDims_,
                                        std::vector<vec2>& streamline,
                                        vec2 startPoint) {
     // Initialize variables
@@ -187,10 +209,12 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
     // parameters
     int direction = 0;
     bool normalized = false;
-    int maxSteps = 200;
-    float stepSize = 1;
+    int maxSteps = 10000;
+
+    // TODO: include y
+    float stepSize = 1 * (vectorFieldDims_.x / texDims_.x); // adjust number of points for scaling
     bool doArcLen = true;
-    float arcLenParam = 1000;
+    float arcLenParam = 10000;
 
     // save startpoint index
     int startIndex = 0;
@@ -207,8 +231,8 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
         for (int i=0; i < maxSteps; i++) {
             // a.) direction, b.) stepsize & c.) normalized direction field
             prevPosition = position;
-            // sampleFromField(vol.get(), vec2(i / (float)(texDims_.x -1) * (vectorFieldDims_.x - 1), j / (float)(texDims_.x -1) * (vectorFieldDims_.x - 1))
-            position = Integrator::RK4(vr, dims, position, direction * stepSize, normalized);
+            position = Integrator::RK4(vr, position, direction * stepSize, normalized);
+
             changeVec = position - prevPosition;
             velocity = float(sqrt((changeVec.x*changeVec.x)+(changeVec.y*changeVec.y)));
             arcLength += velocity;
@@ -219,7 +243,7 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
             }
 
             // f.) stop at domain boundary
-            if (position.x > (dims.x-1) || position.x < 0 || position.y > (dims.y-1) || position.y < 0) {
+            if (position.x > (vectorFieldDims_.x-1) || position.x < 0 || position.y > (vectorFieldDims_.y-1) || position.y < 0) {
                 break;
             }
 
@@ -233,6 +257,20 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
         }
     }
     return startIndex;
+}
+
+vec2 LICProcessor::squareCoordsConvert(vec2 coord_in, vec2 min_in, vec2 max_in, vec2 min_out, vec2 max_out) {
+    vec2 offset_in = vec2();
+    offset_in.x = float(coord_in.x) / float(max_in.x - min_in.x);
+    offset_in.y = float(coord_in.y) / float(max_in.y - min_in.y);
+
+    vec2 coord_out = vec2();
+
+    // lerp
+    coord_out.x = (1.0f - offset_in.x) * min_out.x + offset_in.x * max_out.x;
+    coord_out.y = (1.0f - offset_in.y) * min_out.y + offset_in.y * max_out.y;
+
+    return coord_out;
 }
 
 
