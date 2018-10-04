@@ -36,7 +36,6 @@ LICProcessor::LICProcessor()
     , propKernelSize("kernelSize", "Kernel Size", 10, 2, 1000, 1)
     , propBasicLIC("basicLIC", "Basic LIC", false)
     , propFastLIC("fastLIC", "Fast LIC", false)
-    , propComputeMean("computeMean", "Compute Mean", false)
 {
     // Register ports
     addPort(volumeIn_);
@@ -49,7 +48,7 @@ LICProcessor::LICProcessor()
     addProperty(propKernelSize);
     addProperty(propBasicLIC);
     addProperty(propFastLIC);
-    addProperty(propComputeMean);
+
 }
 
 void LICProcessor::process() {
@@ -91,22 +90,7 @@ void LICProcessor::process() {
     int kernelLength = propKernelSize.get(); // in each direction (backward and forward excluding the starting point)
     double mean = 0.5;
     double std = 0.1;
-    double P = 0;
-    if (propComputeMean.get()) {
-        int n = 0;
-        for (auto j = 0; j < texDims_.y; j++) {
-            for (auto i = 0; i < texDims_.x; i++) {
-                if (licTexture[i][j] > 0) { // non black pixels
-                    n++;
-                    mean += licTexture[i][j];
-                    P +=  licTexture[i][j] * licTexture[i][j];;
-                }
-            }
-        }
-        mean = mean / n;
-        std = std::sqrt((P-(n* std::pow(mean,2)))/(n-1));
-    }
-    LogProcessorInfo("Mean " << mean << " and STD " << std << " and P" << P);
+    LogProcessorInfo("Mean " << mean << " and STD " << std);
     LogProcessorInfo("VectorField dims " << vectorFieldDims_.x << " , " << vectorFieldDims_.y);
     LogProcessorInfo("texDims dims " << texDims_.x << " , " << texDims_.y);
 

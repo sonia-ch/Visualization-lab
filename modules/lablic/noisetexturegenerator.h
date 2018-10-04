@@ -59,6 +59,10 @@ public:
 // TODO: Declare additional properties
     BoolProperty propBlackWhite;
     IntProperty propRandomSeed;
+    BoolProperty propComputeMean;
+    FloatProperty propMEAN;
+    FloatProperty propSTD;
+    FloatProperty propMaxFactor;
 // IntProperty properyName;
 // TemplateOptionProperty<int> propertyName2;
 
