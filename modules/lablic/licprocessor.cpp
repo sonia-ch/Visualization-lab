@@ -65,6 +65,10 @@ void LICProcessor::process() {
     vectorFieldDims_ = vol->getDimensions();
     auto vr = vol->getRepresentation<VolumeRAM>();
 
+	// Extract the minimum and maximum value from the input data
+	const double minValue = vol->dataMap_.valueRange[0];
+	const double maxValue = vol->dataMap_.valueRange[1];
+
     // An accessible form of on image is retrieved analogous to a volume
     auto tex = noiseTexIn_.getData();
     texDims_ = tex->getDimensions();
@@ -95,8 +99,8 @@ void LICProcessor::process() {
     LogProcessorInfo("texDims dims " << texDims_.x << " , " << texDims_.y);
 
 
-    for (auto j = 0; j < texDims_.y; j++) {
-        for (auto i = 0; i < texDims_.x; i++) {
+    for (auto j = 0; j < texDims_.y - 1; j++) {
+        for (auto i = 0; i < texDims_.x - 1; i++) {
             // FastLIC
             if (propFastLIC.get()) {
                 // FastLIC: If not visited yet
@@ -105,7 +109,8 @@ void LICProcessor::process() {
                     // 1.) Calculate Stream Line & sample Greyscale values
                     std::vector<vec2> streamline; // (x,y)
                     int colorStart = Interpolator::sampleFromGrayscaleImage(tr, vec2(i,j));
-                    calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(i,j, colorStart));
+					vec2 pos = vec2(i / (float)(texDims_.x - 1)* (vectorFieldDims_.x - 1), j / (float)(texDims_.y - 1)* (vectorFieldDims_.y - 1));
+                    calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec3(pos.x,pos.y, colorStart));
 
                     // FastLIC: Repeat along stream line
                     for (auto pos=0; pos < streamline.size(); pos++) {
@@ -130,10 +135,17 @@ void LICProcessor::process() {
                             sum += Interpolator::sampleFromGrayscaleImage(tr, streamline[posBack+k]) * pdf_gaussian;
                         }
                         int color = (sum/totalProb);
+						int val = (sum / totalProb);
 
+						vec2 vecValue = Interpolator::sampleFromField(vol.get(), vec2(i, j));
+
+						float magnitude = (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y);
+						float magNorm = (magnitude - minValue) / (maxValue - minValue) *255;
+						int colorVal = magNorm;
 
                         // 4.) Assign value to field position in output image
-                        lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(color, color, color, 255));
+                        //lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(color, color, color, 255));
+						lr->setFromDVec4(size2_t(streamline[pos][0], streamline[pos][1]), dvec4(0.5*val + 0.5*colorVal, 0.5*val + 0, 0.5*val, 255));
 
                         // FastLIC: Set field position as visited
                         visited[streamline[pos][0]][streamline[pos][1]] = true;
@@ -141,9 +153,12 @@ void LICProcessor::process() {
                 }
             // Basic LIC
             } else if (propBasicLIC.get()){
+
+				vec2 pos = vec2(i / (float)(texDims_.x - 1)* (vectorFieldDims_.x - 1), j / (float)(texDims_.y - 1)* (vectorFieldDims_.y - 1));
+
                 // 1.) Calculate Stream Line & sample Greyscale values
                 std::vector<vec2> streamline; // (x,y)
-                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec2(i, j));
+                int startIndex = calculateStreamline(vr, tr, vectorFieldDims_, streamline, vec2(pos.x, pos.y));
 
                 // 2.) Calculate average based on kernel (at field position only)
                 int posBack = (startIndex - kernelLength >= 0) ? (startIndex - kernelLength >= 0) : 0;
@@ -154,17 +169,41 @@ void LICProcessor::process() {
                 // 3.) Kernel average (Box)
                 int sum = 0;
                 for (auto k = 0; k < (posForward - posBack); k++) {
-                    sum += Interpolator::sampleFromGrayscaleImage(tr, streamline[k]);
+					vec2 streamPos = vec2(streamline[k].x / (float)(vectorFieldDims_.x - 1)* (texDims_.x - 1), streamline[k].y / (float)(vectorFieldDims_.y - 1)* (texDims_.y - 1));
+
+                    sum += Interpolator::sampleFromGrayscaleImage(tr, streamPos);
                 }
                 int color = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
+				int val = (posForward - posBack) > 0 ? (sum / (posForward - posBack)) : sum;
 
+				color = 255 - color;
+				//vec2 vecValue = Interpolator::sampleFromField(vol.get(), vec2(i / (float)(texDims_.x - 1) * (vectorFieldDims_.x - 1), j / (float)(texDims_.y - 1) * (vectorFieldDims_.y - 1)));
+				//vec2 vecValue = Interpolator::sampleFromField(vol.get(), vec2(pos.x, pos.y));
+				vec2 vecValue = Interpolator::sampleFromField(vol.get(), vec2(i, j));
+
+				float magnitude = (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y);
+				float magNorm = (magnitude - minValue) / (maxValue - minValue) *255;
+				int colorVal = magNorm;
+				colorVal = 0;
 
                 // 4.) Assign value to field position in output image
                 lr->setFromDVec4(size2_t(i, j), dvec4(color, color, color, 255));
+
+				//lr->setFromDVec4(size2_t(i, j), dvec4(0.5*val + 0.5*colorVal, 0.5*val + 0, 0.5*val, 255));
+
             }
             else {
                 int val = int(licTexture[i][j]);
-                lr->setFromDVec4(size2_t(i,j), dvec4(val,val,val, 255));
+				vec2 pos = vec2(i / (float)(texDims_.x - 1)* (vectorFieldDims_.x - 1), j / (float)(texDims_.y - 1)* (vectorFieldDims_.y - 1));
+
+				vec2 vecValue = Interpolator::sampleFromField(vol.get(), vec2(pos.x, pos.y));
+
+				float magnitude = (float)sqrt(vecValue.x*vecValue.x + vecValue.y*vecValue.y);
+				float magNorm = (magnitude - minValue) / (maxValue - minValue) * 255;
+				int colorVal = magNorm;
+				lr->setFromDVec4(size2_t(i, j), dvec4(0.5*val + 0.5*colorVal, 0.5*val + 0, 0.5*val, 255));
+
+                //lr->setFromDVec4(size2_t(i,j), dvec4(val,val,val, 255));
             }
         }
     }
@@ -222,6 +261,10 @@ int LICProcessor::calculateStreamline(const VolumeRAM* vr,
             if (position.x > (dims.x-1) || position.x < 0 || position.y > (dims.y-1) || position.y < 0) {
                 break;
             }
+			// f.) stop at texture boundary
+			if (position.x >(texDims_.x - 1) || position.x < 0 || position.y >(texDims_.y - 1) || position.y < 0) {
+				break;
+			}
 
             // g.) zero & h.) slow velocity
             if (velocity == 0.0f || velocity < 0.001f){
