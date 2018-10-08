@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" line="108" mnemonic="7" />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="inviwo-projects" targetName="tclap" />
+      <config projectName="inviwo-projects" targetName="sigar" />
+      <config projectName="inviwo-projects" targetName="flags" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
+      <config projectName="inviwo-projects" targetName="GLEW" />
+      <config projectName="inviwo-projects" targetName="libpng" />
+      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGLQt" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dd2257setup" />
+      <config projectName="inviwo-projects" targetName="tinydir" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
+      <config projectName="inviwo-projects" targetName="assimp" />
+      <config projectName="inviwo-projects" targetName="zlib1" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabStreamlines" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabTopo" />
+      <config projectName="inviwo-projects" targetName="openexr-iex" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
+      <config projectName="inviwo-projects" targetName="warn" />
+      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
+      <config projectName="inviwo-projects" targetName="glm" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labstreamlines" />
+      <config projectName="inviwo-projects" targetName="openexr-iexmath" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
+      <config projectName="inviwo-projects" targetName="inviwo-core" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labtopo" />
+      <config projectName="inviwo-projects" targetName="openexr-half" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab1" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-GLFW" />
+      <config projectName="inviwo-projects" targetName="half" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-base" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
+      <config projectName="inviwo-projects" targetName="DOXY-ALL" />
+      <config projectName="inviwo-projects" targetName="ticpp" />
+      <config projectName="inviwo-projects" targetName="inviwo" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
+      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
+      <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabLIC" />
+      <config projectName="inviwo-projects" targetName="libjpeg" />
+      <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
+      <config projectName="inviwo-projects" targetName="gtest" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-lablic" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
+      <config projectName="inviwo-projects" targetName="openexr-imath" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
+      <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-basegl" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Default" GENERATION_DIR="$PROJECT_DIR$/../inviwo-output" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/modules/labtopo/integrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/integrator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/labtopo/integrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/integrator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.h" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <ignored path="$PROJECT_DIR$/../inviwo-output/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Default" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1020080568">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="14" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="4" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.17" value="1" />
+          <entry key="project.opened" value="16" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cpp" value="35" />
+          <entry key="h" value="31" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CMakeLists.txt" value="1" />
+          <entry key="ObjectiveC" value="66" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cpp" value="24541" />
+          <entry key="h" value="915" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ObjectiveC" value="25456" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.cidr.testingFrameworks.usages" />
+      <usages-collector id="statistics.vcs.git.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+              <folding>
+                <element signature="e#337#377#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+              <folding>
+                <element signature="e#323#354#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="95" selection-start-line="95" selection-end-line="98" selection-end-column="13" />
+              <folding>
+                <element signature="e#259#317#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>VolumeRAM</find>
+      <find>bounding</find>
+      <find>LogPro</find>
+      <find>propDoArcLen</find>
+      <find>seed</find>
+      <find>[2]</find>
+      <find>RK4</find>
+      <find>calculateStream</find>
+      <find>streamline[</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/modules/dd2257setup/connectpoints.cpp" />
+        <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.h" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/integrator.h" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp" />
+        <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/integrator.cpp" />
+        <option value="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.h" />
+        <option value="$PROJECT_DIR$/modules/lablic/interpolator.cpp" />
+        <option value="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp" />
+        <option value="$PROJECT_DIR$/modules/lablic/integrator.cpp" />
+        <option value="$PROJECT_DIR$/modules/lablic/integrator.h" />
+        <option value="$PROJECT_DIR$/modules/lablic/licprocessor.h" />
+        <option value="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" />
+        <option value="$PROJECT_DIR$/modules/labtopo/integrator.cpp" />
+        <option value="$PROJECT_DIR$/modules/labtopo/integrator.h" />
+        <option value="$PROJECT_DIR$/modules/labtopo/topology.h" />
+        <option value="$PROJECT_DIR$/modules/labtopo/topology.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="354" />
+    <option name="y" value="22" />
+    <option name="width" value="1398" />
+    <option name="height" value="1020" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="labstreamlines" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="labtopo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="labtopo" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Build All">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-O3" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Default" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-ALL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-ALL" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-Assimp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-Assimp" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-Base" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-Base" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-BaseGL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-BaseGL" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-CImg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-CImg" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-DD2257Setup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-DD2257Setup" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-DH2320Lab1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-DH2320Lab1" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-DH2320Lab2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-DH2320Lab2" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-GLFW" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-GLFW" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabLIC" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabLIC" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabMarchingSquares" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabMarchingSquares" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabRaycasting" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabRaycasting" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabRaytracer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabRaytracer" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabStreamlines" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabStreamlines" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-LabTopo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabTopo" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-OpenGL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-OpenGL" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-OpenGLQt" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-OpenGLQt" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-HELP-QtWidgets" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-QtWidgets" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DOXY-Inviwo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-Inviwo" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GLEW" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="GLEW" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="assimp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="assimp" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="flags" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="flags" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="glfw" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="glm" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="glm" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="gtest" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="half" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="half" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-buildinfo-header" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-buildinfo-header" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-core" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-core" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-integrationtests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-integrationtests" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="inviwo-projects" RUN_TARGET_NAME="inviwo-integrationtests">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-assimp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-assimp" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-base" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-base" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-basegl" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-basegl" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-cimg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-cimg" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-dd2257setup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-dd2257setup" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-dh2320lab1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-dh2320lab1" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-dh2320lab2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-dh2320lab2" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-glfw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-glfw" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-lablic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-lablic" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-labmarchingsquares" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labmarchingsquares" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-labraycasting" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labraycasting" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-labraytracer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labraytracer" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-labstreamlines" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labstreamlines" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-labtopo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labtopo" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-opengl" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-opengl" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-openglqt" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-openglqt" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-module-qtwidgets" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-qtwidgets" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-qtapplicationbase" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-qtapplicationbase" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-qteditor" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-qteditor" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-unittests-base" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-unittests-base" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="inviwo-projects" RUN_TARGET_NAME="inviwo-unittests-base">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-unittests-cimg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-unittests-cimg" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="inviwo-projects" RUN_TARGET_NAME="inviwo-unittests-cimg">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo-unittests-core" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-unittests-core" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="inviwo-projects" RUN_TARGET_NAME="inviwo-unittests-core">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inviwo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="inviwo-projects" RUN_TARGET_NAME="inviwo">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="libjpeg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="libjpeg" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="libpng" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="libpng" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-half" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-half" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-iex" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-iex" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-iexmath" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-iexmath" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-ilmimf" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-ilmimf" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-ilmimfutil" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-ilmimfutil" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-ilmthread" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-ilmthread" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="openexr-imath" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="openexr-imath" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sigar" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="sigar" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tclap" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="tclap" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ticpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="ticpp" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tinydir" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="tinydir" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="warn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="warn" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="zlib1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="zlib1" CONFIG_NAME="Default">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Build All" />
+      <item itemvalue="Application.DOXY-ALL" />
+      <item itemvalue="Application.DOXY-HELP-Assimp" />
+      <item itemvalue="Application.DOXY-HELP-Base" />
+      <item itemvalue="Application.DOXY-HELP-BaseGL" />
+      <item itemvalue="Application.DOXY-HELP-CImg" />
+      <item itemvalue="Application.DOXY-HELP-DD2257Setup" />
+      <item itemvalue="Application.DOXY-HELP-DH2320Lab1" />
+      <item itemvalue="Application.DOXY-HELP-DH2320Lab2" />
+      <item itemvalue="Application.DOXY-HELP-GLFW" />
+      <item itemvalue="Application.DOXY-HELP-LabMarchingSquares" />
+      <item itemvalue="Application.DOXY-HELP-LabRaycasting" />
+      <item itemvalue="Application.DOXY-HELP-LabRaytracer" />
+      <item itemvalue="Application.DOXY-HELP-LabStreamlines" />
+      <item itemvalue="Application.DOXY-HELP-LabTopo" />
+      <item itemvalue="Application.DOXY-HELP-OpenGL" />
+      <item itemvalue="Application.DOXY-HELP-OpenGLQt" />
+      <item itemvalue="Application.DOXY-HELP-QtWidgets" />
+      <item itemvalue="Application.DOXY-Inviwo" />
+      <item itemvalue="Application.inviwo" />
+      <item itemvalue="Application.flags" />
+      <item itemvalue="Application.glm" />
+      <item itemvalue="Application.gtest" />
+      <item itemvalue="Application.half" />
+      <item itemvalue="Application.libjpeg" />
+      <item itemvalue="Application.libpng" />
+      <item itemvalue="Application.openexr-half" />
+      <item itemvalue="Application.openexr-iex" />
+      <item itemvalue="Application.openexr-iexmath" />
+      <item itemvalue="Application.openexr-ilmthread" />
+      <item itemvalue="Application.openexr-imath" />
+      <item itemvalue="Application.openexr-ilmimf" />
+      <item itemvalue="Application.openexr-ilmimfutil" />
+      <item itemvalue="Application.sigar" />
+      <item itemvalue="Application.tclap" />
+      <item itemvalue="Application.ticpp" />
+      <item itemvalue="Application.tinydir" />
+      <item itemvalue="Application.warn" />
+      <item itemvalue="Application.zlib1" />
+      <item itemvalue="Application.inviwo-module-assimp" />
+      <item itemvalue="Application.assimp" />
+      <item itemvalue="Application.inviwo-module-base" />
+      <item itemvalue="Application.inviwo-unittests-base" />
+      <item itemvalue="Application.inviwo-module-basegl" />
+      <item itemvalue="Application.inviwo-module-cimg" />
+      <item itemvalue="Application.inviwo-unittests-cimg" />
+      <item itemvalue="Application.inviwo-module-dd2257setup" />
+      <item itemvalue="Application.inviwo-module-dh2320lab1" />
+      <item itemvalue="Application.inviwo-module-dh2320lab2" />
+      <item itemvalue="Application.inviwo-module-glfw" />
+      <item itemvalue="Application.glfw" />
+      <item itemvalue="Application.inviwo-module-labmarchingsquares" />
+      <item itemvalue="Application.inviwo-module-labraycasting" />
+      <item itemvalue="Application.inviwo-module-labraytracer" />
+      <item itemvalue="Application.inviwo-module-labstreamlines" />
+      <item itemvalue="Application.inviwo-module-labtopo" />
+      <item itemvalue="Application.inviwo-module-opengl" />
+      <item itemvalue="Application.GLEW" />
+      <item itemvalue="Application.inviwo-module-openglqt" />
+      <item itemvalue="Application.inviwo-module-qtwidgets" />
+      <item itemvalue="Application.inviwo-buildinfo-header" />
+      <item itemvalue="Application.inviwo-core" />
+      <item itemvalue="Application.inviwo-unittests-core" />
+      <item itemvalue="Application.inviwo-qtapplicationbase" />
+      <item itemvalue="Application.inviwo-qteditor" />
+      <item itemvalue="Application.inviwo-integrationtests" />
+      <item itemvalue="Application.DOXY-HELP-LabLIC" />
+      <item itemvalue="Application.inviwo-module-lablic" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="" />
+      <created>1535632285150</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1535632285150</updated>
+      <workItem from="1535632286806" duration="138000" />
+      <workItem from="1535632462837" duration="2526000" />
+      <workItem from="1536148818163" duration="1066000" />
+      <workItem from="1536568016799" duration="19219000" />
+      <workItem from="1537881203516" duration="2562000" />
+      <workItem from="1537884016040" duration="156000" />
+      <workItem from="1537884176960" duration="49000" />
+      <workItem from="1537884230744" duration="2000" />
+      <workItem from="1537884264524" duration="25000" />
+      <workItem from="1537884351143" duration="117000" />
+      <workItem from="1537884522774" duration="6326000" />
+      <workItem from="1537970117957" duration="1779000" />
+      <workItem from="1538038525833" duration="4074000" />
+      <workItem from="1538461067763" duration="3335000" />
+      <workItem from="1538551057663" duration="234000" />
+      <workItem from="1538574590319" duration="2479000" />
+      <workItem from="1538979642672" duration="20920000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="104094000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3034826" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4997236" weight="0.32881" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32740587" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28081813" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3294979" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
+      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/modules/dd2257setup/connectpoints.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/labmarchingsquaresmodule.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/labmarchingsquaresmodule.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/dd2257setup/connectpoints.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/inviwo/core/datastructures/volume/volumeram.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/inviwo/core/util/glm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7379">
+          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-525">
+          <caret line="22" column="49" selection-start-line="22" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="219" column="38" selection-start-line="219" selection-start-column="38" selection-end-line="219" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="23" column="52" selection-start-line="23" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <folding>
+            <element signature="e#332#370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#318#359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="41" selection-start-line="15" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#332#370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/interpolator.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="84" column="9" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+          <folding>
+            <element signature="e#318#350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/interpolator.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#337#375#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-524">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/interpolator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="15" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+          <folding>
+            <element signature="e#273#311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="79" column="1" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
+          <folding>
+            <element signature="e#321#369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+          <folding>
+            <element signature="e#337#377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <folding>
+            <element signature="e#323#354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="95" selection-start-line="95" selection-end-line="98" selection-end-column="13" />
+          <folding>
+            <element signature="e#259#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

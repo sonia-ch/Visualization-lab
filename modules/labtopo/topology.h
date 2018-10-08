@@ -41,7 +41,7 @@ class IVW_MODULE_LABTOPO_API Topology : public Processor
 {
 public:
     // All possible first order critical points in 2D vector fields.
-    enum class TypeCP
+    enum TypeCP
     {
         Saddle = 0,
         AttractingNode = 1,
@@ -69,6 +69,9 @@ public:
     virtual void process() override;
 
     //TODO: You may want to declare additional functions here, e.g., extractCriticalPoints.
+    void getCriticalPoints(const Volume* vol, const vec2& leftCorner, float range, std::vector<vec2>& criticalPoints);
+    bool getCP(const Volume* vol, const vec2& leftCorner, float range, std::vector<vec2>& criticalPoints);
+    bool changeOfSign(const vec2& f00, const vec2& f10, const vec2& f01, const vec2& f11);
 
     // Ports
   public:
@@ -77,6 +80,10 @@ public:
 
     // Output mesh
     MeshOutport outMesh;
+
+    // Properties
+  public:
+    FloatProperty propThresholdZeroPoints;
 };
 
 }// namespace inviwo
