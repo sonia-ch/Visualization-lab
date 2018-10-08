@@ -14,6 +14,8 @@
 #include <inviwo/core/processors/processor.h>
 #include <inviwo/core/properties/eventproperty.h>
 #include <inviwo/core/properties/ordinalproperty.h>
+#include <inviwo/core/datastructures/geometry/basicmesh.h>
+
 #include <labtopo/labtopomoduledefine.h>
 
 namespace inviwo
@@ -72,6 +74,12 @@ public:
     void getCriticalPoints(const Volume* vol, const vec2& leftCorner, float range, std::vector<vec2>& criticalPoints);
     bool getCP(const Volume* vol, const vec2& leftCorner, float range, std::vector<vec2>& criticalPoints);
     bool changeOfSign(const vec2& f00, const vec2& f10, const vec2& f01, const vec2& f11);
+    void drawSeparatices(const Volume* vol,
+                           std::vector<BasicMesh::Vertex>& vertices,
+                           const size3_t dims,
+                           IndexBufferRAM* indexBufferLines,
+                           const vec2& saddlePoint,
+                           const mat2& eigenVectors);
 
     // Ports
   public:

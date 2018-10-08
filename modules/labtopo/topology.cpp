@@ -145,17 +145,47 @@ void Topology::process()
             // we do not use normal or texture coordinate, but still have to specify them
             vertices.push_back({ vec3(criticalPoint.x / (dims.x-1), criticalPoint.y / (dims.y-1), 0), vec3(0, 0, 1), vec3(criticalPoint.x / (dims.x-1), criticalPoint.y / (dims.y-1), 0), color });
         }
+    }
 
-        // (3) Draw separatices
-        for (int i = 0; i < saddlePoints.size(); i++) {
-            const vec2& saddlePoint = saddlePoints[i];
-            Integrator::drawStreamLine(vol.get(), vertices, dims, indexBufferSeparatrices, saddlePoint, 1); // forward
-            Integrator::drawStreamLine(vol.get(), vertices, dims, indexBufferSeparatrices, saddlePoint, -1); // backward
-        }
+    // (3) Draw separatices
+    for (int i = 0; i < saddlePoints.size(); i++) {
+        const vec2& saddlePoint = saddlePoints[i];
+        mat2 jacobian = Interpolator::sampleJacobian(vol.get(), saddlePoint);
+        util::EigenResult eigenResult = util::eigenAnalysis(jacobian);
+
+        drawSeparatices(vol.get(), vertices, dims, indexBufferSeparatrices, saddlePoint, eigenResult.eigenvectors);
     }
 
     mesh->addVertices(vertices);
     outMesh.setData(mesh);
+}
+
+void Topology::drawSeparatices(const Volume* vol,
+                               std::vector<BasicMesh::Vertex>& vertices,
+                               const size3_t dims,
+                               IndexBufferRAM* indexBufferLines,
+                               const vec2& saddlePoint,
+                               const mat2& eigenVectors) {
+    // Draw saddle point itself
+    vertices.push_back({vec3(saddlePoint.x / (dims.x - 1), saddlePoint.y / (dims.y - 1), 0), vec3(0), vec3(0), vec4(0, 0, 0, 1)});
+    indexBufferLines->add(static_cast<std::uint32_t>(vertices.size()-1));
+
+    float factor = 0.001;
+
+    // Go for the incoming and outgoing tangent lines, backward and forward respectively. TODO: HOW DO WE KNOW attracting/repelling?
+    vec2 saddle1 = vec2(saddlePoint.x + factor * eigenVectors[0][0], saddlePoint.y + factor * eigenVectors[0][1]);
+    vec2 saddle2 = vec2(saddlePoint.x - factor * eigenVectors[0][0], saddlePoint.y - factor * eigenVectors[0][1]);
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle1, 1); // repelling =
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle2, 1); // forward
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle1, -1); // attracting =
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle2, -1); // backward
+
+    vec2 saddle3 = vec2(saddlePoint.x + factor * eigenVectors[1][0], saddlePoint.y + factor * eigenVectors[1][1]);
+    vec2 saddle4 = vec2(saddlePoint.x - factor * eigenVectors[1][0], saddlePoint.y - factor * eigenVectors[1][1]);
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle3, -1); // attracting =
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle4, -1); // backward
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle3, 1); // repelling =
+    Integrator::drawStreamLine(vol, vertices, dims, indexBufferLines, saddle4, 1); // forward
 }
 
 bool Topology::changeOfSign(const vec2& f00, const vec2& f10, const vec2& f01, const vec2& f11) {
