@@ -55,6 +55,52 @@ Topology::Topology()
     // addProperty(propertyName);
 }
 
+bool Topology::checkZero(std::vector<dvec2>& p)
+{
+	bool is0 = false;
+	if (!((p[0].x > 0 && p[1].x > 0 && p[2].x > 0 && p[3].x > 0) || (p[0].x < 0 && p[1].x < 0 && p[2].x < 0 && p[3].x < 0)))
+	{
+		if (!((p[0].y > 0 && p[1].y > 0 && p[2].y > 0 && p[3].y > 0) || (p[0].y < 0 && p[1].y < 0 && p[2].y < 0 && p[3].y < 0)))
+		{
+			is0 = true;
+		}
+	}
+	return is0;
+}
+
+vec2 Topology::findZero(const Volume* vol, vec2& p00, float splitWidth)
+{
+	vec2 cellWith0 = p00;
+
+	// Divide into 4 cells
+	bool cell[4];
+	vec2 p[4] = { p00, 
+	{p00.x + splitWidth, p00.x}, 
+	{ p00.x, p00.y + splitWidth}, 
+	{ p00.x + splitWidth, p00.y + splitWidth} };
+	// Check zeros
+	for (int i = 0; i < 4; i++)
+	{
+		std::vector<vec2> cellPoints = { p[i], {p[i].x + splitWidth, p[i].y}, {p[i].x, p[i].y + splitWidth}, {p[i].x + splitWidth, p[i].y + splitWidth} };
+		// get values
+		std::vector<dvec2> cellValues = {
+			Interpolator::sampleFromField(vol, cellPoints[0]),
+			Interpolator::sampleFromField(vol, cellPoints[1]), 
+			Interpolator::sampleFromField(vol, cellPoints[2]), 
+			Interpolator::sampleFromField(vol, cellPoints[3]), };
+
+		cell[i] = checkZero(cellValues);
+		if (cell[i] && splitWidth > 0.005)
+		{
+			cellWith0 = findZero(vol, cellPoints[0], splitWidth/2.0f);
+		}
+	}
+
+
+	// Return position
+	return cellWith0;
+}
+
 void Topology::process()
 {
     // Get input
@@ -82,9 +128,36 @@ void Topology::process()
     // You can use your previous integration code (copy it over or call it from <lablic/integrator.h>).
 
     // Looping through all values in the vector field.
-    for (int y = 0; y < dims[1]; ++y)
-        for (int x = 0; x < dims[0]; ++x)
-            dvec2 vectorValue = vr->getAsDVec2(uvec3(x, y, 0));
+	for (int y = 0; y < dims[1] - 1; ++y)
+	{
+		for (int x = 0; x < dims[0] - 1; ++x)
+		{
+			//dvec2 vectorValue = vr->getAsDVec2(uvec3(x, y, 0));
+			dvec2 f00 = vr->getAsDVec2(uvec3(x, y, 0));
+			dvec2 f10 = vr->getAsDVec2(uvec3(x+1, y, 0));
+			dvec2 f01 = vr->getAsDVec2(uvec3(x, y+1, 0));
+			dvec2 f11 = vr->getAsDVec2(uvec3(x+1, y+1, 0));
+
+			vector<dvec2> values = { f00, f10, f01, f11 };
+			
+			if (checkZero(values))
+			{
+				vec2 position = Topology::findZero(vol.get(), vec2(x,y), 0.5f);
+				// Draw point
+				indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+				// A vertex has a position, a normal, a texture coordinate and a color
+				// we do not use normal or texture coordinate, but still have to specify them
+				vec4 color = vec4(1,0,0,1);
+				vertices.push_back({ vec3(position.x / (dims.x - 1), position.y/ (dims.y - 1), 0), vec3(0), vec3(0), color });
+			}
+
+
+			
+
+		}
+	}
+        
+	
 
     mesh->addVertices(vertices);
     outMesh.setData(mesh);

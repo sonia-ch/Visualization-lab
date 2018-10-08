@@ -69,6 +69,9 @@ public:
     virtual void process() override;
 
     //TODO: You may want to declare additional functions here, e.g., extractCriticalPoints.
+	bool checkZero(std::vector<dvec2>& p);
+
+	vec2 findZero(const Volume* vol, vec2& p00, float splitWidth);
 
     // Ports
   public:
