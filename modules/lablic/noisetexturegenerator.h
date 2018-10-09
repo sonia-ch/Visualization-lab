@@ -16,6 +16,7 @@
 #include <inviwo/core/ports/imageport.h>
 #include <inviwo/core/properties/optionproperty.h>
 #include <inviwo/core/properties/ordinalproperty.h>
+#include <inviwo/core/properties/boolproperty.h>
 
 namespace inviwo {
 
@@ -56,6 +57,12 @@ public:
     IntVec2Property texSize_;
 
 // TODO: Declare additional properties
+    BoolProperty propBlackWhite;
+    IntProperty propRandomSeed;
+    BoolProperty propComputeMean;
+    FloatProperty propMEAN;
+    FloatProperty propSTD;
+    FloatProperty propMaxFactor;
 // IntProperty properyName;
 // TemplateOptionProperty<int> propertyName2;
 

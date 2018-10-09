@@ -36,8 +36,11 @@ EulerRK4Comparison::EulerRK4Comparison()
     , outMesh("meshOut")
     , inData("inData")
     , propStartPoint("startPoint", "Start Point", vec2(0.5,0.5), vec2(0), vec2(1024), vec2(0.5))
+
     // TODO: Initialize additional properties
-    // propertyName("propertyIdentifier", "Display Name of the Propery", 
+    , propStepSize("stepSize", "Step size", 1.0f, -10.0f, 10.0f, 0.1f)
+    , propMaxSteps("maxSteps", "Maximum # of Steps", 5, 0, 100, 1)
+    // propertyName("propertyIdentifier", "Display Name of the Propery",
     // default value (optional), minimum value (optional), maximum value (optional), increment (optional));
     // propertyIdentifier cannot have spaces
     , mouseMoveStart("mouseMoveStart", "Move Start", [this](Event* e) { eventMoveStart(e); },
@@ -52,7 +55,8 @@ EulerRK4Comparison::EulerRK4Comparison()
     addProperty(mouseMoveStart);
 
     // TODO: Register additional properties
-    // addProperty(propertyName);
+    addProperty(propStepSize);
+    addProperty(propMaxSteps);
 
 }
 
@@ -102,8 +106,31 @@ void EulerRK4Comparison::process()
     // and then integrate forward for a specified number of integration steps and a given stepsize 
     // (these should be additional properties of the processor)
 
-    // Integrator::Euler(vr, dims, startPoint, ...);
-    // Integrator::Rk4(vr, dims, startPoint, ...);
+    float stepSize = propStepSize.get();
+    vec2 position = startPoint;
+
+    // Euler
+    for (int i=0; i < propMaxSteps.get(); i++) {
+        position = Integrator::Euler(vr, dims, position, stepSize);
+
+        // Add vertex
+        indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+        indexBufferEuler->add(static_cast<std::uint32_t>(vertices.size()));
+        vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(1, 0, 0, 1)});
+    }
+
+    // Runga Kutta 4th Order
+    position = startPoint;
+
+    for (int i=0; i < propMaxSteps.get(); i++) {
+        position = Integrator::RK4(vr, dims, position, stepSize, false);
+
+        // Add vertex
+        indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+        indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()));
+        vertices.push_back({ vec3(position.x / (dims.x -1), position.y / (dims.y-1), 0), vec3(0), vec3(0), vec4(0, 0, 1, 1)});
+    }
+
 
     mesh->addVertices(vertices);
     outMesh.setData(mesh);
