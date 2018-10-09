@@ -80,7 +80,7 @@ Integrator::Integrator() {}
 
         // Initialize properties
         int propMaxSteps = 10000; // propMaxSteps.get()
-        float propStepSize = 0.1; // propStepSize.get()
+        float propStepSize = 0.01; // propStepSize.get()
         bool propNormalized = false; // propNormalized.get()
         int propDirection = direction; // propDirection.get()
         float propArcLength = 10000;  // propArcLength.get()

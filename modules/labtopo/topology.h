@@ -75,11 +75,12 @@ public:
     bool getCP(const Volume* vol, const vec2& leftCorner, float range, std::vector<vec2>& criticalPoints);
     bool changeOfSign(const vec2& f00, const vec2& f10, const vec2& f01, const vec2& f11);
     void drawSeparatices(const Volume* vol,
-                           std::vector<BasicMesh::Vertex>& vertices,
-                           const size3_t dims,
-                           IndexBufferRAM* indexBufferLines,
-                           const vec2& saddlePoint,
-                           const mat2& eigenVectors);
+                         std::vector<BasicMesh::Vertex>& vertices,
+                         const size3_t dims,
+                         IndexBufferRAM* indexBufferLines,
+                         const vec2& saddlePoint,
+                         const mat2& eigenVectors,
+                         const vec2& directions);
 
     // Ports
   public:
@@ -92,6 +93,7 @@ public:
     // Properties
   public:
     FloatProperty propThresholdZeroPoints;
+    FloatProperty propSeparaticesSeedDistance;
 };
 
 }// namespace inviwo
