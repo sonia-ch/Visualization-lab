@@ -70,8 +70,7 @@ public:
 
     //TODO: You may want to declare additional functions here, e.g., extractCriticalPoints.
 	bool checkZero(std::vector<dvec2>& p);
-
-	vec2 findZero(const Volume* vol, vec2& p00, float splitWidth);
+	void findZero(const Volume* vol, vec2& p00, float splitWidth, std::vector<vec2>& criticalP);
 
     // Ports
   public:
