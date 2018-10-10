@@ -329,19 +329,19 @@ void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, c
 
 		// e.) after certain arc length
 		if (propDoArcLen.get() && arcLength > propArcLength.get()) {
-			LogProcessorInfo("Maximal arc length " << arcLength);
+			//LogProcessorInfo("Maximal arc length " << arcLength);
 			break;
 		}
 
 		// f.) stop at domain boundary
 		if (nextPointRK.x >(dims.x - 1) || nextPointRK.x < 0 || nextPointRK.y >(dims.y - 1) || nextPointRK.y < 0) {
-			LogProcessorInfo("Out of domain boundaries (" << nextPointRK.x << "," << nextPointRK.y << ")");
+			//LogProcessorInfo("Out of domain boundaries (" << nextPointRK.x << "," << nextPointRK.y << ")");
 			break;
 		}
 
 		// g.) zero & h.) slow velocity
 		if (velocity == 0.0f || velocity < 0.001f) {
-			LogProcessorInfo("Velocity is to slow " << velocity);
+			//LogProcessorInfo("Velocity is to slow " << velocity);
 			break;
 		}
 
