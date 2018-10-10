@@ -142,8 +142,10 @@ void Topology::process()
 
 			vector<dvec2> values = { f00, f10, f01, f11 };
 			
+			// Check if there is a possible zero
 			if (checkZero(values))
 			{
+				// Find the critical points
 				Topology::findZero(vol.get(), vec2(x, y), 0.5f, criticalPoints);
 			}
 		}
@@ -157,7 +159,6 @@ void Topology::process()
 		// we do not use normal or texture coordinate, but still have to specify them
 		vec4 color = vec4(1, 0, 0, 1);
 		vertices.push_back({ vec3(criticalPoints[i].x / (dims.x - 1), criticalPoints[i].y / (dims.y - 1), 0), vec3(0), vec3(0), color });
-
 	}
         
     mesh->addVertices(vertices);

@@ -39,7 +39,8 @@ StreamlineIntegrator::StreamlineIntegrator()
 	, propDirection("direction", "Direction")
 	, propStepSize("stepSize", "Step Size", 0.1f, 0.05f, 1.0f, 0.05f)
 	, propNumSteps("numStep", "Steps", 30, 1, 1000)
-	, propNumSeeds("numSeeds", "Number seeds", 10, 1, 100)
+	, propNumSeeds("numSeeds", "Number seeds", 10, 1, 200)
+	, propShowPoints("showPoints", "Show step points")
 	, propNormalized("normalized", "Use Direction Field")
 	, propMultipleType("multipleType", "Type of seeding")
 	, propGridLinesX("gridLinesX", "# of Grid Points X-Axis", 3, 2, 50, 1)
@@ -59,12 +60,14 @@ StreamlineIntegrator::StreamlineIntegrator()
     addProperty(propSeedMode);
     addProperty(propStartPoint);
     addProperty(mouseMoveStart);
+	addProperty(propShowPoints);
 
     // TODO: Register additional properties
     // addProperty(propertyName);
 	addProperty(propDirection);
 	propDirection.addOption("forward", "Forward", 1);
 	propDirection.addOption("backward", "Backward", -1);
+	propDirection.addOption("backForward", "Back and forward", 0);
 	addProperty(propStepSize);
 	addProperty(propNumSteps);
 
@@ -160,13 +163,27 @@ void StreamlineIntegrator::process() {
 
         // Draw start point
         vec2 startPoint = propStartPoint.get();
-        vertices.push_back({vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
-                            vec3(0), vec3(0), vec4(0, 0, 0, 1)});
-        indexBufferPoints->add(static_cast<std::uint32_t>(0));
+        
+		if (propShowPoints.get())
+		{
+			indexBufferPoints->add(static_cast<std::uint32_t>(0));
+		}
 		indexBufferStreamline->add(static_cast<std::uint32_t>(0));
+		vertices.push_back({ vec3(startPoint.x / (dims.x - 1), startPoint.y / (dims.y - 1), 0),
+			vec3(0), vec3(0), vec4(0, 0, 0, 1) });
 
         // TODO: Create one stream line from the given start point
-		singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+		if (propDirection.get() == 0) // Backward and forward
+		{
+			singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), 1, indexBufferStreamline, indexBufferPoints, vertices);
+			auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+			singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), -1, indexBufferStreamline, indexBufferPoints, vertices);
+		}
+		else
+		{
+			singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), propDirection.get(), indexBufferStreamline, indexBufferPoints, vertices);
+		}
+		//singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
     } else {
         // TODO: Seed multiple stream lines either randomly or using a uniform grid
         // (TODO: Bonus, sample randomly according to magnitude of the vector field)
@@ -182,7 +199,18 @@ void StreamlineIntegrator::process() {
 				auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
 				auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
 
-				singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+				//singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+				if (propDirection.get() == 0)
+				{
+					singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), 1, indexBufferStreamline, indexBufferPoints, vertices);
+					auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+					singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), -1, indexBufferStreamline, indexBufferPoints, vertices);
+
+				}
+				else
+				{
+					singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), propDirection.get(), indexBufferStreamline, indexBufferPoints, vertices);
+				}
 			}
 		}
 		else if (propMultipleType.get() == 1) //Grid distribution
@@ -196,7 +224,17 @@ void StreamlineIntegrator::process() {
 					auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
 					auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
 			
-					singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+					if (propDirection.get() == 0)
+					{
+						singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), 1, indexBufferStreamline, indexBufferPoints, vertices);
+						auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+						singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), -1, indexBufferStreamline, indexBufferPoints, vertices);
+					}
+					else
+					{
+						singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), propDirection.get(), indexBufferStreamline, indexBufferPoints, vertices);
+					}
+					//singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
 				}
 			}
 		}
@@ -241,7 +279,16 @@ void StreamlineIntegrator::process() {
 						auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
 						auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
 
-						singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), indexBufferStreamline, indexBufferPoints, vertices);
+						if (propDirection.get() == 0)
+						{
+							singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), 1, indexBufferStreamline, indexBufferPoints, vertices);
+							auto indexBufferStreamline = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+							singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), -1, indexBufferStreamline, indexBufferPoints, vertices);
+						}
+						else
+						{
+							singleStreamline(vr, dims, startPoint, propStepSize.get(), propNumSteps.get(), propDirection.get(), indexBufferStreamline, indexBufferPoints, vertices);
+						}
 
 						break;
 					}
@@ -253,11 +300,15 @@ void StreamlineIntegrator::process() {
     mesh->addVertices(vertices);
     outMesh.setData(mesh);
 }
-void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, const vec2& startPosition, float stepSize, int numSteps, 
+void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, const vec2& startPosition, float stepSize, int numSteps, int direction,
 	IndexBufferRAM* indexBuffer, IndexBufferRAM* indexBufferPoints, std::vector<BasicMesh::Vertex>& vertices)
 {
 	// Draw first point
-	indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+	if (propShowPoints.get())
+	{
+		indexBufferPoints->add(static_cast<std::uint32_t>(0));
+	}
+	//indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
 	indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
 	vertices.push_back({ vec3(startPosition.x / (dims.x - 1), startPosition.y / (dims.y - 1), 0),
 		vec3(0), vec3(0), vec4(0, 0, 0, 1) });
@@ -270,7 +321,7 @@ void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, c
 	{
 		vec2 prevPoint = nextPointRK;
 		// RK integration
-		nextPointRK = Integrator::RK4(vr, dims, nextPointRK, stepSize, propDirection.get(), propNormalized.get());
+		nextPointRK = Integrator::RK4(vr, dims, nextPointRK, stepSize, direction, propNormalized.get());
 
 		pointDiff = nextPointRK - prevPoint;
 		velocity = float(sqrt((pointDiff.x*pointDiff.x) + (pointDiff.y*pointDiff.y)));
@@ -295,10 +346,20 @@ void StreamlineIntegrator::singleStreamline(const VolumeRAM* vr, size3_t dims, c
 		}
 
 		// Draw next point
-		indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
-		indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
-		vertices.push_back({ vec3(nextPointRK.x / (dims.x - 1), nextPointRK.y / (dims.y - 1), 0),
-			vec3(0), vec3(0), vec4(0, 0, 1, 1) });
+		if (propShowPoints.get()) 
+		{
+			indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+			indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
+			vertices.push_back({ vec3(nextPointRK.x / (dims.x - 1), nextPointRK.y / (dims.y - 1), 0),
+				vec3(0), vec3(0), vec4(0, 0, 1, 1) });
+		}
+		else
+		{
+			indexBuffer->add(static_cast<std::uint32_t>(vertices.size()));
+			vertices.push_back({ vec3(nextPointRK.x / (dims.x - 1), nextPointRK.y / (dims.y - 1), 0),
+				vec3(0), vec3(0), vec4(0, 0, 0, 1) });
+		}
+		
 	}
  }
 
