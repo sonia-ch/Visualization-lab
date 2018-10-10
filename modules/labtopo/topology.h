@@ -41,7 +41,7 @@ class IVW_MODULE_LABTOPO_API Topology : public Processor
 {
 public:
     // All possible first order critical points in 2D vector fields.
-    enum class TypeCP
+    enum TypeCP
     {
         Saddle = 0,
         AttractingNode = 1,
@@ -71,6 +71,16 @@ public:
     //TODO: You may want to declare additional functions here, e.g., extractCriticalPoints.
 	bool checkZero(std::vector<dvec2>& p);
 	void findZero(const Volume* vol, vec2& p00, float splitWidth, std::vector<vec2>& criticalP);
+	void drawSeparatices(const Volume* vol,
+		std::vector<BasicMesh::Vertex>& vertices,
+		const size3_t dims,
+		IndexBufferRAM* indexBufferLines1,
+		IndexBufferRAM* indexBufferLines2,
+		IndexBufferRAM* indexBufferLines3,
+		IndexBufferRAM* indexBufferLines4,
+		const vec2& saddlePoint,
+		const mat2& eigenVectors,
+		const vec2& directions);
 
     // Ports
   public:
@@ -79,6 +89,9 @@ public:
 
     // Output mesh
     MeshOutport outMesh;
+
+	FloatProperty propSeparaticesSeedDistance;
+
 };
 
 }// namespace inviwo

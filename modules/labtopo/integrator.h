@@ -35,6 +35,10 @@ public:
     // where it is needed.
     // You may want to consider adding a helper function that computes an entire streamline
     // if you have not done so for the last assignments already.
+	static vec2 RK4(const Volume* vol, const vec2& position, float stepSize, bool normalized);
+	static void singleStreamline(const Volume* vr, size3_t dims, const vec2& startPosition, int direction,
+		IndexBufferRAM* indexBuffer, std::vector<BasicMesh::Vertex>& vertices);
+
 };
 
 }  // namespace inviwo

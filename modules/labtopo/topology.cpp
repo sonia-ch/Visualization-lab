@@ -46,6 +46,8 @@ Topology::Topology()
 // propertyName("propertyIdentifier", "Display Name of the Propery",
 // default value (optional), minimum value (optional), maximum value (optional), increment (optional));
 // propertyIdentifier cannot have spaces
+, propSeparaticesSeedDistance("separaticesSeedDistance", "Distance of separatices seed to saddle point", 0.1, 0.00001, 1, 0.0001)
+
 {
     // Register Ports
     addPort(outMesh);
@@ -53,6 +55,8 @@ Topology::Topology()
 
     // TODO: Register additional properties
     // addProperty(propertyName);
+	addProperty(propSeparaticesSeedDistance);
+
 }
 
 bool Topology::checkZero(std::vector<dvec2>& p)
@@ -120,7 +124,7 @@ void Topology::process()
     std::vector<BasicMesh::Vertex> vertices;
     // Either add all line segments to this index buffer (one large buffer),
     // or use several index buffers with connectivity type adjacency.
-    auto indexBufferSeparatrices = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::None);
+    auto indexBufferSeparatrices = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
     auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
 
     // TODO: Compute the topological skeleton of the input vector field.
@@ -128,6 +132,7 @@ void Topology::process()
     // Integrate all separatrices.
     // You can use your previous integration code (copy it over or call it from <lablic/integrator.h>).
 
+	// (1) Find critical points
 	vector<vec2> criticalPoints;
 
     // Looping through all values in the vector field.
@@ -151,18 +156,114 @@ void Topology::process()
 		}
 	}
 
-	// Draw points
-	for (int i = 0; i < criticalPoints.size(); i++)
-	{
-		indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
-		// A vertex has a position, a normal, a texture coordinate and a color
-		// we do not use normal or texture coordinate, but still have to specify them
-		vec4 color = vec4(1, 0, 0, 1);
-		vertices.push_back({ vec3(criticalPoints[i].x / (dims.x - 1), criticalPoints[i].y / (dims.y - 1), 0), vec3(0), vec3(0), color });
+	// (2) Classify the points to color them
+	vector<vec2> saddlePoints;
+	for (int i = 0; i < criticalPoints.size(); i++) {
+		const vec2& criticalPoint = criticalPoints[i];
+		mat2 jacobian = Interpolator::sampleJacobian(vol.get(), criticalPoint);
+		// determinant: ad - bc is not zero  => First order 2D critical Point
+		if ((jacobian[0][1] * jacobian[1][0] - jacobian[0][0] * jacobian[1][1]) != 0) {
+			util::EigenResult eigenResult = util::eigenAnalysis(jacobian);
+
+			TypeCP type = TypeCP::Saddle; // TODO: Don't initialize randomly
+
+										  // Imaginary zero
+										  //      Saddle [hyperbolic sector] = All tangent curves to by critical point, except 2 - one originates , other ends
+										  //      Repelling or Attracting node [parabolic sector] = all tangent end or origin from  critical point
+			if (eigenResult.eigenvaluesIm[0] == 0 && eigenResult.eigenvaluesIm[1] == 0) {
+
+				if ((eigenResult.eigenvaluesRe[0] < 0 && eigenResult.eigenvaluesRe[1] > 0) || (eigenResult.eigenvaluesRe[0] > 0 && eigenResult.eigenvaluesRe[1] < 0)) {
+					type = TypeCP::Saddle; // SADDLE
+					saddlePoints.push_back(criticalPoint);
+				}
+				else if (eigenResult.eigenvaluesRe[0] < 0 && eigenResult.eigenvaluesRe[1] < 0)
+					type = TypeCP::AttractingNode; // Attracting node
+				else if (eigenResult.eigenvaluesRe[0] > 0 && eigenResult.eigenvaluesRe[1] > 0)
+					type = TypeCP::RepellingNode; // Repelling node
+			}
+			// Imaginary part non zero
+			//      repelling/attracting focus, center [eliptic sector] = all tanget curves originate AND end in the critical point
+			else {
+
+				if (eigenResult.eigenvaluesRe[0] == 0 && eigenResult.eigenvaluesRe[1] == 0)
+					type = TypeCP::Center; // Center
+				else if (eigenResult.eigenvaluesRe[0] < 0 && eigenResult.eigenvaluesRe[1] < 0)
+					type = TypeCP::AttractingFocus; // Attracting focus
+				else if (eigenResult.eigenvaluesRe[0] > 0 && eigenResult.eigenvaluesRe[1] > 0)
+					type = TypeCP::RepellingFocus; // Repelling focus
+			}
+
+			vec4 color = ColorsCP[type];
+
+			// Add first vertex
+			indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+			// A vertex has a position, a normal, a texture coordinate and a color
+			// we do not use normal or texture coordinate, but still have to specify them
+			vertices.push_back({ vec3(criticalPoint.x / (dims.x - 1), criticalPoint.y / (dims.y - 1), 0), vec3(0, 0, 1), vec3(criticalPoint.x / (dims.x - 1), criticalPoint.y / (dims.y - 1), 0), color });
+		}
+	}
+
+	// (3) Draw separatices
+	for (int i = 0; i < saddlePoints.size(); i++) {
+		const vec2& saddlePoint = saddlePoints[i];
+		mat2 jacobian = Interpolator::sampleJacobian(vol.get(), saddlePoint);
+		util::EigenResult eigenResult = util::eigenAnalysis(jacobian);
+
+		// Integrate forward/backward dependend on repelling/attracting focus
+		vec2 directions;
+		directions[0] = eigenResult.eigenvaluesRe[0] > 0 ? 1 : -1; // RealVal > 0 => outgoing => go forward , else attracting => go backward
+		directions[1] = eigenResult.eigenvaluesRe[1] < 0 ? -1 : 1; // RealVal < 0 => incoming => go backward , else repelling => go forward
+
+		
+		auto indexBufferSeparatrices1 = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+		auto indexBufferSeparatrices2 = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+		auto indexBufferSeparatrices3 = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+		auto indexBufferSeparatrices4 = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
+		// There must be a better way of doing this...
+
+		drawSeparatices(vol.get(), vertices, dims, indexBufferSeparatrices1, indexBufferSeparatrices2, indexBufferSeparatrices3, indexBufferSeparatrices4,
+			saddlePoint, eigenResult.eigenvectors, directions);
 	}
         
     mesh->addVertices(vertices);
     outMesh.setData(mesh);
 }
+
+void Topology::drawSeparatices(const Volume* vol,
+	std::vector<BasicMesh::Vertex>& vertices,
+	const size3_t dims,
+	IndexBufferRAM* indexBufferLines1,
+	IndexBufferRAM* indexBufferLines2,
+	IndexBufferRAM* indexBufferLines3,
+	IndexBufferRAM* indexBufferLines4,
+	const vec2& saddlePoint,
+	const mat2& eigenVectors,
+	const vec2& directions) 
+{
+	// Draw saddle point itself
+	vertices.push_back({ vec3(saddlePoint.x / (dims.x - 1), saddlePoint.y / (dims.y - 1), 0), vec3(0), vec3(0), vec4(1, 1, 1, 1) });
+	indexBufferLines1->add(static_cast<std::uint32_t>(vertices.size() - 1));
+	indexBufferLines2->add(static_cast<std::uint32_t>(vertices.size() - 1));
+	indexBufferLines3->add(static_cast<std::uint32_t>(vertices.size() - 1));
+	indexBufferLines4->add(static_cast<std::uint32_t>(vertices.size() - 1));
+
+	float factor = propSeparaticesSeedDistance.get();
+
+
+	// (1) Eigenvector direction [Go for the incoming(RealVal < 0) and outgoing(RealVal > 0) tangent lines, backward and forward respectively.]
+	vec2 saddle1 = vec2(saddlePoint.x + factor * eigenVectors[0][0], saddlePoint.y + factor * eigenVectors[0][1]);
+	vec2 saddle2 = vec2(saddlePoint.x - factor * eigenVectors[0][0], saddlePoint.y - factor * eigenVectors[0][1]);
+	
+	Integrator::singleStreamline(vol, dims, saddle1, directions[0], indexBufferLines1, vertices);
+	Integrator::singleStreamline(vol, dims, saddle2, directions[0], indexBufferLines2, vertices);
+
+	// (2) Integrate in direction of second Eigenvector
+	vec2 saddle3 = vec2(saddlePoint.x + factor * eigenVectors[1][0], saddlePoint.y + factor * eigenVectors[1][1]);
+	vec2 saddle4 = vec2(saddlePoint.x - factor * eigenVectors[1][0], saddlePoint.y - factor * eigenVectors[1][1]);
+
+	Integrator::singleStreamline(vol, dims, saddle3, directions[1], indexBufferLines3, vertices);
+	Integrator::singleStreamline(vol, dims, saddle4, directions[1], indexBufferLines4, vertices);
+}
+
 
 }// namespace
