@@ -71,6 +71,8 @@ public:
 //Properties
 public:
     FloatProperty radius_;
+	FloatProperty alpha_;
+	FloatProperty phi_;
 
 
 //Attributes

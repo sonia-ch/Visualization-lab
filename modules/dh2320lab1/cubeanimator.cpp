@@ -9,6 +9,7 @@
  */
 
 #include <dh2320lab1/cubeanimator.h>
+#include <math.h>
 
 namespace inviwo
 {
@@ -38,6 +39,8 @@ CubeAnimator::CubeAnimator()
     // For a FloatProperty 
     // variablename(identifier, display name, init value, minvalue, maxvalue)
     , radius_("radius", "Radius", 6, 1, 8)
+	, phi_("phi","Angle",0,0,2*M_PI)
+	, alpha_("alpha", "Radius_angle", 0, 0, 2*M_PI)
 {
     // Add ports
     addPort(meshIn_);
@@ -45,7 +48,8 @@ CubeAnimator::CubeAnimator()
     
     // Add properties
     addProperty(radius_);
-
+	addProperty(alpha_);
+	addProperty(phi_);
 }
 
 
@@ -59,7 +63,8 @@ void CubeAnimator::process()
     auto matrix = mesh->getWorldMatrix();
 
     // Transform the mesh (TODO)
-    matrix *= glm::translate(vec3(radius_.get(), 0, 0));
+    //matrix *= glm::translate(vec3(radius_.get(), 0, 0));
+	matrix *= glm::translate(vec3( 0,(radius_.get()+sin(alpha_.get()))*cos(phi_.get()), (radius_.get()+sin(alpha_.get()))*sin(phi_.get())));
 
     // Update
     mesh->setWorldMatrix(matrix);

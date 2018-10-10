@@ -83,6 +83,8 @@ public:
     // TODO: Declare additional properties
     // IntProperty properyName;
     // FloatProperty propertyName2;
+	FloatProperty propStepSize;
+	IntProperty propNumSteps;
 
 // Attributes
 private:

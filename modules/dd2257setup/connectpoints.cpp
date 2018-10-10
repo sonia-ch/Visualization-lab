@@ -59,10 +59,23 @@ void drawLineSegment(const vec2& v1, const vec2& v2, const vec4& color,
 
 void ConnectPoints::BoundingBox(const std::vector<vec3>& Points, IndexBufferRAM* OutIndices, Vec3BufferRAM* OutVertices)
 {
-    drawLineSegment({0, 0}, {0, 1}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({0, 1}, {1, 1}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({1, 1}, {1, 0}, {255, 0, 0, 1}, OutIndices, OutVertices);
-    drawLineSegment({1, 0}, {0, 0}, {255, 0, 0, 1}, OutIndices, OutVertices);
+	//float xmin(FLT_MAX), ymin(FLT_MAX), xmax(-FLT_MAX), ymax(-FLT_MAX);
+	if (Points.empty()) return;
+	float xmin(Points[0].x), ymin(Points[0].y), xmax(Points[0].x), ymax(Points[0].y);
+	for (size_t i = 0; i < Points.size(); i++)
+	{
+		const vec3& ThisPoint = Points[i];
+
+		if (xmin > ThisPoint.x) xmin = ThisPoint.x;
+		if (xmax < ThisPoint.x) xmax = ThisPoint.x;
+		if (ymin > ThisPoint.y) ymin = ThisPoint.y;
+		if (ymax < ThisPoint.y) ymax = ThisPoint.y;
+		
+	}
+    drawLineSegment({xmin, ymin}, {xmin, ymax}, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({ xmin, ymax }, { xmax, ymax }, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({ xmax, ymax }, { xmax, ymin }, {255, 0, 0, 1}, OutIndices, OutVertices);
+    drawLineSegment({ xmax, ymin }, { xmin, ymin }, {255, 0, 0, 1}, OutIndices, OutVertices);
 }
 
 

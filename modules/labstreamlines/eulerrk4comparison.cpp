@@ -40,6 +40,8 @@ EulerRK4Comparison::EulerRK4Comparison()
     // propertyName("propertyIdentifier", "Display Name of the Propery", 
     // default value (optional), minimum value (optional), maximum value (optional), increment (optional));
     // propertyIdentifier cannot have spaces
+	, propStepSize("stepSize", "Step Size", 1.0f, 0.1f, 4.0f, 0.1f)
+	, propNumSteps("numStep", "Number of integration steps", 30, 1, 100)
     , mouseMoveStart("mouseMoveStart", "Move Start", [this](Event* e) { eventMoveStart(e); },
         MouseButton::Left, MouseState::Press | MouseState::Move)
 {
@@ -53,7 +55,8 @@ EulerRK4Comparison::EulerRK4Comparison()
 
     // TODO: Register additional properties
     // addProperty(propertyName);
-
+	addProperty(propStepSize);
+	addProperty(propNumSteps);
 }
 
 void EulerRK4Comparison::eventMoveStart(Event* event)
@@ -104,6 +107,28 @@ void EulerRK4Comparison::process()
 
     // Integrator::Euler(vr, dims, startPoint, ...);
     // Integrator::Rk4(vr, dims, startPoint, ...);
+
+	vec2 nextPointEuler = startPoint;
+	vec2 nextPointRK = startPoint;
+
+	for (int i = 0; i < propNumSteps.get(); i++)
+	{
+		// Euler Integration
+		nextPointEuler = Integrator::Euler(vr, dims, nextPointEuler, propStepSize.get());
+
+		indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+		indexBufferEuler->add(static_cast<std::uint32_t>(vertices.size()));
+		vertices.push_back({ vec3(nextPointEuler.x / (dims.x - 1), nextPointEuler.y / (dims.y - 1), 0),
+			vec3(0), vec3(0), vec4(1, 0, 0, 1) });
+
+		// RK integration
+		nextPointRK = Integrator::RK4(vr, dims, nextPointRK, propStepSize.get());
+
+		indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+		indexBufferRK->add(static_cast<std::uint32_t>(vertices.size()));
+		vertices.push_back({ vec3(nextPointRK.x / (dims.x - 1), nextPointRK.y / (dims.y - 1), 0),
+			vec3(0), vec3(0), vec4(0, 0, 1, 1) });
+	}
 
     mesh->addVertices(vertices);
     outMesh.setData(mesh);

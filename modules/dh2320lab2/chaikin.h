@@ -78,6 +78,8 @@ protected:
 
     ///Applies Chaikin's Corner Cutting algorithm
     void CornerCutting(const std::vector<vec3>& ControlPolygon, const size_t MinNumDesiredPoints, std::vector<vec3>& Curve);
+	///Simplifies the curve computed by Chaikin's Cutting algorithm
+	void CurveSimplification(std::vector<vec3>& Curve, float MinAngle);
 
 //Ports
 public:
@@ -90,6 +92,7 @@ public:
 //Properties
 public:
     IntProperty propMinNumDesiredPoints;
+	IntProperty propMinAngle;
 
 //Attributes
 private:

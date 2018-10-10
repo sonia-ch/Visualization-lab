@@ -39,6 +39,8 @@ public:
     // Examples would be the stepsize, inegreation direction, ...
     //static vec2 RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, ...);
     //static vec2 Euler(const VolumeRAM* vr, size3_t dims, const vec2& position, ...);
+	static vec2 Integrator::Euler(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize);
+	static vec2 Integrator::RK4(const VolumeRAM* vr, size3_t dims, const vec2& position, float stepSize, int direction = 1, bool normalized = false);
 
 };
 
