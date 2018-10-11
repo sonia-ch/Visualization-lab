@@ -203,7 +203,7 @@
                         <collapsed content="0" />
                     </Property>
                     <Property type="org.inviwo.IntVec2Property" identifier="position">
-                        <value x="61" y="124" />
+                        <value x="548" y="108" />
                     </Property>
                     <Property type="org.inviwo.OptionPropertyEnumInt" identifier="visibleLayer" />
                     <Property type="org.inviwo.IntProperty" identifier="colorLayer_">
@@ -246,7 +246,7 @@
                         <selection content="0" />
                     </MetaDataItem>
                     <MetaDataItem type="org.inviwo.ProcessorWidgetMetaData" key="org.inviwo.ProcessorWidgetMetaData">
-                        <position x="61" y="124" />
+                        <position x="548" y="108" />
                         <dimensions x="400" y="400" />
                         <visibility content="1" />
                     </MetaDataItem>
@@ -301,10 +301,10 @@
                         <value content="128" />
                     </Property>
                     <Property type="org.inviwo.StringProperty" identifier="x">
-                        <value content="(-y-3)*(-(x+2))" />
+                        <value content="cos(x)" />
                     </Property>
                     <Property type="org.inviwo.StringProperty" identifier="y">
-                        <value content="(x-5)*(y-7)" />
+                        <value content="-sin(y)" />
                     </Property>
                     <Property type="org.inviwo.StringProperty" identifier="z">
                         <visible content="0" />
