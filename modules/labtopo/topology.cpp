@@ -181,9 +181,9 @@ void Topology::process()
     vec2 possibleBoundaryPoint;
     float threshold = 0.0001;
 
-    for (int y = 1; y < dims[1]-1; y++) {
+    for (int y = 1; y < dims[1]; y++) {
         // x1 = 0
-        LogProcessorInfo("P_Y(" << x1 << ", " << y << ") =  [" << pX1.x << ", " << pX1.y << "]")
+        LogProcessorInfo("P_Y(" << x1 << ", " << y-1 << ") =  [" << pX1.x << ", " << pX1.y << "]")
 
         previousPointX1 = pX1;
         pX1 = Interpolator::sampleFromField(vol.get(), vec2(x1,y));
@@ -201,7 +201,7 @@ void Topology::process()
 
 
         // x2 = dims-1
-        LogProcessorInfo("P_Y(" << x2 << ", " << y << ") =  [" << pX2.x << ", " << pX2.y << "]")
+        LogProcessorInfo("P_Y(" << x2 << ", " << y-1 << ") =  [" << pX2.x << ", " << pX2.y << "]")
 
         previousPointX2 = pX2;
         pX2 = Interpolator::sampleFromField(vol.get(), vec2(x2,y));
@@ -227,9 +227,9 @@ void Topology::process()
     vec2 previousPointY2;
     vec2 pY2 = Interpolator::sampleFromField(vol.get(), vec2(y2,0)); // initialize previous point
 
-    for (int x = 1; x < dims[1]-1; x++) {
+    for (int x = 1; x < dims[1]; x++) {
         // y1 = 0
-        LogProcessorInfo("P_X(" << x << ", " << y1 << ") =  [" << pY1.x << ", " << pY1.y << "]")
+        LogProcessorInfo("P_X(" << x-1 << ", " << y1 << ") =  [" << pY1.x << ", " << pY1.y << "]")
 
         previousPointY1 = pY1;
         pY1 = Interpolator::sampleFromField(vol.get(), vec2(x,y1));
@@ -247,7 +247,7 @@ void Topology::process()
 
 
         // y2 = dims-1
-        LogProcessorInfo("P_X(" << x << ", " << y2 << ") =  [" << pY2.x << ", " << pY2.y << "]")
+        LogProcessorInfo("P_X(" << x-1 << ", " << y2 << ") =  [" << pY2.x << ", " << pY2.y << "]")
 
         previousPointY2 = pY2;
         pY2 = Interpolator::sampleFromField(vol.get(), vec2(x,y2));

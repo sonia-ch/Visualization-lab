@@ -81,8 +81,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -125,13 +123,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="28563" />
+          <entry key="cpp" value="28575" />
           <entry key="h" value="1041" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="29604" />
+          <entry key="ObjectiveC" value="29616" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -167,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="259" column="85" selection-start-line="259" selection-start-column="85" selection-end-line="259" selection-end-column="85" />
+            <state relative-caret-position="90">
+              <caret line="183" column="31" lean-forward="true" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
               <folding>
                 <element signature="e#259#317#0" expanded="true" />
               </folding>
@@ -761,12 +759,12 @@
       <workItem from="1538979642672" duration="23824000" />
       <workItem from="1539088796438" duration="5950000" />
       <workItem from="1539235864977" duration="377000" />
-      <workItem from="1539239776402" duration="7438000" />
+      <workItem from="1539239776402" duration="8312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122201000" />
+    <option name="totallyTimeSpent" value="123075000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1030,8 +1028,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="259" column="85" selection-start-line="259" selection-start-column="85" selection-end-line="259" selection-end-column="85" />
+        <state relative-caret-position="90">
+          <caret line="183" column="31" lean-forward="true" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
           <folding>
             <element signature="e#259#317#0" expanded="true" />
           </folding>
