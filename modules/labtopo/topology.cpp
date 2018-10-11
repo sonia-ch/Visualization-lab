@@ -97,7 +97,7 @@ void Topology::process()
 //            getCriticalPoints(vol.get(), vec2(x,y), initRange, criticalPoints);
             if (getCP(vol.get(), vec2(x,y), initRange, criticalPoints)) {
                 vec2& p = criticalPoints[criticalPoints.size()-1];
-                LogProcessorInfo("Add point: (" << p.x << ", " << p.y << ")");
+                LogProcessorInfo("Add point: (" << p.x/ (dims.x - 1) << ", " << p.y/ (dims.y - 1) << ")");
             }
         }
     }
@@ -162,6 +162,129 @@ void Topology::process()
         directions[1] = eigenResult.eigenvaluesRe[1] < 0 ? -1 : 1; // RealVal < 0 => incoming => go backward , else repelling => go forward
 
         drawSeparatices(vol.get(), vertices, dims, indexBufferSeparatrices, saddlePoint, eigenResult.eigenvectors, directions);
+
+    }
+
+    // (4 extra) Find boundary switch points v(x) is parallel to tangent of boundary curve
+    vector<vec2> boundaryPoints;
+    vec4 boundaryPointsColor = vec4(100,100,100,255);
+
+    // Go y-axis
+    int x1 = 0;
+    vec2 previousPointX1;
+    vec2 pX1 = Interpolator::sampleFromField(vol.get(), vec2(x1,0)); // initialize previous point
+
+    int x2 = dims[0]-1;
+    vec2 previousPointX2;
+    vec2 pX2 = Interpolator::sampleFromField(vol.get(), vec2(x2,0)); // initialize previous point
+
+    vec2 possibleBoundaryPoint;
+    float threshold = 0.0001;
+
+    for (int y = 1; y < dims[1]-1; y++) {
+        // x1 = 0
+        LogProcessorInfo("P_Y(" << x1 << ", " << y << ") =  [" << pX1.x << ", " << pX1.y << "]")
+
+        previousPointX1 = pX1;
+        pX1 = Interpolator::sampleFromField(vol.get(), vec2(x1,y));
+        if (pX1.x < 0 && previousPointX1.x > 0 || pX1.x > 0 && previousPointX1.x < 0) { // change of sign => interpolate to find zero (possible boundary point)
+            float totalDist = std::abs(pX1.x - previousPointX1.x);
+            float relDist = pX1.x / totalDist;
+            possibleBoundaryPoint = Interpolator::sampleFromField(vol.get(), vec2(x1,y-relDist)); // interpolate to get point
+            LogProcessorInfo("PossibleBoundaryPoint(" << x1 << ", " << y-relDist << ") =  [" << possibleBoundaryPoint.x << ", " << possibleBoundaryPoint.y << "]")
+            // check parallel to vertical boundary (e.g. not an extreme point)
+            LogProcessorInfo("Total Dist " << totalDist << " rel. Dist " << relDist);
+            if (possibleBoundaryPoint.y != 0 && std::abs(possibleBoundaryPoint.x) < threshold) {
+                boundaryPoints.push_back(possibleBoundaryPoint);
+            }
+        }
+
+
+        // x2 = dims-1
+        LogProcessorInfo("P_Y(" << x2 << ", " << y << ") =  [" << pX2.x << ", " << pX2.y << "]")
+
+        previousPointX2 = pX2;
+        pX2 = Interpolator::sampleFromField(vol.get(), vec2(x2,y));
+        if (pX2.x < 0 && previousPointX2.x > 0 || pX2.x > 0 && previousPointX2.x < 0) { // change of sign => interpolate to find zero (possible boundary point)
+            float totalDist = std::abs(pX2.x - previousPointX2.x);
+            float relDist = pX2.x / totalDist;
+            possibleBoundaryPoint = Interpolator::sampleFromField(vol.get(), vec2(x2,y-relDist)); // interpolate to get point
+            LogProcessorInfo("PossibleBoundaryPoint(" << x2 << ", " << y-relDist << ") =  [" << possibleBoundaryPoint.x << ", " << possibleBoundaryPoint.y << "]")
+            // check parallel to vertical boundary (e.g. not an extreme point)
+            LogProcessorInfo("Total Dist " << totalDist << " rel. Dist " << relDist);
+            if (possibleBoundaryPoint.y != 0 && std::abs(possibleBoundaryPoint.x) < threshold) {
+                boundaryPoints.push_back(possibleBoundaryPoint);
+            }
+        }
+    }
+
+    // Go x-axis
+    int y1 = 0;
+    vec2 previousPointY1;
+    vec2 pY1 = Interpolator::sampleFromField(vol.get(), vec2(y1,0)); // initialize previous point
+
+    int y2 = dims[1]-1;
+    vec2 previousPointY2;
+    vec2 pY2 = Interpolator::sampleFromField(vol.get(), vec2(y2,0)); // initialize previous point
+
+    for (int x = 1; x < dims[1]-1; x++) {
+        // y1 = 0
+        LogProcessorInfo("P_X(" << x << ", " << y1 << ") =  [" << pY1.x << ", " << pY1.y << "]")
+
+        previousPointY1 = pY1;
+        pY1 = Interpolator::sampleFromField(vol.get(), vec2(x,y1));
+        if (pY1.y < 0 && previousPointY1.y > 0 || pY1.y > 0 && previousPointY1.y < 0) { // change of sign => interpolate to find zero (possible boundary point)
+            float totalDist = std::abs(pY1.y - previousPointY1.y);
+            float relDist = pY1.y / totalDist;
+            possibleBoundaryPoint = Interpolator::sampleFromField(vol.get(), vec2(x-relDist,y1)); // interpolate to get point
+            LogProcessorInfo("PossibleBoundaryPoint(" << x-relDist << ", " << y1 << ") =  [" << possibleBoundaryPoint.x << ", " << possibleBoundaryPoint.y << "]")
+            // check parallel to vertical boundary (e.g. not an extreme point)
+            LogProcessorInfo("Total Dist " << totalDist << " rel. Dist " << relDist);
+            if (possibleBoundaryPoint.x != 0 && std::abs(possibleBoundaryPoint.y) < threshold) {
+                boundaryPoints.push_back(possibleBoundaryPoint);
+            }
+        }
+
+
+        // y2 = dims-1
+        LogProcessorInfo("P_X(" << x << ", " << y2 << ") =  [" << pY2.x << ", " << pY2.y << "]")
+
+        previousPointY2 = pY2;
+        pY2 = Interpolator::sampleFromField(vol.get(), vec2(x,y2));
+        if (pY2.y < 0 && previousPointY2.y > 0 || pY2.y > 0 && previousPointY2.y < 0) { // change of sign => interpolate to find zero (possible boundary point)
+            float totalDist = std::abs(pY2.y - previousPointY2.y);
+            float relDist = pY2.y / totalDist;
+            possibleBoundaryPoint = Interpolator::sampleFromField(vol.get(), vec2(x-relDist,y2)); // interpolate to get point
+            LogProcessorInfo("PossibleBoundaryPoint(" << x-relDist << ", " << y2 << ") =  [" << possibleBoundaryPoint.x << ", " << possibleBoundaryPoint.y << "]")
+            // check parallel to vertical boundary (e.g. not an extreme point)
+            LogProcessorInfo("Total Dist " << totalDist << " rel. Dist " << relDist);
+            if (possibleBoundaryPoint.x != 0 && std::abs(possibleBoundaryPoint.y) < threshold) {
+                boundaryPoints.push_back(possibleBoundaryPoint);
+            }
+        }
+    }
+
+
+    // (5 extra) draw separatices and points at boundary points
+    LogProcessorInfo("BoundaryPoints printout size:" << boundaryPoints.size());
+    for (int i = 0; i < boundaryPoints.size(); i++) {
+        const vec2& boundaryPoint = boundaryPoints[i];
+        mat2 jacobian = Interpolator::sampleJacobian(vol.get(), boundaryPoint);
+        util::EigenResult eigenResult = util::eigenAnalysis(jacobian);
+
+        LogProcessorInfo("Boundary point (" << boundaryPoint.x << ", " << boundaryPoint.y << ")");
+
+        // Add to points
+        indexBufferPoints->add(static_cast<std::uint32_t>(vertices.size()));
+        vertices.push_back({ vec3(boundaryPoint.x / (dims.x-1), boundaryPoint.y / (dims.y-1), 0), vec3(0, 0, 1), vec3(boundaryPoint.x / (dims.x-1), boundaryPoint.y / (dims.y-1), 0), boundaryPointsColor });
+
+
+        // Integrate forward/backward dependend on repelling/attracting focus
+        vec2 directions;
+        directions[0] = eigenResult.eigenvaluesRe[0] > 0 ? 1 : -1; // RealVal > 0 => outgoing => go forward , else attracting => go backward
+        directions[1] = eigenResult.eigenvaluesRe[1] < 0 ? -1 : 1; // RealVal < 0 => incoming => go backward , else repelling => go forward
+
+        drawSeparatices(vol.get(), vertices, dims, indexBufferSeparatrices, boundaryPoint, eigenResult.eigenvectors, directions);
 
     }
 

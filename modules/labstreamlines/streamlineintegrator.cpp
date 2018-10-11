@@ -175,19 +175,16 @@ void StreamlineIntegrator::drawStreamLine(const VolumeRAM* vr,
 
         // e.) after certain arc length
         if (propDoArcLen.get() && arcLength > propArcLength.get()) {
-            LogProcessorInfo("Maximal arc length " << arcLength);
             break;
         }
 
         // f.) stop at domain boundary
         if (position.x > (dims.x-1) || position.x < 0 || position.y > (dims.y-1) || position.y < 0) {
-            LogProcessorInfo("Out of domain boundaries (" << position.x << "," << position.y << ")");
             break;
         }
 
         // g.) zero & h.) slow velocity
         if (velocity == 0.0f || velocity < 0.001f){
-            LogProcessorInfo("Velocity is to slow " << velocity);
             break;
         }
 
@@ -239,7 +236,6 @@ void StreamlineIntegrator::process() {
                 //float randX = fmod(rand(), dims.x);
                 //float randY = fmod(rand(), dims.y);
                 vec2 startPoint = vec2(randX, randY);
-                LogProcessorInfo("Seed point for line " << (i+1) << " is " << startPoint);
 
                 auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
                 auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
@@ -252,7 +248,6 @@ void StreamlineIntegrator::process() {
                     double coordX = x * (rangeX/(1.0*propGridLinesX.get()-1));
                     double coordY = y * (rangeY/(1.0*propGridLinesY.get()-1));
                     vec2 startPoint = vec2(coordX, coordY);
-                    LogProcessorInfo("Seed point is " << startPoint);
 
                     auto indexBufferPoints = mesh->addIndexBuffer(DrawType::Points, ConnectivityType::None);
                     auto indexBufferRK = mesh->addIndexBuffer(DrawType::Lines, ConnectivityType::Strip);
@@ -286,8 +281,6 @@ void StreamlineIntegrator::process() {
             {
                 //Generate random number
                 float randValue = ((float)rand() / RAND_MAX);
-
-                LogProcessorInfo("Random number:" << randValue);
 
                 float probabilitySum = 0.0f;
                 for (int i = 0; i < values.size(); i++)

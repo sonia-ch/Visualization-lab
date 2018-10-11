@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/modules/labtopo/topology.cpp" line="180" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/modules/labtopo/topology.cpp" line="303" mnemonic="7" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
+      <config projectName="inviwo-projects" targetName="glfw" />
       <config projectName="inviwo-projects" targetName="DOXY-ALL" />
       <config projectName="inviwo-projects" targetName="inviwo-core" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-QtWidgets" />
@@ -34,8 +34,9 @@
       <config projectName="inviwo-projects" targetName="tclap" />
       <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
-      <config projectName="inviwo-projects" targetName="glfw" />
+      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
       <config projectName="inviwo-projects" targetName="inviwo" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
       <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
       <config projectName="inviwo-projects" targetName="assimp" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
@@ -45,7 +46,6 @@
       <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
       <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
       <config projectName="inviwo-projects" targetName="GLEW" />
-      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
@@ -82,6 +82,8 @@
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -95,9 +97,9 @@
     <session id="-1020080568">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="4" />
+          <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="2" />
@@ -105,31 +107,31 @@
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.16" value="2" />
           <entry key="project.open.time.17" value="2" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="39" />
-          <entry key="h" value="32" />
+          <entry key="cpp" value="41" />
+          <entry key="h" value="34" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-          <entry key="ObjectiveC" value="71" />
+          <entry key="ObjectiveC" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="26569" />
+          <entry key="cpp" value="28563" />
           <entry key="h" value="1041" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="27610" />
+          <entry key="ObjectiveC" value="29604" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -141,7 +143,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
+            <state relative-caret-position="424">
               <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
               <folding>
                 <element signature="e#337#377#0" expanded="true" />
@@ -153,7 +155,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
+            <state relative-caret-position="709">
               <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
               <folding>
                 <element signature="e#323#354#0" expanded="true" />
@@ -162,11 +164,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2745">
-              <caret line="183" selection-start-line="183" selection-end-line="183" />
+            <state relative-caret-position="375">
+              <caret line="259" column="85" selection-start-line="259" selection-start-column="85" selection-end-line="259" selection-end-column="85" />
               <folding>
                 <element signature="e#259#317#0" expanded="true" />
               </folding>
@@ -174,23 +176,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="106" selection-start-line="106" selection-end-line="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
+        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="33" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="33" />
-              <folding>
-                <element signature="e#273#311#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="171">
+              <caret line="176" column="57" selection-start-line="176" selection-start-column="57" selection-end-line="176" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -198,7 +188,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1425">
+            <state relative-caret-position="439">
               <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
               <folding>
                 <element signature="e#273#311#0" expanded="true" />
@@ -221,6 +211,7 @@
       <find>calculateStream</find>
       <find>streamline[</find>
       <find>add(</find>
+      <find>Log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -236,7 +227,6 @@
         <option value="$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp" />
         <option value="$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.cpp" />
         <option value="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.h" />
-        <option value="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" />
         <option value="$PROJECT_DIR$/modules/labstreamlines/integrator.cpp" />
         <option value="$PROJECT_DIR$/modules/lablic/noisetexturegenerator.h" />
         <option value="$PROJECT_DIR$/modules/lablic/interpolator.cpp" />
@@ -248,6 +238,7 @@
         <option value="$PROJECT_DIR$/modules/labtopo/integrator.h" />
         <option value="$PROJECT_DIR$/modules/labtopo/topology.h" />
         <option value="$PROJECT_DIR$/modules/labtopo/integrator.cpp" />
+        <option value="$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" />
         <option value="$PROJECT_DIR$/modules/labtopo/topology.cpp" />
       </list>
     </option>
@@ -266,35 +257,41 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="inviwo-projects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="modules" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="modules" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="labstreamlines" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="inviwo-projects" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="modules" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="labtopo" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="lablic" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="labstreamlines" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
@@ -764,11 +761,12 @@
       <workItem from="1538979642672" duration="23824000" />
       <workItem from="1539088796438" duration="5950000" />
       <workItem from="1539235864977" duration="377000" />
+      <workItem from="1539239776402" duration="7438000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114756000" />
+    <option name="totallyTimeSpent" value="122201000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -780,9 +778,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2962963" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3029298" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -793,7 +792,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4997236" weight="0.32881" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32740587" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2960251" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
@@ -972,45 +971,8 @@
         <state relative-caret-position="-135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-656">
-          <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="199" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.cpp">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
-          <folding>
-            <element signature="e#337#377#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
-          <folding>
-            <element signature="e#323#354#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2745">
-          <caret line="183" selection-start-line="183" selection-end-line="183" />
-          <folding>
-            <element signature="e#259#317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -1022,9 +984,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
+        <state relative-caret-position="439">
           <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
           <folding>
             <element signature="e#273#311#0" expanded="true" />
@@ -1032,10 +1001,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        <state relative-caret-position="424">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+          <folding>
+            <element signature="e#337#377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="176" column="57" selection-start-line="176" selection-start-column="57" selection-end-line="176" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+          <folding>
+            <element signature="e#323#354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="259" column="85" selection-start-line="259" selection-start-column="85" selection-end-line="259" selection-end-column="85" />
+          <folding>
+            <element signature="e#259#317#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
