@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-<<<<<<< HEAD
     <bookmark url="file://$PROJECT_DIR$/modules/labtopo/topology.cpp" line="180" mnemonic="7" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
-=======
-    <bookmark url="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp" line="315" mnemonic="7" />
-  </component>
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
-    <generated>
-      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
->>>>>>> jakob_assign5
+      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-OpenGL" />
       <config projectName="inviwo-projects" targetName="DOXY-ALL" />
       <config projectName="inviwo-projects" targetName="inviwo-core" />
@@ -24,13 +14,9 @@
       <config projectName="inviwo-projects" targetName="DOXY-HELP-Base" />
       <config projectName="inviwo-projects" targetName="inviwo-module-base" />
       <config projectName="inviwo-projects" targetName="inviwo-integrationtests" />
-<<<<<<< HEAD
-      <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabTopo" />
-=======
       <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
       <config projectName="inviwo-projects" targetName="inviwo-qtapplicationbase" />
->>>>>>> jakob_assign5
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabTopo" />
       <config projectName="inviwo-projects" targetName="libpng" />
       <config projectName="inviwo-projects" targetName="openexr-imath" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DH2320Lab2" />
@@ -38,11 +24,7 @@
       <config projectName="inviwo-projects" targetName="inviwo-module-labraytracer" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-BaseGL" />
       <config projectName="inviwo-projects" targetName="inviwo-module-assimp" />
-<<<<<<< HEAD
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
-=======
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
->>>>>>> jakob_assign5
+      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
       <config projectName="inviwo-projects" targetName="inviwo-qteditor" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabMarchingSquares" />
       <config projectName="inviwo-projects" targetName="tinydir" />
@@ -52,43 +34,24 @@
       <config projectName="inviwo-projects" targetName="tclap" />
       <config projectName="inviwo-projects" targetName="inviwo-module-cimg" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-DD2257Setup" />
-<<<<<<< HEAD
-      <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
-      <config projectName="inviwo-projects" targetName="inviwo" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
-=======
       <config projectName="inviwo-projects" targetName="glfw" />
       <config projectName="inviwo-projects" targetName="inviwo" />
->>>>>>> jakob_assign5
       <config projectName="inviwo-projects" targetName="openexr-ilmimf" />
       <config projectName="inviwo-projects" targetName="assimp" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaycasting" />
       <config projectName="inviwo-projects" targetName="inviwo-module-opengl" />
-<<<<<<< HEAD
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-LabLIC" />
-      <config projectName="inviwo-projects" targetName="glfw" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labstreamlines" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
-      <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
-      <config projectName="inviwo-projects" targetName="GLEW" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
-      <config projectName="inviwo-projects" targetName="zlib1" />
-      <config projectName="inviwo-projects" targetName="openexr-iex" />
-=======
       <config projectName="inviwo-projects" targetName="inviwo-module-labstreamlines" />
       <config projectName="inviwo-projects" targetName="half" />
       <config projectName="inviwo-projects" targetName="inviwo-module-qtwidgets" />
       <config projectName="inviwo-projects" targetName="DOXY-Inviwo" />
       <config projectName="inviwo-projects" targetName="GLEW" />
       <config projectName="inviwo-projects" targetName="inviwo-buildinfo-header" />
+      <config projectName="inviwo-projects" targetName="DOXY-HELP-Assimp" />
       <config projectName="inviwo-projects" targetName="inviwo-unittests-cimg" />
-      <config projectName="inviwo-projects" targetName="openexr-iex" />
+      <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab2" />
       <config projectName="inviwo-projects" targetName="inviwo-module-dh2320lab1" />
       <config projectName="inviwo-projects" targetName="zlib1" />
->>>>>>> jakob_assign5
+      <config projectName="inviwo-projects" targetName="openexr-iex" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabStreamlines" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabRaytracer" />
       <config projectName="inviwo-projects" targetName="inviwo-module-lablic" />
@@ -96,32 +59,18 @@
       <config projectName="inviwo-projects" targetName="inviwo-module-dd2257setup" />
       <config projectName="inviwo-projects" targetName="openexr-half" />
       <config projectName="inviwo-projects" targetName="libjpeg" />
-<<<<<<< HEAD
+      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
       <config projectName="inviwo-projects" targetName="gtest" />
       <config projectName="inviwo-projects" targetName="openexr-ilmthread" />
       <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
-      <config projectName="inviwo-projects" targetName="openexr-ilmimfutil" />
-=======
-      <config projectName="inviwo-projects" targetName="inviwo-unittests-base" />
-      <config projectName="inviwo-projects" targetName="gtest" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-glfw" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labraycasting" />
-      <config projectName="inviwo-projects" targetName="inviwo-module-labmarchingsquares" />
->>>>>>> jakob_assign5
       <config projectName="inviwo-projects" targetName="inviwo-unittests-core" />
       <config projectName="inviwo-projects" targetName="inviwo-module-basegl" />
       <config projectName="inviwo-projects" targetName="ticpp" />
       <config projectName="inviwo-projects" targetName="flags" />
-<<<<<<< HEAD
       <config projectName="inviwo-projects" targetName="inviwo-module-labtopo" />
-      <config projectName="inviwo-projects" targetName="sigar" />
-      <config projectName="inviwo-projects" targetName="half" />
-      <config projectName="inviwo-projects" targetName="DOXY-HELP-CImg" />
-=======
       <config projectName="inviwo-projects" targetName="sigar" />
       <config projectName="inviwo-projects" targetName="inviwo-module-openglqt" />
       <config projectName="inviwo-projects" targetName="DOXY-HELP-LabLIC" />
->>>>>>> jakob_assign5
       <config projectName="inviwo-projects" targetName="openexr-iexmath" />
     </generated>
   </component>
@@ -132,23 +81,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29926ce0-01a7-41f6-a0b1-1b27ccaf7d01" name="Default Changelist" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inviwo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/labtopo/integrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/integrator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/labtopo/topology.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/labtopo/topology.h" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/integrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/integrator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/integrator.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/integrator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/lablic/licprocessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/modules/lablic/licprocessor.h" afterDir="false" />
->>>>>>> jakob_assign5
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/../inviwo-output/" />
@@ -158,79 +91,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-=======
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Default" />
->>>>>>> jakob_assign5
   <component name="FUSProjectUsageTrigger">
     <session id="-1020080568">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-<<<<<<< HEAD
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
-=======
-          <entry key="project.closed" value="14" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="4" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="1" />
->>>>>>> jakob_assign5
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.16" value="2" />
-          <entry key="project.open.time.17" value="1" />
-<<<<<<< HEAD
-          <entry key="project.opened" value="17" />
-=======
-          <entry key="project.opened" value="16" />
->>>>>>> jakob_assign5
+          <entry key="project.open.time.17" value="2" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-<<<<<<< HEAD
-          <entry key="cpp" value="36" />
+          <entry key="cpp" value="39" />
           <entry key="h" value="32" />
-=======
-          <entry key="cpp" value="26" />
-          <entry key="h" value="24" />
->>>>>>> jakob_assign5
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="1" />
-<<<<<<< HEAD
-          <entry key="ObjectiveC" value="68" />
-=======
-          <entry key="ObjectiveC" value="50" />
->>>>>>> jakob_assign5
+          <entry key="ObjectiveC" value="71" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-<<<<<<< HEAD
-          <entry key="cpp" value="26566" />
+          <entry key="cpp" value="26569" />
           <entry key="h" value="1041" />
-=======
-          <entry key="cpp" value="19082" />
-          <entry key="h" value="770" />
->>>>>>> jakob_assign5
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-<<<<<<< HEAD
-          <entry key="ObjectiveC" value="27607" />
-=======
-          <entry key="ObjectiveC" value="19852" />
->>>>>>> jakob_assign5
+          <entry key="ObjectiveC" value="27610" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -240,152 +139,69 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="675">
               <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
               <folding>
                 <element signature="e#337#377#0" expanded="true" />
-=======
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="170" column="58" selection-start-line="170" selection-start-column="58" selection-end-line="170" selection-end-column="58" />
-              <folding>
-                <element signature="e#321#369#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-              <folding>
-                <element signature="e#337#375#0" expanded="true" />
->>>>>>> jakob_assign5
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
+            <state relative-caret-position="1005">
               <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
               <folding>
                 <element signature="e#323#354#0" expanded="true" />
-=======
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="15" column="41" selection-start-line="15" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
-              <folding>
-                <element signature="e#332#370#0" expanded="true" />
->>>>>>> jakob_assign5
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
+            <state relative-caret-position="2745">
+              <caret line="183" selection-start-line="183" selection-end-line="183" />
               <folding>
                 <element signature="e#259#317#0" expanded="true" />
-=======
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/interpolator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-284" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="213" column="22" selection-start-line="213" selection-start-column="22" selection-end-line="213" selection-end-column="22" />
-              <folding>
-                <element signature="e#318#350#0" expanded="true" />
->>>>>>> jakob_assign5
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
+            <state relative-caret-position="600">
               <caret line="40" column="33" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="e#273#311#0" expanded="true" />
-=======
-        <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="125" column="58" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-              <folding>
-                <element signature="e#318#359#0" expanded="true" />
->>>>>>> jakob_assign5
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="737">
+            <state relative-caret-position="1425">
               <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
               <folding>
                 <element signature="e#273#311#0" expanded="true" />
-=======
-        <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="64" column="32" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
-              <folding>
-                <element signature="e#332#370#0" expanded="true" />
->>>>>>> jakob_assign5
               </folding>
             </state>
           </provider>
@@ -404,6 +220,7 @@
       <find>RK4</find>
       <find>calculateStream</find>
       <find>streamline[</find>
+      <find>add(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -428,13 +245,10 @@
         <option value="$PROJECT_DIR$/modules/lablic/integrator.h" />
         <option value="$PROJECT_DIR$/modules/lablic/licprocessor.h" />
         <option value="$PROJECT_DIR$/modules/lablic/licprocessor.cpp" />
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/modules/labtopo/integrator.h" />
         <option value="$PROJECT_DIR$/modules/labtopo/topology.h" />
         <option value="$PROJECT_DIR$/modules/labtopo/integrator.cpp" />
         <option value="$PROJECT_DIR$/modules/labtopo/topology.cpp" />
-=======
->>>>>>> jakob_assign5
       </list>
     </option>
   </component>
@@ -450,69 +264,45 @@
     <option name="width" value="1398" />
     <option name="height" value="1020" />
   </component>
-<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-=======
->>>>>>> jakob_assign5
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-<<<<<<< HEAD
               <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-=======
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
-            </path>
-            <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="inviwo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
->>>>>>> jakob_assign5
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-<<<<<<< HEAD
               <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-=======
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
->>>>>>> jakob_assign5
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="lablic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-<<<<<<< HEAD
               <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-=======
-              <item name="inviwo-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inviwo" type="47feb1d3:ProjectViewModuleNode" />
               <item name="inviwo" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="labstreamlines" type="462c0819:PsiDirectoryNode" />
->>>>>>> jakob_assign5
+            </path>
+            <path>
+              <item name="inviwo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -609,14 +399,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <configuration name="DOXY-HELP-LabTopo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-LabTopo" CONFIG_NAME="Default">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-=======
->>>>>>> jakob_assign5
     <configuration name="DOXY-HELP-OpenGL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="DOXY-HELP-OpenGL" CONFIG_NAME="Default">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -752,14 +539,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <configuration name="inviwo-module-labtopo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-labtopo" CONFIG_NAME="Default">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-=======
->>>>>>> jakob_assign5
     <configuration name="inviwo-module-opengl" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="inviwo-projects" TARGET_NAME="inviwo-module-opengl" CONFIG_NAME="Default">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -895,10 +679,7 @@
       <item itemvalue="Application.DOXY-HELP-LabRaycasting" />
       <item itemvalue="Application.DOXY-HELP-LabRaytracer" />
       <item itemvalue="Application.DOXY-HELP-LabStreamlines" />
-<<<<<<< HEAD
       <item itemvalue="Application.DOXY-HELP-LabTopo" />
-=======
->>>>>>> jakob_assign5
       <item itemvalue="Application.DOXY-HELP-OpenGL" />
       <item itemvalue="Application.DOXY-HELP-OpenGLQt" />
       <item itemvalue="Application.DOXY-HELP-QtWidgets" />
@@ -939,10 +720,7 @@
       <item itemvalue="Application.inviwo-module-labraycasting" />
       <item itemvalue="Application.inviwo-module-labraytracer" />
       <item itemvalue="Application.inviwo-module-labstreamlines" />
-<<<<<<< HEAD
       <item itemvalue="Application.inviwo-module-labtopo" />
-=======
->>>>>>> jakob_assign5
       <item itemvalue="Application.inviwo-module-opengl" />
       <item itemvalue="Application.GLEW" />
       <item itemvalue="Application.inviwo-module-openglqt" />
@@ -983,20 +761,14 @@
       <workItem from="1538461067763" duration="3335000" />
       <workItem from="1538551057663" duration="234000" />
       <workItem from="1538574590319" duration="2479000" />
-<<<<<<< HEAD
       <workItem from="1538979642672" duration="23824000" />
-      <workItem from="1539088796438" duration="4689000" />
-=======
->>>>>>> jakob_assign5
+      <workItem from="1539088796438" duration="5950000" />
+      <workItem from="1539235864977" duration="377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="113118000" />
-=======
-    <option name="totallyTimeSpent" value="83237000" />
->>>>>>> jakob_assign5
+    <option name="totallyTimeSpent" value="114756000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1008,17 +780,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29297954" />
-=======
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2968491" />
->>>>>>> jakob_assign5
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2962963" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1029,19 +793,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4997236" weight="0.32881" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32740587" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32740587" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
       <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3294979" />
-=======
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32740587" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.3294979" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3294979" />
->>>>>>> jakob_assign5
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1103,23 +859,6 @@
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-<<<<<<< HEAD
-=======
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-345">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/inviwo/core/util/glm.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7379">
-          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> jakob_assign5
     <entry file="file://$PROJECT_DIR$/modules/labmarchingsquares/marchingsquares.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-525">
@@ -1129,13 +868,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/eulerrk4comparison.cpp">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="1590">
           <caret line="106" selection-start-line="106" selection-end-line="106" />
-=======
-        <state relative-caret-position="271">
-          <caret line="125" column="58" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
->>>>>>> jakob_assign5
         </state>
       </provider>
     </entry>
@@ -1162,7 +896,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.h">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="855">
           <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
         </state>
@@ -1224,63 +957,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="20" column="41" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="41" />
-=======
-        <state relative-caret-position="421">
-          <caret line="64" column="32" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
-          <folding>
-            <element signature="e#332#370#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
->>>>>>> jakob_assign5
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="79" column="1" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
-          <folding>
-            <element signature="e#321#369#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/modules/lablic/noisetexturegenerator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-          <folding>
-            <element signature="e#318#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="e#337#375#0" expanded="true" />
->>>>>>> jakob_assign5
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/include/inviwo/core/util/glm.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1293,51 +972,16 @@
         <state relative-caret-position="-135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
-          <folding>
-            <element signature="e#273#311#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" column="41" selection-start-line="15" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="64" column="48" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
-          <folding>
-            <element signature="e#332#370#0" expanded="true" />
->>>>>>> jakob_assign5
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="40" column="33" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="33" />
-          <folding>
-            <element signature="e#273#311#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/modules/labstreamlines/streamlineintegrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="170" column="58" selection-start-line="170" selection-start-column="58" selection-end-line="170" selection-end-column="58" />
-          <folding>
-            <element signature="e#321#369#0" expanded="true" />
->>>>>>> jakob_assign5
-          </folding>
+        <state relative-caret-position="-656">
+          <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="199" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/labstreamlinesmodule.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -1350,7 +994,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/integrator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
+        <state relative-caret-position="1005">
           <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
           <folding>
             <element signature="e#323#354#0" expanded="true" />
@@ -1360,31 +1004,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
+        <state relative-caret-position="2745">
+          <caret line="183" selection-start-line="183" selection-end-line="183" />
           <folding>
             <element signature="e#259#317#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/modules/lablic/integrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/interpolator.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/utils/gradients.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-284" />
+        <state relative-caret-position="600">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="33" />
+          <folding>
+            <element signature="e#273#311#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/lablic/licprocessor.cpp">
+    <entry file="file://$PROJECT_DIR$/modules/labtopo/topology.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="213" column="22" selection-start-line="213" selection-start-column="22" selection-end-line="213" selection-end-column="22" />
+        <state relative-caret-position="1425">
+          <caret line="95" column="46" selection-start-line="95" selection-start-column="46" selection-end-line="95" selection-end-column="46" />
           <folding>
-            <element signature="e#318#350#0" expanded="true" />
->>>>>>> jakob_assign5
+            <element signature="e#273#311#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/labstreamlines/integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>

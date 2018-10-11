@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Inviwo - Interactive Visualization Workshop
 
 [![Build Status](http://130.236.145.152:8080/buildStatus/icon?job=Public/Inviwo-public)](http://130.236.145.152:8080/job/Public/job/Inviwo-public/) [![BSD licensed](https://img.shields.io/badge/license-BSD-blue.svg?maxAge=2592000)](https://github.com/inviwo/inviwo/blob/master/LICENSE)
@@ -30,3 +31,7 @@ Below follow some general information about the framework:
  - The project and module configuration/generation is performed through CMake (>= 3.2.0).
  - Inviwo has been compiled in Visual Studio (>= 2015), XCode (>= 5), KDevelop (>= 4), Make.
  - C++14 Required
+=======
+# Visualization-lab
+Lab assignments for DD2257 Visualization course
+>>>>>>> 0fb0a5f0547a66c76be87caf18e70b8f5c6908aa
